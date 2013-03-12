@@ -11,13 +11,45 @@
 		5373B0FC15FF8A4400D308A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B0FB15FF8A4400D308A4 /* Foundation.framework */; };
 		5373B0FE15FF8A4400D308A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B0FD15FF8A4400D308A4 /* CoreGraphics.framework */; };
 		5373B10415FF8A4500D308A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5373B10215FF8A4500D308A4 /* InfoPlist.strings */; };
-		5373B10615FF8A4500D308A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373B10515FF8A4500D308A4 /* main.m */; };
-		5373B10A15FF8A4500D308A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373B10915FF8A4500D308A4 /* AppDelegate.m */; };
+		5373B10615FF8A4500D308A4 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5373B10515FF8A4500D308A4 /* main.mm */; };
+		5373B10A15FF8A4500D308A4 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5373B10915FF8A4500D308A4 /* AppDelegate.mm */; };
 		5373B11215FF8A4500D308A4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B11115FF8A4500D308A4 /* SenTestingKit.framework */; };
 		5373B11315FF8A4500D308A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B0F915FF8A4400D308A4 /* UIKit.framework */; };
 		5373B11415FF8A4500D308A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B0FB15FF8A4400D308A4 /* Foundation.framework */; };
-		5373B11C15FF8A4500D308A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5373B11A15FF8A4500D308A4 /* InfoPlist.strings */; };
-		5373B11F15FF8A4500D308A4 /* REngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373B11E15FF8A4500D308A4 /* REngineTests.m */; };
+		5373B15C15FFA48200D308A4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B15B15FFA48200D308A4 /* OpenGLES.framework */; };
+		5373B16015FFA84E00D308A4 /* RFGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5373B15F15FFA84E00D308A4 /* RFGLView.mm */; };
+		5373B16415FFA97E00D308A4 /* MyViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5373B16315FFA97E00D308A4 /* MyViewController.mm */; };
+		5373B16C15FFAC2900D308A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B16B15FFAC2800D308A4 /* QuartzCore.framework */; };
+		53B68CA6168A18410062636D /* AVCaptureSessionManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53B68CA5168A18410062636D /* AVCaptureSessionManager.mm */; };
+		53B68CB3168A23730062636D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B68CB2168A23730062636D /* CoreVideo.framework */; };
+		53B68CB5168A23880062636D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B68CB4168A23880062636D /* AVFoundation.framework */; };
+		53B68CB7168A23950062636D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B68CB6168A23950062636D /* CoreMedia.framework */; };
+		53C8C7D916EC071E00505767 /* RFShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7D716EC071E00505767 /* RFShader.mm */; };
+		53C8C7DB16EC077200505767 /* RFProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7DA16EC077200505767 /* RFProgram.mm */; };
+		53C8C7DD16EC077C00505767 /* RFFramebuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7DC16EC077C00505767 /* RFFramebuffer.mm */; };
+		53C8C7E016EC0B4500505767 /* RFViewFramebuffer.h in Resources */ = {isa = PBXBuildFile; fileRef = 53C8C7DF16EC0B4500505767 /* RFViewFramebuffer.h */; };
+		53C8C7E216EC0B4900505767 /* RFViewFrameuffer.mm in Resources */ = {isa = PBXBuildFile; fileRef = 53C8C7E116EC0B4900505767 /* RFViewFrameuffer.mm */; };
+		53C8C7E416EC0B4C00505767 /* RFTextureFramebuffer.h in Resources */ = {isa = PBXBuildFile; fileRef = 53C8C7E316EC0B4C00505767 /* RFTextureFramebuffer.h */; };
+		53C8C7E616EC0B5000505767 /* RFTextureFramebuffer.mm in Resources */ = {isa = PBXBuildFile; fileRef = 53C8C7E516EC0B5000505767 /* RFTextureFramebuffer.mm */; };
+		53C8C7EA16EC0B5800505767 /* RFTexture.mm in Resources */ = {isa = PBXBuildFile; fileRef = 53C8C7E916EC0B5800505767 /* RFTexture.mm */; };
+		53C8C7F216EC0ECB00505767 /* RFRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F016EC0ECB00505767 /* RFRenderer.mm */; };
+		53C8C7F616EC101300505767 /* RFBlurProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F416EC101300505767 /* RFBlurProgram.mm */; };
+		53C8C7F916EC104A00505767 /* RFFilterProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F716EC104A00505767 /* RFFilterProgram.mm */; };
+		53C8C7FD16EC11B700505767 /* RFToonProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7FB16EC11B600505767 /* RFToonProgram.mm */; };
+		53C8C7FF16EC1CF800505767 /* blur.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 537AA9B216EBFF9F0050C635 /* blur.fsh */; };
+		53C8C80016EC1CF800505767 /* preview.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 537AA9B316EBFF9F0050C635 /* preview.vsh */; };
+		53C8C80116EC1CF800505767 /* toon.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 537AA9B416EBFF9F0050C635 /* toon.fsh */; };
+		53C8C80216EC235A00505767 /* MyRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7FE16EC1AA300505767 /* MyRenderer.mm */; };
+		53C8C80316EC235A00505767 /* RFRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F016EC0ECB00505767 /* RFRenderer.mm */; };
+		53C8C80416EC235A00505767 /* RFTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7E916EC0B5800505767 /* RFTexture.mm */; };
+		53C8C80516EC235A00505767 /* RFFramebuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7DC16EC077C00505767 /* RFFramebuffer.mm */; };
+		53C8C80616EC235A00505767 /* RFViewFrameuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7E116EC0B4900505767 /* RFViewFrameuffer.mm */; };
+		53C8C80716EC235A00505767 /* RFTextureFramebuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7E516EC0B5000505767 /* RFTextureFramebuffer.mm */; };
+		53C8C80816EC235A00505767 /* RFShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7D716EC071E00505767 /* RFShader.mm */; };
+		53C8C80916EC235A00505767 /* RFProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7DA16EC077200505767 /* RFProgram.mm */; };
+		53C8C80A16EC235A00505767 /* RFFilterProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F716EC104A00505767 /* RFFilterProgram.mm */; };
+		53C8C80B16EC235A00505767 /* RFBlurProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F416EC101300505767 /* RFBlurProgram.mm */; };
+		53C8C80C16EC235A00505767 /* RFToonProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7FB16EC11B600505767 /* RFToonProgram.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,18 +67,51 @@
 		5373B0F915FF8A4400D308A4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5373B0FB15FF8A4400D308A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5373B0FD15FF8A4400D308A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		5373B10115FF8A4500D308A4 /* REngine-Info.plist */ = {isa = PBXFileReference; path = "REngine-Info.plist"; sourceTree = "<group>"; };
+		5373B10115FF8A4500D308A4 /* REngine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "REngine-Info.plist"; sourceTree = "<group>"; };
 		5373B10315FF8A4500D308A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5373B10515FF8A4500D308A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5373B10715FF8A4500D308A4 /* REngine-Prefix.pch */ = {isa = PBXFileReference; path = "REngine-Prefix.pch"; sourceTree = "<group>"; };
-		5373B10815FF8A4500D308A4 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
-		5373B10915FF8A4500D308A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5373B10515FF8A4500D308A4 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		5373B10715FF8A4500D308A4 /* REngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "REngine-Prefix.pch"; sourceTree = "<group>"; };
+		5373B10815FF8A4500D308A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = REngine/AppDelegate.h; sourceTree = "<group>"; };
+		5373B10915FF8A4500D308A4 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = REngine/AppDelegate.mm; sourceTree = "<group>"; };
 		5373B11015FF8A4500D308A4 /* REngineTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = REngineTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373B11115FF8A4500D308A4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		5373B11915FF8A4500D308A4 /* REngineTests-Info.plist */ = {isa = PBXFileReference; path = "REngineTests-Info.plist"; sourceTree = "<group>"; };
-		5373B11B15FF8A4500D308A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5373B11D15FF8A4500D308A4 /* REngineTests.h */ = {isa = PBXFileReference; path = REngineTests.h; sourceTree = "<group>"; };
-		5373B11E15FF8A4500D308A4 /* REngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = REngineTests.m; sourceTree = "<group>"; };
+		5373B13715FF8B6700D308A4 /* RFProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFProgram.h; path = REngine/RFProgram.h; sourceTree = "<group>"; };
+		5373B13915FF8B6700D308A4 /* RFShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFShader.h; path = REngine/RFShader.h; sourceTree = "<group>"; };
+		5373B15215FF94DC00D308A4 /* RFFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFFramebuffer.h; path = REngine/RFFramebuffer.h; sourceTree = "<group>"; };
+		5373B15B15FFA48200D308A4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		5373B15E15FFA84E00D308A4 /* RFGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFGLView.h; path = REngine/RFGLView.h; sourceTree = "<group>"; };
+		5373B15F15FFA84E00D308A4 /* RFGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RFGLView.mm; path = REngine/RFGLView.mm; sourceTree = "<group>"; };
+		5373B16215FFA97E00D308A4 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyViewController.h; path = REngine/MyViewController.h; sourceTree = "<group>"; };
+		5373B16315FFA97E00D308A4 /* MyViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MyViewController.mm; path = REngine/MyViewController.mm; sourceTree = "<group>"; };
+		5373B16B15FFAC2800D308A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		537AA9B216EBFF9F0050C635 /* blur.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = blur.fsh; path = REngine/blur.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		537AA9B316EBFF9F0050C635 /* preview.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = preview.vsh; path = REngine/preview.vsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		537AA9B416EBFF9F0050C635 /* toon.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = toon.fsh; path = REngine/toon.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		537AA9B816EBFFAA0050C635 /* MyRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRenderer.h; path = REngine/MyRenderer.h; sourceTree = "<group>"; };
+		53B68CA4168A18410062636D /* AVCaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVCaptureSessionManager.h; path = REngine/AVCaptureSessionManager.h; sourceTree = "<group>"; };
+		53B68CA5168A18410062636D /* AVCaptureSessionManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AVCaptureSessionManager.mm; path = REngine/AVCaptureSessionManager.mm; sourceTree = "<group>"; };
+		53B68CB2168A23730062636D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		53B68CB4168A23880062636D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		53B68CB6168A23950062636D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		53BB2AE6168E7705001D3833 /* RFTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFTexture.h; path = REngine/RFTexture.h; sourceTree = "<group>"; };
+		53C8C7D716EC071E00505767 /* RFShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFShader.mm; sourceTree = "<group>"; };
+		53C8C7DA16EC077200505767 /* RFProgram.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFProgram.mm; sourceTree = "<group>"; };
+		53C8C7DC16EC077C00505767 /* RFFramebuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFFramebuffer.mm; sourceTree = "<group>"; };
+		53C8C7DF16EC0B4500505767 /* RFViewFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFViewFramebuffer.h; sourceTree = "<group>"; };
+		53C8C7E116EC0B4900505767 /* RFViewFrameuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFViewFrameuffer.mm; sourceTree = "<group>"; };
+		53C8C7E316EC0B4C00505767 /* RFTextureFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFTextureFramebuffer.h; sourceTree = "<group>"; };
+		53C8C7E516EC0B5000505767 /* RFTextureFramebuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFTextureFramebuffer.mm; sourceTree = "<group>"; };
+		53C8C7E916EC0B5800505767 /* RFTexture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFTexture.mm; sourceTree = "<group>"; };
+		53C8C7F016EC0ECB00505767 /* RFRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFRenderer.mm; sourceTree = "<group>"; };
+		53C8C7F116EC0ECB00505767 /* RFRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFRenderer.h; sourceTree = "<group>"; };
+		53C8C7F416EC101300505767 /* RFBlurProgram.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFBlurProgram.mm; sourceTree = "<group>"; };
+		53C8C7F516EC101300505767 /* RFBlurProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFBlurProgram.h; sourceTree = "<group>"; };
+		53C8C7F716EC104A00505767 /* RFFilterProgram.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFFilterProgram.mm; sourceTree = "<group>"; };
+		53C8C7F816EC104A00505767 /* RFFilterProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFFilterProgram.h; sourceTree = "<group>"; };
+		53C8C7FA16EC108B00505767 /* Vertices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vertices.h; sourceTree = "<group>"; };
+		53C8C7FB16EC11B600505767 /* RFToonProgram.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFToonProgram.mm; sourceTree = "<group>"; };
+		53C8C7FC16EC11B600505767 /* RFToonProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFToonProgram.h; sourceTree = "<group>"; };
+		53C8C7FE16EC1AA300505767 /* MyRenderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MyRenderer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +119,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53B68CB7168A23950062636D /* CoreMedia.framework in Frameworks */,
+				53B68CB5168A23880062636D /* AVFoundation.framework in Frameworks */,
+				53B68CB3168A23730062636D /* CoreVideo.framework in Frameworks */,
+				5373B16C15FFAC2900D308A4 /* QuartzCore.framework in Frameworks */,
+				5373B15C15FFA48200D308A4 /* OpenGLES.framework in Frameworks */,
 				5373B0FA15FF8A4400D308A4 /* UIKit.framework in Frameworks */,
 				5373B0FC15FF8A4400D308A4 /* Foundation.framework in Frameworks */,
 				5373B0FE15FF8A4400D308A4 /* CoreGraphics.framework in Frameworks */,
@@ -76,10 +146,11 @@
 		5373B0EA15FF8A4400D308A4 = {
 			isa = PBXGroup;
 			children = (
-				5373B0FF15FF8A4500D308A4 /* REngine */,
-				5373B11715FF8A4500D308A4 /* REngineTests */,
+				53C8C7D316EC056F00505767 /* Classes */,
+				53B68CA7168A20000062636D /* Shaders */,
 				5373B0F815FF8A4400D308A4 /* Frameworks */,
 				5373B0F615FF8A4400D308A4 /* Products */,
+				5373B10015FF8A4500D308A4 /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +166,11 @@
 		5373B0F815FF8A4400D308A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53B68CB6168A23950062636D /* CoreMedia.framework */,
+				53B68CB4168A23880062636D /* AVFoundation.framework */,
+				53B68CB2168A23730062636D /* CoreVideo.framework */,
+				5373B16B15FFAC2800D308A4 /* QuartzCore.framework */,
+				5373B15B15FFA48200D308A4 /* OpenGLES.framework */,
 				5373B0F915FF8A4400D308A4 /* UIKit.framework */,
 				5373B0FB15FF8A4400D308A4 /* Foundation.framework */,
 				5373B0FD15FF8A4400D308A4 /* CoreGraphics.framework */,
@@ -103,44 +179,144 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5373B0FF15FF8A4500D308A4 /* REngine */ = {
-			isa = PBXGroup;
-			children = (
-				5373B10815FF8A4500D308A4 /* AppDelegate.h */,
-				5373B10915FF8A4500D308A4 /* AppDelegate.m */,
-				5373B10015FF8A4500D308A4 /* Supporting Files */,
-			);
-			path = REngine;
-			sourceTree = "<group>";
-		};
 		5373B10015FF8A4500D308A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				5373B10115FF8A4500D308A4 /* REngine-Info.plist */,
 				5373B10215FF8A4500D308A4 /* InfoPlist.strings */,
-				5373B10515FF8A4500D308A4 /* main.m */,
+				5373B10515FF8A4500D308A4 /* main.mm */,
 				5373B10715FF8A4500D308A4 /* REngine-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = REngine;
 			sourceTree = "<group>";
 		};
-		5373B11715FF8A4500D308A4 /* REngineTests */ = {
+		53B68CA3168A18170062636D /* Capture Session Manager */ = {
 			isa = PBXGroup;
 			children = (
-				5373B11D15FF8A4500D308A4 /* REngineTests.h */,
-				5373B11E15FF8A4500D308A4 /* REngineTests.m */,
-				5373B11815FF8A4500D308A4 /* Supporting Files */,
+				53B68CA4168A18410062636D /* AVCaptureSessionManager.h */,
+				53B68CA5168A18410062636D /* AVCaptureSessionManager.mm */,
 			);
-			path = REngineTests;
+			name = "Capture Session Manager";
 			sourceTree = "<group>";
 		};
-		5373B11815FF8A4500D308A4 /* Supporting Files */ = {
+		53B68CA7168A20000062636D /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				5373B11915FF8A4500D308A4 /* REngineTests-Info.plist */,
-				5373B11A15FF8A4500D308A4 /* InfoPlist.strings */,
+				537AA9B316EBFF9F0050C635 /* preview.vsh */,
+				537AA9B216EBFF9F0050C635 /* blur.fsh */,
+				537AA9B416EBFF9F0050C635 /* toon.fsh */,
 			);
-			name = "Supporting Files";
+			name = Shaders;
+			sourceTree = "<group>";
+		};
+		53C8C7D316EC056F00505767 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				53C8C7F316EC0FC500505767 /* App */,
+				53C8C7D616EC05CC00505767 /* Engine */,
+				53C8C7D416EC057700505767 /* Application */,
+				53C8C7D516EC058E00505767 /* View Controller */,
+				53B68CA3168A18170062636D /* Capture Session Manager */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		53C8C7D416EC057700505767 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				5373B10815FF8A4500D308A4 /* AppDelegate.h */,
+				5373B10915FF8A4500D308A4 /* AppDelegate.mm */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		53C8C7D516EC058E00505767 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5373B16215FFA97E00D308A4 /* MyViewController.h */,
+				5373B16315FFA97E00D308A4 /* MyViewController.mm */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		53C8C7D616EC05CC00505767 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				53C8C7EF16EC0E8200505767 /* Renderer */,
+				53C8C7EE16EC0E7300505767 /* Texture */,
+				53C8C7ED16EC0E5C00505767 /* Framebuffers */,
+				53C8C7EC16EC0E4D00505767 /* Shader+Program */,
+				53C8C7EB16EC0E4500505767 /* View */,
+			);
+			name = Engine;
+			sourceTree = "<group>";
+		};
+		53C8C7EB16EC0E4500505767 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5373B15E15FFA84E00D308A4 /* RFGLView.h */,
+				5373B15F15FFA84E00D308A4 /* RFGLView.mm */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		53C8C7EC16EC0E4D00505767 /* Shader+Program */ = {
+			isa = PBXGroup;
+			children = (
+				53C8C7FA16EC108B00505767 /* Vertices.h */,
+				5373B13915FF8B6700D308A4 /* RFShader.h */,
+				53C8C7D716EC071E00505767 /* RFShader.mm */,
+				5373B13715FF8B6700D308A4 /* RFProgram.h */,
+				53C8C7DA16EC077200505767 /* RFProgram.mm */,
+				53C8C7F816EC104A00505767 /* RFFilterProgram.h */,
+				53C8C7F716EC104A00505767 /* RFFilterProgram.mm */,
+			);
+			name = "Shader+Program";
+			sourceTree = "<group>";
+		};
+		53C8C7ED16EC0E5C00505767 /* Framebuffers */ = {
+			isa = PBXGroup;
+			children = (
+				5373B15215FF94DC00D308A4 /* RFFramebuffer.h */,
+				53C8C7DC16EC077C00505767 /* RFFramebuffer.mm */,
+				53C8C7DF16EC0B4500505767 /* RFViewFramebuffer.h */,
+				53C8C7E116EC0B4900505767 /* RFViewFrameuffer.mm */,
+				53C8C7E316EC0B4C00505767 /* RFTextureFramebuffer.h */,
+				53C8C7E516EC0B5000505767 /* RFTextureFramebuffer.mm */,
+			);
+			name = Framebuffers;
+			sourceTree = "<group>";
+		};
+		53C8C7EE16EC0E7300505767 /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				53BB2AE6168E7705001D3833 /* RFTexture.h */,
+				53C8C7E916EC0B5800505767 /* RFTexture.mm */,
+			);
+			name = Texture;
+			sourceTree = "<group>";
+		};
+		53C8C7EF16EC0E8200505767 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				53C8C7F116EC0ECB00505767 /* RFRenderer.h */,
+				53C8C7F016EC0ECB00505767 /* RFRenderer.mm */,
+			);
+			name = Renderer;
+			sourceTree = "<group>";
+		};
+		53C8C7F316EC0FC500505767 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				537AA9B816EBFFAA0050C635 /* MyRenderer.h */,
+				53C8C7FE16EC1AA300505767 /* MyRenderer.mm */,
+				53C8C7F516EC101300505767 /* RFBlurProgram.h */,
+				53C8C7F416EC101300505767 /* RFBlurProgram.mm */,
+				53C8C7FC16EC11B600505767 /* RFToonProgram.h */,
+				53C8C7FB16EC11B600505767 /* RFToonProgram.mm */,
+			);
+			name = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +389,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53C8C7FF16EC1CF800505767 /* blur.fsh in Resources */,
+				53C8C80016EC1CF800505767 /* preview.vsh in Resources */,
+				53C8C80116EC1CF800505767 /* toon.fsh in Resources */,
 				5373B10415FF8A4500D308A4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,7 +400,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5373B11C15FF8A4500D308A4 /* InfoPlist.strings in Resources */,
+				53C8C7E016EC0B4500505767 /* RFViewFramebuffer.h in Resources */,
+				53C8C7E216EC0B4900505767 /* RFViewFrameuffer.mm in Resources */,
+				53C8C7E416EC0B4C00505767 /* RFTextureFramebuffer.h in Resources */,
+				53C8C7E616EC0B5000505767 /* RFTextureFramebuffer.mm in Resources */,
+				53C8C7EA16EC0B5800505767 /* RFTexture.mm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,8 +431,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5373B10615FF8A4500D308A4 /* main.m in Sources */,
-				5373B10A15FF8A4500D308A4 /* AppDelegate.m in Sources */,
+				53C8C80216EC235A00505767 /* MyRenderer.mm in Sources */,
+				53C8C80316EC235A00505767 /* RFRenderer.mm in Sources */,
+				53C8C80416EC235A00505767 /* RFTexture.mm in Sources */,
+				53C8C80516EC235A00505767 /* RFFramebuffer.mm in Sources */,
+				53C8C80616EC235A00505767 /* RFViewFrameuffer.mm in Sources */,
+				53C8C80716EC235A00505767 /* RFTextureFramebuffer.mm in Sources */,
+				53C8C80816EC235A00505767 /* RFShader.mm in Sources */,
+				53C8C80916EC235A00505767 /* RFProgram.mm in Sources */,
+				53C8C80A16EC235A00505767 /* RFFilterProgram.mm in Sources */,
+				53C8C80B16EC235A00505767 /* RFBlurProgram.mm in Sources */,
+				53C8C80C16EC235A00505767 /* RFToonProgram.mm in Sources */,
+				5373B10615FF8A4500D308A4 /* main.mm in Sources */,
+				5373B10A15FF8A4500D308A4 /* AppDelegate.mm in Sources */,
+				5373B16015FFA84E00D308A4 /* RFGLView.mm in Sources */,
+				5373B16415FFA97E00D308A4 /* MyViewController.mm in Sources */,
+				53B68CA6168A18410062636D /* AVCaptureSessionManager.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +454,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5373B11F15FF8A4500D308A4 /* REngineTests.m in Sources */,
+				53C8C7D916EC071E00505767 /* RFShader.mm in Sources */,
+				53C8C7DB16EC077200505767 /* RFProgram.mm in Sources */,
+				53C8C7DD16EC077C00505767 /* RFFramebuffer.mm in Sources */,
+				53C8C7F216EC0ECB00505767 /* RFRenderer.mm in Sources */,
+				53C8C7F616EC101300505767 /* RFBlurProgram.mm in Sources */,
+				53C8C7F916EC104A00505767 /* RFFilterProgram.mm in Sources */,
+				53C8C7FD16EC11B700505767 /* RFToonProgram.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,14 +483,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		5373B11A15FF8A4500D308A4 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5373B11B15FF8A4500D308A4 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -296,6 +491,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -310,7 +507,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -320,14 +517,17 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -337,9 +537,12 @@
 		5373B12315FF8A4500D308A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REngine/REngine-Prefix.pch";
 				INFOPLIST_FILE = "REngine/REngine-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -348,6 +551,9 @@
 		5373B12415FF8A4500D308A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REngine/REngine-Prefix.pch";
 				INFOPLIST_FILE = "REngine/REngine-Info.plist";
@@ -409,6 +615,7 @@
 				5373B12415FF8A4500D308A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5373B12515FF8A4500D308A4 /* Build configuration list for PBXNativeTarget "REngineTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +624,7 @@
 				5373B12715FF8A4500D308A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,12 +1,5 @@
-//
-//  AppDelegate.m
-//  REngine
-//
-//  Created by Rony Fadel on 9/11/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import "AppDelegate.h"
+#import "MyViewController.h"
 
 @implementation AppDelegate
 
@@ -21,6 +14,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window.rootViewController = [[[MyViewController alloc] initWithNibName:nil bundle:nil] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

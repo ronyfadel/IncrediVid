@@ -1,0 +1,30 @@
+{
+	"build_systems":
+	[
+		{
+			"cmd":
+			[
+				"xcodebuild",
+				"-project",
+				"REngine.xcodeproj"
+			],
+			"name": "Crunched",
+			"working_dir": "${project_path:${folder}}"
+		}
+	],
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*.pch",
+				"*.plist"
+			],
+			"folder_exclude_patterns":
+			[
+				"*.lproj"
+			],
+			"path": "REngine"
+		}
+	]
+}

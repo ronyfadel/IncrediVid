@@ -1,0 +1,894 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"def",
+				"def	Function"
+			],
+			[
+				"go_",
+				"go_by_plane"
+			],
+			[
+				"B",
+				"B"
+			],
+			[
+				"by",
+				"byCar"
+			],
+			[
+				"print_",
+				"print_tree"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			],
+			[
+				"lo",
+				"longest_palindrome"
+			],
+			[
+				"longest_pa",
+				"longest_palindrome_2"
+			],
+			[
+				"clas",
+				"class	New Class"
+			],
+			[
+				"g",
+				"g"
+			],
+			[
+				"b",
+				"beginend	$1.begin(), $1.end()"
+			],
+			[
+				"ray",
+				"raytrace"
+			],
+			[
+				"diff",
+				"diffuse_effect"
+			],
+			[
+				"diffu",
+				"diffuse_light"
+			],
+			[
+				"norma",
+				"normalize"
+			],
+			[
+				"sq",
+				"Squared"
+			],
+			[
+				"Num",
+				"NumArealightVectors"
+			],
+			[
+				"num",
+				"NumArealightVectors"
+			],
+			[
+				"hit",
+				"hit_type"
+			],
+			[
+				"con",
+				"continue"
+			],
+			[
+				"plan",
+				"Planes"
+			],
+			[
+				"pla",
+				"Planes"
+			],
+			[
+				"lon",
+				"longest_so_far"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"id",
+				"idx2"
+			],
+			[
+				"idx",
+				"idx1"
+			],
+			[
+				"p",
+				"__partition"
+			],
+			[
+				"mer",
+				"merge_sort"
+			],
+			[
+				"merg",
+				"__merge"
+			],
+			[
+				"list",
+				"list_b"
+			],
+			[
+				"lis",
+				"list_a"
+			],
+			[
+				"_s",
+				"_insert_impl"
+			],
+			[
+				"try",
+				"try	Try/Except"
+			],
+			[
+				"_",
+				"_list"
+			],
+			[
+				"max",
+				"max_num_digits"
+			],
+			[
+				"buck",
+				"bucket_sort"
+			],
+			[
+				"NO",
+				"Node"
+			],
+			[
+				"mpz_Se",
+				"mpz_set_si"
+			],
+			[
+				"mpz_set",
+				"mpz_set_si"
+			],
+			[
+				"max_a",
+				"max_a_1"
+			],
+			[
+				"max_",
+				"max_a_1"
+			],
+			[
+				"is",
+				"is_integral_area1"
+			],
+			[
+				"tr",
+				"triplets"
+			],
+			[
+				"GO",
+				"GOOGLE_API_KEY"
+			],
+			[
+				"Re",
+				"Result"
+			],
+			[
+				"Inc",
+				"IncludingList"
+			],
+			[
+				"In",
+				"IncludedList"
+			],
+			[
+				"Res",
+				"RestePermute"
+			],
+			[
+				"prin",
+				"print_x"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"Rule",
+				"RuleNumber"
+			],
+			[
+				"Lan",
+				"Lanscape1D"
+			],
+			[
+				"ali",
+				"alive_neighbours_count"
+			],
+			[
+				"next",
+				"nextValue"
+			],
+			[
+				"nei",
+				"neighbouring_cells"
+			],
+			[
+				"neigh",
+				"neighbouring"
+			],
+			[
+				"Col",
+				"Colour"
+			],
+			[
+				"rand",
+				"randint"
+			],
+			[
+				"gene",
+				"gene_intensity"
+			],
+			[
+				"in",
+				"indiv"
+			],
+			[
+				"GB_",
+				"GB_Gift"
+			],
+			[
+				"t",
+				"tp	template <typename ${1:_InputIter}>"
+			],
+			[
+				"pri",
+				"private"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"selected_items":
+		[
+			[
+				"objecti",
+				"Set Syntax: Objective-C++"
+			],
+			[
+				"objec",
+				"Set Syntax: Objective-C++"
+			],
+			[
+				"clang",
+				"SublimeClang: Clear cache"
+			],
+			[
+				"goto",
+				"Goto Documentation"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"lorem",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"prolo",
+				"Set Syntax: Prolog"
+			],
+			[
+				"Snippet: do",
+				"Snippet: Description"
+			],
+			[
+				"latex",
+				"Set Syntax: LaTeX"
+			],
+			[
+				"repl",
+				"SublimeREPL: Python"
+			],
+			[
+				"gist",
+				"Gist: Open Gist"
+			],
+			[
+				"shell",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"gis",
+				"Gist: Insert Gist"
+			],
+			[
+				"tasks",
+				"Tasks: New document"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"lint",
+				"SublimeLinter: Lint Current File"
+			],
+			[
+				"fetch",
+				"Fetch: Package"
+			],
+			[
+				"fetc",
+				"Fetch: Manage"
+			],
+			[
+				"xik",
+				"Create Xiki Buffer"
+			],
+			[
+				"manage",
+				"Fetch: Manage"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"pytho",
+				"Set Syntax: Python"
+			],
+			[
+				"pinstall",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: New Property"
+			],
+			[
+				"sideb",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"repl pyth",
+				"SublimeREPL: Python"
+			],
+			[
+				"pyt",
+				"SublimeREPL: Python"
+			],
+			[
+				"prol",
+				"Set Syntax: Prolog"
+			],
+			[
+				"pro",
+				"Set Syntax: Prolog"
+			],
+			[
+				"insa",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"glsl",
+				"Set Syntax: GLSL"
+			],
+			[
+				"c+",
+				"Set Syntax: C++"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/ronyfadel/Desktop/Internships/cv/en/cv.tex",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RRenderer.mm",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RRenderer.h",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RTexture.h",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine.sublime-project",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RFramebuffer.h",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine/RiOSRenderer.h",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine.sublime-project",
+		"/Users/ronyfadel/Desktop/Project Cartoon/REngine/MyRenderer.h",
+		"/Users/ronyfadel/.codeintel/config",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/ronyfadel/Desktop/Project Cartoon/GPUImage/framework/Source/GPUImageToonFilter.m",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/ronyfadel/Desktop/SDA/tree.py",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/ronyfadel/Desktop/Internships/Cover Letter.txt",
+		"/Users/ronyfadel/Desktop/brainfuck_interpreter.py",
+		"/Users/ronyfadel/Desktop/my_todo_list.TODO",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/User/Gist.sublime-settings",
+		"/Users/ronyfadel/Desktop/untitled.TODO",
+		"/Users/ronyfadel/Desktop/Internships/Companies/Scribd/longest_pal.py",
+		"/Users/ronyfadel/Desktop/raytracer/untitled.py",
+		"/Users/ronyfadel/Desktop/raytracer/hello.tst",
+		"/tsts/i/lile/this/tt.py",
+		"/Users/ronyfadel/Desktop/raytracer/css/sas/tat.saa",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/User/Fetch.sublime-settings",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/Default/Default ().sublime-keymap",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/User/Default ().sublime-keymap",
+		"/Users/ronyfadel/ProjectSpartan2/kokous/views/apiViews.py",
+		"/Users/ronyfadel/ProjectSpartan2/kokous/forms.py",
+		"/Users/ronyfadel/Desktop/raytracer/test.js",
+		"/Users/ronyfadel/Desktop/raytracer/main.cpp",
+		"/Users/ronyfadel/Desktop/raytracer/ray.cpp",
+		"/usr/include/stdlib.h",
+		"/Users/ronyfadel/Desktop/raytracer/main.c",
+		"/Users/ronyfadel/Desktop/zbeile.tex",
+		"/Users/ronyfadel/.bash_profile",
+		"/Users/ronyfadel/ProjectSpartan2/urls.py",
+		"/Users/ronyfadel/Downloads/ping.shar",
+		"/Users/ronyfadel/Desktop/longest_pal.py",
+		"/Users/ronyfadel/Desktop/zbeile.py",
+		"/Users/ronyfadel/Desktop/SDA/search.py",
+		"/Users/ronyfadel/Desktop/SDA/sda.py",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/MacTerminal/MacTerminal.sublime-settings",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/User/SublimeREPL.sublime-settings",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/User/Package Control.sublime-settings",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/User/MacTerminal.sublime-settings",
+		"/Users/ronyfadel/Library/Application Support/Sublime Text 2/Packages/Package Control/Package Control.sublime-settings",
+		"/Users/ronyfadel/Desktop/Project Cartoon/GPUImage/examples/FilterShowcase/FilterShowcase/ShowcaseFilterViewController.m",
+		"/Users/ronyfadel/.bash_history",
+		"/Users/ronyfadel/.bash_profile.pysave",
+		"/Users/ronyfadel/Desktop/Projects/Project_Kokous/settings.py",
+		"/Users/ronyfadel/Desktop/internships/Cover Letter.txt",
+		"/Users/ronyfadel/Desktop/tmp/test.pl",
+		"/Users/ronyfadel/Desktop/tmp/test.prolog",
+		"/Users/ronyfadel/Desktop/Project Cartoon/Other Apps/ToonCamera 3.2/toon_cam_3_2.glsl",
+		"/Users/ronyfadel/Desktop/Project Cartoon/Other Apps/ToonCamera 3.2/toon_cam_2.glsl",
+		"/Users/ronyfadel/Desktop/Programming/OpenGL/SDKPackage_OGLES2/Tools/OGLES2/PVRTgles2Ext.cpp",
+		"/Users/ronyfadel/Desktop/Project Cartoon/Other Apps/ToonCamera 3.2/shaders.glsl",
+		"/Users/ronyfadel/Desktop/Project Cartoon/Other Apps/ToonCamera 3.2/old_shaders.glsl",
+		"/Users/ronyfadel/Desktop/Project Cartoon/Other Apps/ToonCamera 3.2/Library/Caches/com.codeorgana.tooncamera/com.apple.opengl/shaders.data",
+		"/Users/ronyfadel/Desktop/Project Cartoon/Other Apps/ToonCamera/ToonCamera",
+		"/Users/ronyfadel/Desktop/Project Cartoon/Other Apps/ToonCamera/README",
+		"/Users/ronyfadel/Desktop/decode_png",
+		"/Users/ronyfadel/Desktop/Project Cartoon/GLCameraRipple/GLCameraRipple/RippleViewController.m",
+		"/Users/ronyfadel/Desktop/python_sandbox/cubic_permutations.py",
+		"/Users/ronyfadel/.Trash/test.cpp",
+		"/Users/ronyfadel/Desktop/python_sandbox/almost_equilateral_triangles.py",
+		"/Users/ronyfadel/Desktop/python_sandbox/rk4.py",
+		"/Users/ronyfadel/Desktop/python_sandbox/test.c",
+		"/Users/ronyfadel/Desktop/python_sandbox/a.out",
+		"/Users/ronyfadel/Desktop/python_sandbox/test.cpp",
+		"/Users/ronyfadel/Desktop/python_sandbox/lattice_paths.py",
+		"/Users/ronyfadel/Desktop/tp1_algo/rony-fadel-TP1.txt",
+		"/Users/ronyfadel/Desktop/NGD.py",
+		"/Users/ronyfadel/Desktop/tp1_algo/GetMem.py",
+		"/Users/ronyfadel/Desktop/rapport1_PLC/famille.pl",
+		"/Users/ronyfadel/Desktop/test.py",
+		"/Users/ronyfadel/Desktop/tp1/ex1.pl",
+		"/Users/ronyfadel/Desktop/test.c",
+		"/Users/ronyfadel/Desktop/TP-Paradigmes - Rony Fadel/TP-Paradigmes-1/main.cpp",
+		"/Users/ronyfadel/Dropbox/Shared Folders/Rony-Marianne/Rapport/resultats.txt",
+		"/Users/ronyfadel/Dropbox/Shared Folders/Rony-Marianne/Rapport/nombre iterations.txt",
+		"/Users/ronyfadel/Dropbox/Shared Folders/Rony-Marianne/Rapport/matrices.txt",
+		"/Users/ronyfadel/Desktop/rapport_final_image/mybib.bib",
+		"/Users/ronyfadel/.vimrc",
+		"/Users/ronyfadel/Desktop/google-test.py",
+		"/Users/ronyfadel/Desktop/Proj_ECS/main.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/QtGraphics/TreeExplore.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Other/Ants/starter",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Other/Ants/Ants.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Other/Segregationism/Segregationism.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Scenarii/S_HeteroclineCycle.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Scenarii/S_Segregationism.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Other/Segregationism/Segregationism.evo",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Scenarii/Default_Scenario.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Scenarii/S_Cooperation.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Scenarii/S_GreenBeard.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Scenarii/S_Favourable.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Expe/Favourable.evo",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Scenarii/S_Labyrinth.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Expe/Labyrinth_noshare.evo",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Scenarii/S_SumBits.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Genetics/Genome.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Ecology/Group.py",
+		"/Users/ronyfadel/Desktop/ECS/Evolife/Genetics/DNA.py",
+		"/Users/ronyfadel/Dropbox/Public/StaticTwist/custom_stations.json",
+		"/Users/ronyfadel/Dropbox/Public/StaticTwist/featured_artists.json",
+		"/Users/ronyfadel/Desktop/test.cpp",
+		"/Users/ronyfadel/Dropbox/TP-Paradigmes-1/README.txt",
+		"/Users/ronyfadel/Library/Developer/Xcode/DerivedData/TP-Paradigmes-1-dattkqarepdqrygbxkxpiymzhfmw/Build/Products/Debug/inf224.txt",
+		"/Users/ronyfadel/Desktop/TP_Cpp_Objet",
+		"/Users/ronyfadel/Dropbox/matlab_1.m",
+		"/Users/ronyfadel/Documents/MATLAB/projet_image/zoom_1.m",
+		"/Users/ronyfadel/Desktop/uk visa/uk-border.txt",
+		"/Users/ronyfadel/Desktop/uk-border.txt",
+		"/Users/ronyfadel/Downloads/tvdeconv_20120607/makefile.gcc",
+		"/Users/ronyfadel/Desktop/untitled.tex"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"*.py",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"{",
+			"{.+}",
+			"//\n",
+			"name",
+			"byCar",
+			"Z",
+			" :-",
+			"Y",
+			"X,Y",
+			"directlyIn",
+			"dire",
+			"irina",
+			"iri",
+			"irin",
+			"natasha",
+			"irina",
+			"natasha",
+			"irina",
+			" ",
+			"*.py",
+			"left",
+			"}",
+			"focus_group",
+			"level",
+			"source",
+			"pass",
+			"source[i]",
+			"if",
+			"jegapgognergneroigeroign",
+			"the name is Dalton",
+			"the",
+			"the name is Dalton",
+			"the name is Dalton ",
+			" \n",
+			"the name is Dalton",
+			"the name",
+			"name",
+			"double",
+			"doubl",
+			"double",
+			"];",
+			"struct",
+			"void",
+			"struct",
+			"initrotate",
+			"raytrace",
+			"k ",
+			"counter",
+			"raytrace",
+			"counter",
+			"outpo",
+			"Pigment",
+			"camra",
+			"switch",
+			"rever",
+			"being_frame",
+			"server",
+			"add",
+			"toon",
+			"quantizationLevel",
+			"UI_USER_INTERFACE_IDIOM",
+			"avcapturese",
+			"render",
+			"uniforms[UNIFORM_UV]",
+			"glbind",
+			"outputSoFar",
+			"tmpList",
+			"parent",
+			"cout",
+			"afficher",
+			"setsockopt",
+			"random",
+			"print",
+			"time",
+			"rule",
+			"sys",
+			"cell_pos",
+			"pygame",
+			"display",
+			"pygame",
+			"Population",
+			"ColonyPosition",
+			"food",
+			"random",
+			"neighbours",
+			"pos",
+			"LandCell",
+			"Landscape",
+			"neighbo",
+			"Land",
+			"pollution",
+			"red",
+			"colour",
+			"Partner.score",
+			"coopera",
+			"score",
+			"flagset",
+			"gene_intens",
+			"gene_intensity",
+			"group",
+			"S_SumBits",
+			"def score",
+			"score("
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"pigment",
+			"swap",
+			"creature",
+			"tmpList",
+			"outputSoFar",
+			"ss",
+			"cpos"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.clang":
+	{
+		"height": 112.0
+	},
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"output.gotodocumentation":
+	{
+		"height": 325.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				".h",
+				"RTexture.h"
+			],
+			[
+				"toon",
+				"framework/Source/GPUImageToonFilter.m"
+			],
+			[
+				"",
+				"tree.py"
+			],
+			[
+				"api",
+				"kokous/views/apiViews.py"
+			],
+			[
+				"cellu",
+				"Other/CellularAutomaton/CellularAutomaton.py"
+			],
+			[
+				"tree",
+				"QtGraphics/TreeExplore.py"
+			],
+			[
+				"segre",
+				"Other/Segregationism/Segregationism.py"
+			],
+			[
+				"ants",
+				"Other/Ants/Ants.py"
+			],
+			[
+				"s_hete",
+				"Scenarii/S_HeteroclineCycle.py"
+			],
+			[
+				"seg",
+				"Other/Segregationism/Segregationism.py"
+			],
+			[
+				"s_gree",
+				"Scenarii/S_GreenBeard.py"
+			],
+			[
+				"defaul",
+				"Scenarii/Default_Scenario.py"
+			],
+			[
+				"green",
+				"Scenarii/S_GreenBeard.py"
+			],
+			[
+				"s_coop",
+				"Scenarii/S_Cooperation.py"
+			],
+			[
+				"default_scenario",
+				"Scenarii/Default_Scenario.py"
+			],
+			[
+				"s_favou",
+				"Scenarii/S_Favourable.py"
+			],
+			[
+				"fa",
+				"Expe/Favourable.evo"
+			],
+			[
+				"s_fav",
+				"Scenarii/S_Favourable.py"
+			],
+			[
+				"labyr",
+				"Expe/Labyrinth_noshare.evo"
+			],
+			[
+				"s_sumb",
+				"Scenarii/S_SumBits.py"
+			],
+			[
+				"lab",
+				"Scenarii/S_Labyrinth.py"
+			],
+			[
+				"go",
+				"Ecology/Group.py"
+			],
+			[
+				"dna",
+				"Genetics/DNA.py"
+			],
+			[
+				"s_sum",
+				"Scenarii/S_SumBits.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 204.0,
+	"status_bar_visible": true
+}

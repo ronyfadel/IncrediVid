@@ -1,0 +1,721 @@
+TREngine
+v5
+r1
+cCheck dependencies
+cCpResource /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/ResourceRules.plist build/Release-iphoneos/REngine.app/ResourceRules.plist
+cProcessInfoPlistFile "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/Info.plist" REngine/REngine-Info.plist
+cProcessPCH /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-abbnofpcueildhavsvxfbxlqkxlq/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cProcessPCH++ /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cProcessPCH /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-efhvkwbijswdpdekfxahihtmjpgv/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cProcessPCH++ /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/main.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.m" normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AppDelegate.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/RView.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/MyViewController.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AVCaptureSessionManager.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/Utilities.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/main.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.m" normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AppDelegate.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/RView.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/MyViewController.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AVCaptureSessionManager.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/Utilities.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine" normal armv7
+cLd "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine" normal armv7s
+cCreateUniversalBinary "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine" normal "armv7 armv7s"
+cGenerateDSYMFile "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app.dSYM" "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine"
+cCpResource blur.fsh build/Release-iphoneos/REngine.app/blur.fsh
+cCopyStringsFile "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/en.lproj/InfoPlist.strings" REngine/en.lproj/InfoPlist.strings
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk
+c00000000503C83D40000000000000132
+t1346143188
+s306
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/Entitlements.plist
+c0000000050F348A60000000000000094
+t1358121126
+s148
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/ResourceRules.plist
+c0000000050F348A60000000000000096
+t1358121126
+s150
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/AVFoundation.framework/AVFoundation
+c0000000050F348AA000000000036C800
+t1358121130
+s3590144
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c0000000050F348AB0000000000322740
+t1358121131
+s3286848
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/CoreMedia.framework/CoreMedia
+c0000000050F348AC00000000001692A0
+t1358121132
+s1479328
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/CoreVideo.framework/CoreVideo
+c0000000050F348AD0000000000041310
+t1358121133
+s267024
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c0000000050F348AE0000000000629C80
+t1358121134
+s6462592
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/OpenGLES.framework/OpenGLES
+c0000000050F348B10000000000024190
+t1358121137
+s147856
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c0000000050F348B30000000000359720
+t1358121139
+s3512096
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c0000000050F348BB00000000011BA850
+t1358121147
+s18589776
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.h
+c0000000050D9E0E00000000000000196
+t1356456160
+s406
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm
+c0000000050F54EFE000000000000219A
+t1358253822
+s8602
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.h
+c0000000050F58D0B000000000000011A
+t1358269707
+s282
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm
+c0000000050D9E01100000000000009C5
+t1356455953
+s2501
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h
+c0000000050E0C8DD00000000000006EE
+t1356908765
+s1774
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h
+c0000000050D9EBB90000000000000189
+t1356458937
+s393
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm
+c0000000050F54E7C00000000000005A1
+t1358253692
+s1441
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/REngine-Prefix.pch
+c00000000504F52C5000000000000013D
+t1347375813
+s317
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RFramebuffer.h
+c0000000050DE63520000000000000CFD
+t1356751698
+s3325
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RProgram.h
+c0000000050E0D75D00000000000013C1
+t1356912477
+s5057
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RRenderer.h
+c0000000050F58F6300000000000000B7
+t1358270307
+s183
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RShader.h
+c0000000050DC74D900000000000007C0
+t1356625113
+s1984
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RTexture.h
+c0000000050DE62650000000000000442
+t1356751461
+s1090
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.h
+c00000000504F70DB0000000000000135
+t1347383515
+s309
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm
+c0000000050F57DF7000000000000067C
+t1358265847
+s1660
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h
+c0000000050E08E570000000000000354
+t1356893783
+s852
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.h
+c0000000050DC76360000000000000116
+t1356625462
+s278
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm
+c0000000050DE20350000000000000430
+t1356734517
+s1072
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/en.lproj/InfoPlist.strings
+c00000000504F52C5000000000000002D
+t1347375813
+s45
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.m
+c00000000504F52C50000000000000155
+t1347375813
+s341
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/blur.fsh
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AVCaptureSessionManager.o
+t1358273951
+s29760
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AppDelegate.o
+t1358273950
+s89648
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/MyViewController.o
+t1358273950
+s152480
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine
+t1358273951
+s86664
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine.LinkFileList
+c0000000050F58E11000000000000032C
+t1358269969
+s812
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/RView.o
+t1358269972
+s74692
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/Utilities.o
+t1358269974
+s133848
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/main.o
+t1358269972
+s3344
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AVCaptureSessionManager.o
+t1358273952
+s29760
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AppDelegate.o
+t1358273951
+s89648
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/MyViewController.o
+t1358273952
+s152528
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine
+t1358273952
+s86672
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine.LinkFileList
+c0000000050F58E110000000000000332
+t1358269969
+s818
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/RView.o
+t1358269975
+s74688
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/Utilities.o
+t1358269977
+s133596
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/main.o
+t1358269974
+s3344
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine.xcent
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/com.apple.build-tools.platform.validate
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app
+t1358273952
+s238
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app.dSYM
+t1358273952
+s102
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/Info.plist
+t1358269969
+s1040
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/PkgInfo
+t1358269969
+s8
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine
+t1358273952
+s180880
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/ResourceRules.plist
+t1358269969
+s150
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/blur.fsh
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/embedded.mobileprovision
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/en.lproj/InfoPlist.strings
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/noise32.png-decode.png
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/preview.vsh
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/toon.fsh
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/noise32.png-decode.png
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/preview.vsh
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/ronyfadel/Desktop/Project Cartoon/REngine/toon.fsh
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/ronyfadel/Library/MobileDevice/Provisioning Profiles/6F37BE87-C958-4EE9-87EE-01387FD9D3C7.mobileprovision
+c0000000050DB36840000000000001E7C
+t1356543620
+s7804
+
+N/var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-abbnofpcueildhavsvxfbxlqkxlq/REngine-Prefix.pch.pth
+t1358269971
+s4759396
+
+N/var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch.pth
+t1358269971
+s5354780
+
+N/var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-efhvkwbijswdpdekfxahihtmjpgv/REngine-Prefix.pch.pth
+t1358269971
+s4759528
+
+N/var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch.pth
+t1358269971
+s5354912
+
+NREngine/REngine-Info.plist
+c0000000050DC6EDB0000000000000472
+t1356623579
+s1138
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies419c4b22d5a5b641^081ca522d5a5b641^-213"warning: no rule to process file '$(PROJECT_DIR)/blur.fsh' of type sourcecode.glsl for architecture armv7warning: no rule to process file '$(PROJECT_DIR)/blur.fsh' of type sourcecode.glsl for architecture armv7s2(21%IDEActivityLogMessage2@105"Warning: no rule to process file '$(PROJECT_DIR)/blur.fsh' of type sourcecode.glsl for architecture armv7-379966754#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@106"Warning: no rule to process file '$(PROJECT_DIR)/blur.fsh' of type sourcecode.glsl for architecture armv7s-379966754#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--0#1#0#--18"Check dependencies36"C111FC85-88A8-4891-8D73-C1BA2AC60256-
+
+CCodeSign "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app"
+r0
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AVCaptureSessionManager.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379966750.649200
+e379966751.381249
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AVCaptureSessionManager.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:10:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]
+o#warning changed superview frame
+o ^
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:48:2: warning: check session preset for other devices [-W#warnings]
+o#warning check session preset for other devices
+o ^
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:63:2: warning: check the dispatch queue [-W#warnings]
+o#warning check the dispatch queue
+o ^
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:73:2: warning: changed (BGRA => Luminance) [-W#warnings]
+o#warning changed (BGRA => Luminance)
+o ^
+o4 warnings generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection91"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm9160a61ed5a5b641^2998611fd5a5b641^-947"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:10:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]#warning changed superview frame ^/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:48:2: warning: check session preset for other devices [-W#warnings]#warning check session preset for other devices ^/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:63:2: warning: check the dispatch queue [-W#warnings]#warning check the dispatch queue ^/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:73:2: warning: changed (BGRA => Luminance) [-W#warnings]#warning changed (BGRA => Luminance) ^4 warnings generated.4(36%IDEClangDiagnosticActivityLogMessage2@23"Changed superview frame-379966751#18446744073709551615#0#2(2@109"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:10:-379966751#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^9#8#9#8#218#0#30"Apple LLVM compiler 4.1 Notice--2@94"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:-379966751#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyRenderer.h0000000000000000^8#8#8#8#149#0#30"Apple LLVM compiler 4.1 Notice--1#27"com.apple.dt.IDE.diagnostic3@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/RiOSRenderer.h0000000000000000^19#1#19#1#321#0#18"#warning Directive--2@38"Check session preset for other devices-379966751#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^47#1#47#1#1048#0#18"#warning Directive--2@24"Check the dispatch queue-379966751#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^62#1#62#1#1808#0#18"#warning Directive--2@27"Changed (BGRA => Luminance)-379966751#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^72#1#72#1#2146#0#18"#warning Directive--0#0#0#-19%DVTDocumentLocation4@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^3762"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AVCaptureSessionManager.o REngine/AVCaptureSessionManager.mm normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7 -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AVCaptureSessionManager.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AVCaptureSessionManager.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AVCaptureSessionManager.o"36"6C45750E-B78A-49C6-AB24-AF7B40B60CD5-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AppDelegate.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379966748.930301
+e379966750.646717
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AppDelegate.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm:10:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]
+o#warning changed superview frame
+o ^
+o1 warning generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection79"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mmd95fee1cd5a5b641^dcb8a51ed5a5b641^-477"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm:10:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]#warning changed superview frame ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@23"Changed superview frame-379966750#18446744073709551615#0#3(2@97"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm:10:-379966750#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AppDelegate.mm0000000000000000^9#8#9#8#173#0#30"Apple LLVM compiler 4.1 Notice--2@101"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:-379966750#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@93"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyViewController.h0000000000000000^9#8#9#8#176#0#30"Apple LLVM compiler 4.1 Notice--2@94"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:-379966750#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyRenderer.h0000000000000000^8#8#8#8#149#0#30"Apple LLVM compiler 4.1 Notice--1#27"com.apple.dt.IDE.diagnostic3@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/RiOSRenderer.h0000000000000000^19#1#19#1#321#0#18"#warning Directive--0#0#0#-19%DVTDocumentLocation4@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AppDelegate.mm0000000000000000^3690"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AppDelegate.o REngine/AppDelegate.mm normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7 -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AppDelegate.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AppDelegate.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/AppDelegate.o"36"8E5A3874-0B3A-428D-BF15-7C3725B45B44-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/MyViewController.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379966748.932793
+e379966750.780498
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/MyViewController.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm:9:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]
+o#warning changed superview frame
+o ^
+o1 warning generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm35edee1cd5a5b641^8ee7c71ed5a5b641^-481"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm:9:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]#warning changed superview frame ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@23"Changed superview frame-379966750#18446744073709551615#0#3(2@101"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm:9:-379966750#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@94"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyViewController.mm0000000000000000^8#8#8#8#152#0#30"Apple LLVM compiler 4.1 Notice--2@101"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:-379966750#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@93"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyViewController.h0000000000000000^9#8#9#8#176#0#30"Apple LLVM compiler 4.1 Notice--2@94"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:-379966750#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyRenderer.h0000000000000000^8#8#8#8#149#0#30"Apple LLVM compiler 4.1 Notice--1#27"com.apple.dt.IDE.diagnostic3@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/RiOSRenderer.h0000000000000000^19#1#19#1#321#0#18"#warning Directive--0#0#0#-19%DVTDocumentLocation4@94"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyViewController.mm0000000000000000^3720"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/MyViewController.o REngine/MyViewController.mm normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7 -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/MyViewController.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/MyViewController.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/MyViewController.o"36"83E9A871-DC20-48E9-A302-0E5A6100819F-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/RView.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379962772.147276
+e379962772.417200
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/RView.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection73"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm4dd92594c5a5b641^c9e66a94c5a5b641^---0#0#0#-19%DVTDocumentLocation2@83"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/RView.mm0000000000000000^3654"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/RView.o REngine/RView.mm normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7 -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/RView.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/RView.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/RView.o"36"56B872B4-A90D-4657-9F42-D13C7EFC3DB0-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/Utilities.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm" normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379962773.677150
+e379962774.898053
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/Utilities.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection77"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mmc18cad95c5a5b641^05f9e596c5a5b641^---0#0#0#-19%DVTDocumentLocation2@87"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/Utilities.mm0000000000000000^3678"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/Utilities.o REngine/Utilities.mm normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7 -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/Utilities.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/Utilities.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/Utilities.o"36"8006205B-55B6-4A9C-84B1-5649FF3E23F6-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/main.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.m" normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s379962771.812970
+e379962772.145854
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/main.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection71"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.md443d093c5a5b641^77822594c5a5b641^---0#0#0#-19%DVTDocumentLocation2@81"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/main.m0000000000000000^3487"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/main.o REngine/main.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-abbnofpcueildhavsvxfbxlqkxlq/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/main.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/main.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.m" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/main.o"36"5C516C68-D91C-45C6-83D3-6B4F6C03B27A-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AVCaptureSessionManager.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379966751.992738
+e379966752.692768
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AVCaptureSessionManager.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm
+xnormal
+xarmv7s
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:10:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]
+o#warning changed superview frame
+o ^
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:48:2: warning: check session preset for other devices [-W#warnings]
+o#warning check session preset for other devices
+o ^
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:63:2: warning: check the dispatch queue [-W#warnings]
+o#warning check the dispatch queue
+o ^
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:73:2: warning: changed (BGRA => Luminance) [-W#warnings]
+o#warning changed (BGRA => Luminance)
+o ^
+o4 warnings generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection91"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm4d49fe1fd5a5b641^7957b120d5a5b641^-947"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:10:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]#warning changed superview frame ^/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:48:2: warning: check session preset for other devices [-W#warnings]#warning check session preset for other devices ^/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:63:2: warning: check the dispatch queue [-W#warnings]#warning check the dispatch queue ^/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:73:2: warning: changed (BGRA => Luminance) [-W#warnings]#warning changed (BGRA => Luminance) ^4 warnings generated.4(36%IDEClangDiagnosticActivityLogMessage2@23"Changed superview frame-379966752#18446744073709551615#0#2(2@109"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm:10:-379966752#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^9#8#9#8#218#0#30"Apple LLVM compiler 4.1 Notice--2@94"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:-379966752#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyRenderer.h0000000000000000^8#8#8#8#149#0#30"Apple LLVM compiler 4.1 Notice--1#27"com.apple.dt.IDE.diagnostic3@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/RiOSRenderer.h0000000000000000^19#1#19#1#321#0#18"#warning Directive--2@38"Check session preset for other devices-379966752#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^47#1#47#1#1048#0#18"#warning Directive--2@24"Check the dispatch queue-379966752#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^62#1#62#1#1808#0#18"#warning Directive--2@27"Changed (BGRA => Luminance)-379966752#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^72#1#72#1#2146#0#18"#warning Directive--0#0#0#-19%DVTDocumentLocation4@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AVCaptureSessionManager.mm0000000000000000^3769"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AVCaptureSessionManager.o REngine/AVCaptureSessionManager.mm normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7s -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7s" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AVCaptureSessionManager.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AVCaptureSessionManager.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AVCaptureSessionManager.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AVCaptureSessionManager.o"36"C13ECD74-3FA0-459A-80CA-23C94E394A45-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AppDelegate.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379966750.785456
+e379966751.498611
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AppDelegate.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm
+xnormal
+xarmv7s
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm:10:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]
+o#warning changed superview frame
+o ^
+o1 warning generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection79"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm9739c91ed5a5b641^e2cc7f1fd5a5b641^-477"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm:10:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]#warning changed superview frame ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@23"Changed superview frame-379966751#18446744073709551615#0#3(2@97"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm:10:-379966751#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AppDelegate.mm0000000000000000^9#8#9#8#173#0#30"Apple LLVM compiler 4.1 Notice--2@101"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:-379966751#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@93"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyViewController.h0000000000000000^9#8#9#8#176#0#30"Apple LLVM compiler 4.1 Notice--2@94"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:-379966751#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyRenderer.h0000000000000000^8#8#8#8#149#0#30"Apple LLVM compiler 4.1 Notice--1#27"com.apple.dt.IDE.diagnostic3@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/RiOSRenderer.h0000000000000000^19#1#19#1#321#0#18"#warning Directive--0#0#0#-19%DVTDocumentLocation4@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/AppDelegate.mm0000000000000000^3697"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AppDelegate.o REngine/AppDelegate.mm normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7s -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7s" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AppDelegate.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AppDelegate.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/AppDelegate.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/AppDelegate.o"36"50310381-39FE-4F67-96A1-B013D305DB60-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/MyViewController.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379966751.384198
+e379966752.257637
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/MyViewController.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm
+xnormal
+xarmv7s
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm:9:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:
+oIn file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:
+o/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]
+o#warning changed superview frame
+o ^
+o1 warning generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm7a8c621fd5a5b641^4c364220d5a5b641^-481"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm:9:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RiOSRenderer.h:20:2: warning: changed superview frame [-W#warnings]#warning changed superview frame ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@23"Changed superview frame-379966752#18446744073709551615#0#3(2@101"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm:9:-379966752#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@94"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyViewController.mm0000000000000000^8#8#8#8#152#0#30"Apple LLVM compiler 4.1 Notice--2@101"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.h:10:-379966752#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@93"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyViewController.h0000000000000000^9#8#9#8#176#0#30"Apple LLVM compiler 4.1 Notice--2@94"In file included from /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyRenderer.h:9:-379966752#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyRenderer.h0000000000000000^8#8#8#8#149#0#30"Apple LLVM compiler 4.1 Notice--1#27"com.apple.dt.IDE.diagnostic3@89"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/RiOSRenderer.h0000000000000000^19#1#19#1#321#0#18"#warning Directive--0#0#0#-19%DVTDocumentLocation4@94"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/MyViewController.mm0000000000000000^3727"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/MyViewController.o REngine/MyViewController.mm normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7s -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7s" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/MyViewController.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/MyViewController.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/MyViewController.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/MyViewController.o"36"E94012FF-5201-4FB9-9A22-93297F0CB8C6-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/RView.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379962774.912722
+e379962775.109326
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/RView.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm
+xnormal
+xarmv7s
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection73"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mmb1dde996c5a5b641^11fc1b97c5a5b641^---0#0#0#-19%DVTDocumentLocation2@83"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/RView.mm0000000000000000^3661"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/RView.o REngine/RView.mm normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7s -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7s" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/RView.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/RView.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/RView.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/RView.o"36"B70EED2E-0B28-4485-857F-9DB8687190AF-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/Utilities.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm" normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379962776.314018
+e379962777.350246
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/Utilities.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm
+xnormal
+xarmv7s
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection77"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm40885098c5a5b641^caa95999c5a5b641^---0#0#0#-19%DVTDocumentLocation2@87"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/Utilities.mm0000000000000000^3685"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/Utilities.o REngine/Utilities.mm normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7s -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7s" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/Utilities.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/Utilities.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/Utilities.mm" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/Utilities.o"36"7BE528D0-A46C-4DCC-905F-EDC68089DE51-
+
+CCompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/main.o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.m" normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s379962774.279812
+e379962774.339897
+r1
+xCompileC
+xbuild/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/main.o
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.m
+xnormal
+xarmv7s
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection71"Compile /Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.mc9ca4796c5a5b641^08035796c5a5b641^---0#0#0#-19%DVTDocumentLocation2@81"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/main.m0000000000000000^3494"CompileC build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/main.o REngine/main.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7s -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7s" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-efhvkwbijswdpdekfxahihtmjpgv/REngine-Prefix.pch -MMD -MT dependencies -MF "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/main.d" --serialize-diagnostics "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/main.dia" -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/main.m" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/main.o"36"DEF81DA4-474F-4281-A15F-40E5D7D61998-
+
+CCopyPNGFile "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/noise32.png-decode.png" noise32.png-decode.png
+r0
+
+CCopyStringsFile "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/en.lproj/InfoPlist.strings" REngine/en.lproj/InfoPlist.strings
+s379966754.709839
+e379966754.713981
+r0
+xCopyStringsFile
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/en.lproj/InfoPlist.strings
+xREngine/en.lproj/InfoPlist.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection39"Copy REngine/en.lproj/InfoPlist.strings9bcbb522d5a5b641^41f2b622d5a5b641^---1#0#0#-19%DVTDocumentLocation2@101"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/en.lproj/InfoPlist.strings0000000000000000^582"CopyStringsFile build/Release-iphoneos/REngine.app/en.lproj/InfoPlist.strings REngine/en.lproj/InfoPlist.strings    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/en.lproj" -- REngine/en.lproj/InfoPlist.strings36"5A773808-1353-40D2-A610-18BF6A75C0CD-
+
+CCpResource /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/ResourceRules.plist build/Release-iphoneos/REngine.app/ResourceRules.plist
+s379962769.541475
+e379962769.565598
+r1
+xCpResource
+x/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/ResourceRules.plist
+xbuild/Release-iphoneos/REngine.app/ResourceRules.plist
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection59"Copy build/Release-iphoneos/REngine.app/ResourceRules.plist917e8b91c5a5b641^27f69091c5a5b641^---0#0#0#-19%DVTDocumentLocation2@121"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/build/Release-iphoneos/REngine.app/ResourceRules.plist0000804a6d041042^880"CpResource /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/ResourceRules.plist build/Release-iphoneos/REngine.app/ResourceRules.plist    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/ResourceRules.plist "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app"36"117811F9-C47B-46DC-875B-C78AC98A2E05-
+
+CCpResource blur.fsh build/Release-iphoneos/REngine.app/blur.fsh
+s379966754.709220
+e379966754.713293
+r0
+xCpResource
+xblur.fsh
+xbuild/Release-iphoneos/REngine.app/blur.fsh
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection48"Copy build/Release-iphoneos/REngine.app/blur.fshd1afb522d5a5b641^67d6b622d5a5b641^--1(21%IDEActivityLogMessage2@91"error: /Users/ronyfadel/Desktop/Project Cartoon/REngine/blur.fsh: No such file or directory-379966754#18446744073709551615#0#-2#-23%DVTTextDocumentLocation3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#11"PBXCp Error--0#0#0#-19%DVTDocumentLocation4@110"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/build/Release-iphoneos/REngine.app/blur.fsh0000003b7c041042^694"CpResource blur.fsh build/Release-iphoneos/REngine.app/blur.fsh    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks "/Users/ronyfadel/Desktop/Project Cartoon/REngine/blur.fsh" "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app"36"7648AC27-A178-4E6D-AE61-56A2EFBD8266-
+
+CCpResource preview.vsh build/Release-iphoneos/REngine.app/preview.vsh
+r0
+
+CCpResource toon.fsh build/Release-iphoneos/REngine.app/toon.fsh
+r0
+
+CCreateUniversalBinary "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine" normal "armv7 armv7s"
+s379966752.856999
+e379966752.866901
+r1
+xCreateUniversalBinary
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine
+xnormal
+xarmv7 armv7s
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection115"Create universal binary /Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine4e7edb20d5a5b641^4eecdd20d5a5b641^---0#0#0#-19%DVTDocumentLocation2@109"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine0000000000000000^715"CreateUniversalBinary build/Release-iphoneos/REngine.app/REngine normal "armv7 armv7s"    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    lipo -create "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine" "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine" -output "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine"36"0B359EB7-74DE-4FCF-BEB2-6BB5298C696B-
+
+CGenerateDSYMFile "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app.dSYM" "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine"
+s379966752.873841
+e379966752.980519
+r1
+xGenerateDSYMFile
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app.dSYM
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection99"Generating /Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app.dSYMcdc9df20d5a5b641^b805fb20d5a5b641^---0#0#0#-19%DVTDocumentLocation2@107"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/build/Release-iphoneos/REngine.app.dSYM/0000000000000000^634"GenerateDSYMFile build/Release-iphoneos/REngine.app.dSYM build/Release-iphoneos/REngine.app/REngine    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/REngine" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app.dSYM"36"0103B22D-8DDC-40F2-BA4A-D81B5E2AC60C-
+
+CLd "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine" normal armv7
+s379966751.499977
+e379966751.991442
+r1
+xLd
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine
+xnormal
+xarmv7
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection133"Link /Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine4c19801fd5a5b641^8ecefd1fd5a5b641^---0#0#0#--1292"Ld build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine normal armv7    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv IPHONEOS_DEPLOYMENT_TARGET 5.0    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk "-L/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -filelist "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine.LinkFileList" -dead_strip -fobjc-link-runtime -stdlib=libc++ -miphoneos-version-min=5.0 -framework CoreMedia -framework AVFoundation -framework CoreVideo -framework QuartzCore -framework OpenGLES -framework UIKit -framework Foundation -framework CoreGraphics -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7/REngine"36"27668A64-9FEA-419F-ADCF-7540052E6074-
+
+CLd "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine" normal armv7s
+s379966752.699991
+e379966752.850055
+r1
+xLd
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine
+xnormal
+xarmv7s
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection134"Link /Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine4f76b320d5a5b641^b69ed920d5a5b641^---0#0#0#--1297"Ld build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine normal armv7s    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv IPHONEOS_DEPLOYMENT_TARGET 5.0    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch armv7s -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk "-L/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -filelist "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine.LinkFileList" -dead_strip -fobjc-link-runtime -stdlib=libc++ -miphoneos-version-min=5.0 -framework CoreMedia -framework AVFoundation -framework CoreVideo -framework QuartzCore -framework OpenGLES -framework UIKit -framework Foundation -framework CoreGraphics -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/Objects-normal/armv7s/REngine"36"28AC866A-DAE9-43F0-B0C6-40880FCA4A94-
+
+CProcessInfoPlistFile "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/Info.plist" REngine/REngine-Info.plist
+s379962769.545220
+e379962769.573239
+r1
+xProcessInfoPlistFile
+x/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/Info.plist
+xREngine/REngine-Info.plist
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection34"Process REngine/REngine-Info.plist89ee8d91c5a5b641^e5d09291c5a5b641^---0#0#0#-19%DVTDocumentLocation2@93"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/REngine-Info.plist0000000000000000^782"ProcessInfoPlistFile build/Release-iphoneos/REngine.app/Info.plist REngine/REngine-Info.plist    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility REngine/REngine-Info.plist -genpkginfo "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/PkgInfo" -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/ResourceRules.plist" -o "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/Info.plist"36"C1F5455D-5B1E-48E6-86AE-8BFBED96C28E-
+
+CProcessPCH /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-abbnofpcueildhavsvxfbxlqkxlq/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s379962769.582223
+e379962771.367418
+r1
+xProcessPCH
+x/var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-abbnofpcueildhavsvxfbxlqkxlq/REngine-Prefix.pch.pth
+xREngine/REngine-Prefix.pch
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection37"Precompile REngine/REngine-Prefix.pchf5809591c5a5b641^b9195e93c5a5b641^---0#0#0#-19%DVTDocumentLocation2@93"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/REngine-Prefix.pch0000000000000000^3525"ProcessPCH /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-abbnofpcueildhavsvxfbxlqkxlq/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch armv7 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 --serialize-diagnostics /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-abbnofpcueildhavsvxfbxlqkxlq/REngine-Prefix.pch.dia -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/REngine-Prefix.pch" -o /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-abbnofpcueildhavsvxfbxlqkxlq/REngine-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-abbnofpcueildhavsvxfbxlqkxlq/REngine-Prefix.pch.d36"1546CC40-B8CD-4A2C-A0EA-A651BD11F98E-
+
+CProcessPCH /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-efhvkwbijswdpdekfxahihtmjpgv/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s379962771.368792
+e379962771.807549
+r1
+xProcessPCH
+x/var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-efhvkwbijswdpdekfxahihtmjpgv/REngine-Prefix.pch.pth
+xREngine/REngine-Prefix.pch
+xnormal
+xarmv7s
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection37"Precompile REngine/REngine-Prefix.pch16a75e93c5a5b641^8106cf93c5a5b641^---0#0#0#-19%DVTDocumentLocation2@93"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/REngine-Prefix.pch0000000000000000^3528"ProcessPCH /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-efhvkwbijswdpdekfxahihtmjpgv/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch armv7s -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7s" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 --serialize-diagnostics /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-efhvkwbijswdpdekfxahihtmjpgv/REngine-Prefix.pch.dia -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/REngine-Prefix.pch" -o /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-efhvkwbijswdpdekfxahihtmjpgv/REngine-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-efhvkwbijswdpdekfxahihtmjpgv/REngine-Prefix.pch.d36"B8DBCBB2-6509-49FA-826E-78CD37CF9BB9-
+
+CProcessPCH++ /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379962769.582981
+e379962771.367422
+r1
+xProcessPCH++
+x/var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch.pth
+xREngine/REngine-Prefix.pch
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection37"Precompile REngine/REngine-Prefix.pch056a9591c5a5b641^4e265e93c5a5b641^---0#0#0#-19%DVTDocumentLocation2@93"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/REngine-Prefix.pch0000000000000000^3686"ProcessPCH++ /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++-header -arch armv7 -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 --serialize-diagnostics /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch.dia -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/REngine-Prefix.pch" -o /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-acpmwhnkglvonfgpmpecoeqdsjhv/REngine-Prefix.pch.d36"EC728D05-A57F-4DF2-BDEB-ECBA0D62254C-
+
+CProcessPCH++ /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler
+s379962771.369776
+e379962772.134116
+r1
+xProcessPCH++
+x/var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch.pth
+xREngine/REngine-Prefix.pch
+xnormal
+xarmv7s
+xobjective-c++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection37"Precompile REngine/REngine-Prefix.pche2e45e93c5a5b641^36562294c5a5b641^---0#0#0#-19%DVTDocumentLocation2@93"file://localhost/Users/ronyfadel/Desktop/Project%20Cartoon/REngine/REngine/REngine-Prefix.pch0000000000000000^3689"ProcessPCH++ /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch.pth REngine/REngine-Prefix.pch normal armv7s objective-c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/ronyfadel/Desktop/Project Cartoon/REngine"    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++-header -arch armv7s -fmessage-length=0 -std=c++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-arc-abi -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-generated-files.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-own-target-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-all-target-headers.hmap" -iquote "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine-project-headers.hmap" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources/armv7s" "-I/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/DerivedSources" "-F/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 --serialize-diagnostics /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch.dia -c "/Users/ronyfadel/Desktop/Project Cartoon/REngine/REngine/REngine-Prefix.pch" -o /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/59/dgk12tj561x01pfwxp5r0llw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/REngine-Prefix-eupoxywsicrokpcrzzaspzjobvca/REngine-Prefix.pch.d36"BD71FD8A-DD65-4B4C-B456-72BC640CBBC4-
+
+CProcessProductPackaging "/Users/ronyfadel/Library/MobileDevice/Provisioning Profiles/6F37BE87-C958-4EE9-87EE-01387FD9D3C7.mobileprovision" "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app/embedded.mobileprovision"
+r0
+
+CProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/Entitlements.plist "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/REngine.build/Release-iphoneos/REngine.build/REngine.xcent"
+r0
+
+CTouch "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app"
+r0
+
+CValidate "/Users/ronyfadel/Desktop/Project Cartoon/REngine/build/Release-iphoneos/REngine.app"
+r0
+
