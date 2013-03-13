@@ -1,14 +1,17 @@
-//
-//  RFProgramFactory.h
-//  REngine
-//
-//  Created by Rony Fadel on 3/12/13.
-//
-//
+#import <map>
+#import <OpenGLES/ES2/gl.h>
+#import "RFProgram.h"
 
-#ifndef __REngine__RFProgramFactory__
-#define __REngine__RFProgramFactory__
+class RFProgramFactory {
+    map<pair<string, string>, pair<RFProgram*, int> > programs;
+    RFProgramFactory();
+    static RFProgramFactory* _instance;
+public:
+    static RFProgramFactory* shared_instance();
+    static void destroy_shared_instance();
+    
+    RFProgram* retain_program(string v_shader_name, string f_shader_name);
+    void release_program(string v_shader_name, string f_shader_name);
+};
 
-#include <iostream>
-
-#endif /* defined(__REngine__RFProgramFactory__) */
+static RFProgramFactory* _instance = NULL;

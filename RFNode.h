@@ -1,14 +1,18 @@
-//
-//  File.h
-//  REngine
-//
-//  Created by Rony Fadel on 3/12/13.
-//
-//
+#import <OpenGLES/ES2/gl.h>
+#import "RFProgram.h"
 
-#ifndef __REngine__File__
-#define __REngine__File__
+enum {
+    VBO,
+    VAO,
+    NUM_BUFFERS
+};
 
-#include <iostream>
+class RFNode {
+protected:
+    GLuint buffers[NUM_BUFFERS];
+    RFProgram* program;
+    
+public:
+    RFNode(string v_shader_name, string f_shader_name);
+};
 
-#endif /* defined(__REngine__File__) */

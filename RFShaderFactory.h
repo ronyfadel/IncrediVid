@@ -1,14 +1,17 @@
-//
-//  RFShaderFactory.h
-//  REngine
-//
-//  Created by Rony Fadel on 3/12/13.
-//
-//
+#import <map>
+#import <OpenGLES/ES2/gl.h>
+#import "RFShader.h"
 
-#ifndef __REngine__RFShaderFactory__
-#define __REngine__RFShaderFactory__
+class RFShaderFactory {
+    map<pair<string, GLenum>, pair<RFShader*, int> > shaders;
+    RFShaderFactory();
+    static RFShaderFactory* _instance;
+public:
+    static RFShaderFactory* shared_instance();
+    static void destroy_shared_instance();
+    
+    GLuint retain_shader(string shader_name, GLenum shader_type);
+    void release_shader(string shader_name, GLenum shader_type);
+};
 
-#include <iostream>
-
-#endif /* defined(__REngine__RFShaderFactory__) */
+static RFShaderFactory* _instance = NULL;

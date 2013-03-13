@@ -15,48 +15,36 @@ string get_ios_file_path(string file_name)
     return str;
 }
 
-void get_file_contents(string const& filePath, char*& buffer)
+string get_file_contents(string const& file_path)
 {
-    ifstream file(filePath.c_str(), ios::in | ios::binary | ios::ate);
+    string source;
+    ifstream file(file_path.c_str());
+    if (!file.is_open()) {
+        throw std::runtime_error("could not open file!");
+    }
+    file.seekg(0, std::ios::end);
+    source.reserve(file.tellg());
+    file.seekg(0, std::ios::beg);
+    source.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     
-    if (file.is_open())
-    {
-        long long size = file.tellg();
-        buffer = new char[size + 1];
-        file.seekg(ios::beg);
-        file.read(buffer, size);
-        buffer[size] = '\0';
-    }
-    else
-    {
-        cerr<<"Unable to open "<<filePath<<endl;
-    }
+    return source;
 }
 
-
-RFShader::RFShader(GLenum type, string name)
+RFShader::RFShader(string name, GLenum type)
 {
     this->_id = glCreateShader(type);
     this->type = type;
-    this->path = get_ios_file_path(name);
+    this->name = name;
     
-    this->compile();
+    this->compile(get_file_contents(get_ios_file_path(name)).c_str());
+    
     this->check_compilation_status(_id);
 }
 
-void RFShader::compile()
+void RFShader::compile(string shader_source)
 {
-    char* shader_source = NULL;
-    get_file_contents(path, shader_source);
-    
-    if (!shader_source) {
-        throw "Could not find shader";
-    }
-    
-    glShaderSource(_id, 1, (const char**)&shader_source, NULL);
-    
-    delete[] shader_source;
-    
+    const char* shader_source_c_str = shader_source.c_str();
+    glShaderSource(_id, 1, &shader_source_c_str, NULL);
     glCompileShader(_id);
 }
 

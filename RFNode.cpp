@@ -1,9 +1,82 @@
-//
-//  File.cpp
-//  REngine
-//
-//  Created by Rony Fadel on 3/12/13.
-//
-//
+#import "RFNode.h"
+#import "RFProgramFactory.h"
 
-#include "File.h"
+RFNode::RFNode(string v_shader_name, string f_shader_name)
+{
+    RFProgramFactory* shared_instance = RFProgramFactory::shared_instance();
+    program = shared_instance->retain_program(v_shader_name, f_shader_name);
+    glGenBuffers(2, buffers);
+    
+    
+}
+
+
+
+//#import "RFProgram.h"
+//#import "RFFramebuffer.h"
+//#import "Vertices.h"
+//
+//class RFFilterProgram : public RFProgram {
+//protected:
+//    GLuint attribs[NUM_ATTRIBUTES], vbo;
+//    RFFramebuffer* framebuffer;
+//public:
+//    RFFilterProgram(string v_shader_name,
+//                    string f_shader_name,
+//                    RFFramebuffer* framebuffer,
+//                    bool flipped);
+//    void use();
+//    void draw();
+//    ~RFFilterProgram();
+//};
+//
+//#import "RFFilterProgram.h"
+//
+//
+//RFFilterProgram::RFFilterProgram(string v_shader_name,
+//                                 string f_shader_name,
+//                                 RFFramebuffer* framebuffer,
+//                                 bool flipped):
+//RFProgram(v_shader_name, f_shader_name)
+//{
+//    this->framebuffer = framebuffer;
+//
+//    RFProgram::use();
+//
+//    glGenBuffers(1, &vbo);
+//    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+//
+//    if (flipped) {
+//        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_flipped_tex_coords), vertices_flipped_tex_coords, GL_STATIC_DRAW);
+//    } else {
+//        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_straight_tex_coords), vertices_straight_tex_coords, GL_STATIC_DRAW);
+//    }
+//
+//    attribs[ATTRIB_VERTEX] = glGetAttribLocation(get_id(), "position");
+//    attribs[ATTRIB_TEXCOORD] = glGetAttribLocation(get_id(), "tex_coord_in");
+//    glEnableVertexAttribArray(attribs[ATTRIB_VERTEX]);
+//    glEnableVertexAttribArray(attribs[ATTRIB_TEXCOORD]);
+//    glVertexAttribPointer(attribs[ATTRIB_VERTEX], 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), 0);
+//    glVertexAttribPointer(attribs[ATTRIB_TEXCOORD], 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (void*) (2 * sizeof(GLfloat)));
+//}
+//
+//void RFFilterProgram::use()
+//{
+//    RFProgram::use();
+//    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+//    glEnableVertexAttribArray(attribs[ATTRIB_VERTEX]);
+//    glEnableVertexAttribArray(attribs[ATTRIB_TEXCOORD]);
+//    glVertexAttribPointer(attribs[ATTRIB_VERTEX], 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), 0);
+//    glVertexAttribPointer(attribs[ATTRIB_TEXCOORD], 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (void*) (2 * sizeof(GLfloat)));
+//}
+//
+//void RFFilterProgram::draw()
+//{
+//    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+//}
+//
+//RFFilterProgram::~RFFilterProgram()
+//{
+//    glDeleteBuffers(1, &vbo);
+//}
+//
