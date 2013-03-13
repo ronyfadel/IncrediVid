@@ -36,9 +36,7 @@
 		53C8C7E616EC0B5000505767 /* RFTextureFramebuffer.mm in Resources */ = {isa = PBXBuildFile; fileRef = 53C8C7E516EC0B5000505767 /* RFTextureFramebuffer.mm */; };
 		53C8C7EA16EC0B5800505767 /* RFTexture.mm in Resources */ = {isa = PBXBuildFile; fileRef = 53C8C7E916EC0B5800505767 /* RFTexture.mm */; };
 		53C8C7F216EC0ECB00505767 /* RFRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F016EC0ECB00505767 /* RFRenderer.mm */; };
-		53C8C7F616EC101300505767 /* RFBlurProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F416EC101300505767 /* RFBlurProgram.mm */; };
 		53C8C7F916EC104A00505767 /* RFFilterProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F716EC104A00505767 /* RFFilterProgram.mm */; };
-		53C8C7FD16EC11B700505767 /* RFToonProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7FB16EC11B600505767 /* RFToonProgram.mm */; };
 		53C8C7FF16EC1CF800505767 /* blur.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 537AA9B216EBFF9F0050C635 /* blur.fsh */; };
 		53C8C80016EC1CF800505767 /* preview.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 537AA9B316EBFF9F0050C635 /* preview.vsh */; };
 		53C8C80116EC1CF800505767 /* toon.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 537AA9B416EBFF9F0050C635 /* toon.fsh */; };
@@ -51,8 +49,6 @@
 		53C8C80816EC235A00505767 /* RFShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7D716EC071E00505767 /* RFShader.mm */; };
 		53C8C80916EC235A00505767 /* RFProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7DA16EC077200505767 /* RFProgram.mm */; };
 		53C8C80A16EC235A00505767 /* RFFilterProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F716EC104A00505767 /* RFFilterProgram.mm */; };
-		53C8C80B16EC235A00505767 /* RFBlurProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7F416EC101300505767 /* RFBlurProgram.mm */; };
-		53C8C80C16EC235A00505767 /* RFToonProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7FB16EC11B600505767 /* RFToonProgram.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +93,7 @@
 		53A85FE016EFA0D1004095B3 /* RFProgramFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFProgramFactory.h; sourceTree = "<group>"; };
 		53A85FE216EFAB03004095B3 /* RFNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RFNode.cpp; sourceTree = "<group>"; };
 		53A85FE316EFAB04004095B3 /* RFNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFNode.h; sourceTree = "<group>"; };
+		53A85FE616F0F984004095B3 /* RF2DPreviewNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RF2DPreviewNode.h; sourceTree = "<group>"; };
 		53B68CA4168A18410062636D /* AVCaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVCaptureSessionManager.h; path = REngine/AVCaptureSessionManager.h; sourceTree = "<group>"; };
 		53B68CA5168A18410062636D /* AVCaptureSessionManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AVCaptureSessionManager.mm; path = REngine/AVCaptureSessionManager.mm; sourceTree = "<group>"; };
 		53B68CB2168A23730062636D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -113,13 +110,9 @@
 		53C8C7E916EC0B5800505767 /* RFTexture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFTexture.mm; sourceTree = "<group>"; };
 		53C8C7F016EC0ECB00505767 /* RFRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFRenderer.mm; sourceTree = "<group>"; };
 		53C8C7F116EC0ECB00505767 /* RFRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFRenderer.h; sourceTree = "<group>"; };
-		53C8C7F416EC101300505767 /* RFBlurProgram.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFBlurProgram.mm; sourceTree = "<group>"; };
-		53C8C7F516EC101300505767 /* RFBlurProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFBlurProgram.h; sourceTree = "<group>"; };
 		53C8C7F716EC104A00505767 /* RFFilterProgram.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFFilterProgram.mm; sourceTree = "<group>"; };
 		53C8C7F816EC104A00505767 /* RFFilterProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFFilterProgram.h; sourceTree = "<group>"; };
 		53C8C7FA16EC108B00505767 /* Vertices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vertices.h; sourceTree = "<group>"; };
-		53C8C7FB16EC11B600505767 /* RFToonProgram.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFToonProgram.mm; sourceTree = "<group>"; };
-		53C8C7FC16EC11B600505767 /* RFToonProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFToonProgram.h; sourceTree = "<group>"; };
 		53C8C7FE16EC1AA300505767 /* MyRenderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MyRenderer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -334,10 +327,7 @@
 			children = (
 				537AA9B816EBFFAA0050C635 /* MyRenderer.h */,
 				53C8C7FE16EC1AA300505767 /* MyRenderer.mm */,
-				53C8C7F516EC101300505767 /* RFBlurProgram.h */,
-				53C8C7F416EC101300505767 /* RFBlurProgram.mm */,
-				53C8C7FC16EC11B600505767 /* RFToonProgram.h */,
-				53C8C7FB16EC11B600505767 /* RFToonProgram.mm */,
+				53A85FE616F0F984004095B3 /* RF2DPreviewNode.h */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -463,8 +453,6 @@
 				53C8C80816EC235A00505767 /* RFShader.mm in Sources */,
 				53C8C80916EC235A00505767 /* RFProgram.mm in Sources */,
 				53C8C80A16EC235A00505767 /* RFFilterProgram.mm in Sources */,
-				53C8C80B16EC235A00505767 /* RFBlurProgram.mm in Sources */,
-				53C8C80C16EC235A00505767 /* RFToonProgram.mm in Sources */,
 				5373B10615FF8A4500D308A4 /* main.mm in Sources */,
 				5373B10A15FF8A4500D308A4 /* AppDelegate.mm in Sources */,
 				5373B16015FFA84E00D308A4 /* RFGLView.mm in Sources */,
@@ -484,9 +472,7 @@
 				53C8C7DB16EC077200505767 /* RFProgram.mm in Sources */,
 				53C8C7DD16EC077C00505767 /* RFFramebuffer.mm in Sources */,
 				53C8C7F216EC0ECB00505767 /* RFRenderer.mm in Sources */,
-				53C8C7F616EC101300505767 /* RFBlurProgram.mm in Sources */,
 				53C8C7F916EC104A00505767 /* RFFilterProgram.mm in Sources */,
-				53C8C7FD16EC11B700505767 /* RFToonProgram.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

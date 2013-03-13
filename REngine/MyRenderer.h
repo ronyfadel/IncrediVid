@@ -1,58 +1,7 @@
 #import "RFRenderer.h"
 #import "RFProgram.h"
 #import "RFFramebuffer.h"
-#import "RFNode.h"
-
-static const GLfloat vertices_flipped_tex_coords[] = {
-    -1.f, -1.f, 0.f, 1.f,
-    1.f, -1.f, 1.f, 1.f,
-    1.f,  1.f, 1.f, 0.f,
-    -1.f,  1.f, 0.f, 0.f
-};
-
-static const GLfloat vertices_straight_tex_coords[] = {
-    -1.f, -1.f, 0.f, 0.f,
-    1.f, -1.f, 1.f, 0.f,
-    1.f,  1.f, 1.f, 1.f,
-    -1.f,  1.f, 0.f, 1.f
-};
-
-class RF2DPreviewNode : public RFNode {
-protected:
-    GLsizei width, height;
-public:
-    RF2DPreviewNode(string v_shader_name, string f_shader_name,
-                    GLsizei _width, GLsizei _height):
-    RFNode(v_shader_name, f_shader_name),
-    width(_width), height(_height)
-    {
-    }
-    
-    void set_uniforms()
-    {
-        GLuint program_id = program->get_id();
-        glUniform1i(glGetUniformLocation(program_id, "input_texture"), 0);
-        glUniform1f(glGetUniformLocation(program_id, "texel_width"), 1.f / width);
-        glUniform1f(glGetUniformLocation(program_id, "texel_height"), 1.f / height);
-    }
-};
-
-class RFBlurPreviewNode : public RF2DPreviewNode {
-    RFBlurPreviewNode(GLsizei _width, GLsizei _height):
-    RF2DPreviewNode("preview.vsh", "blur.fsh", _width, _height){}
-};
-
-class RFToonPreviewNode : public RF2DPreviewNode {
-    RFToonPreviewNode(GLsizei _width, GLsizei _height):
-    RF2DPreviewNode("preview.vsh", "blur.fsh", _width, _height){}
-    void set_uniforms()
-    {
-        RF2DPreviewNode::set_uniforms();
-        GLuint program_id = program->get_id();
-        glUniform1i(glGetUniformLocation(program_id, "blurred_texture"), 1);
-    }
-};
-
+#import "RF2DPreviewNode.h"
 
 enum {
     BLUR_PROGRAM,
