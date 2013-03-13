@@ -25,6 +25,10 @@ void RFRenderer::clear_display(GLbitfield mask)
     glClear(mask);
 }
 
+void RFRenderer::setup()
+{
+}
+
 void RFRenderer::render()
 {
     [this->view update];

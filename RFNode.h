@@ -15,9 +15,12 @@ protected:
     
 public:
     RFNode(string v_shader_name, string f_shader_name);
-    void draw();
     void fill_data(void* array_buffer, GLsizeiptr array_buffer_size,
                    void* index_buffer, GLsizeiptr index_buffer_size);
-    virtual void set_attribs()  = 0;
-    virtual void set_uniforms() = 0;
+    void draw();
+    void set_attribs();
+    virtual void set_attribs_impl() = 0;
+    virtual void set_uniforms()     = 0;
+    
+    virtual ~RFNode();
 };

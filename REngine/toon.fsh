@@ -1,6 +1,6 @@
 precision mediump float;
 
-uniform sampler2D original_texture;
+uniform sampler2D input_texture;
 uniform sampler2D blurred_texture;
 uniform float coefficient;
 
@@ -52,7 +52,7 @@ float grad()
 void main()
 {
     float gradient = grad();
-    gl_FragColor = vec4(texture2D(original_texture, vec2(texture_coordinate.x, 1.0 - texture_coordinate.y)).bgr * gradient, 1.0);
+    gl_FragColor = vec4(texture2D(input_texture, vec2(texture_coordinate.x, 1.0 - texture_coordinate.y)).bgr * gradient, 1.0);
     
 //    float quantization_levels = 32.0;
 //    vec3 original_fragment_color = texture2D(original_texture, vec2(texture_coordinate.x, 1.0 - texture_coordinate.y)).bgr;

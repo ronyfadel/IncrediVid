@@ -42,6 +42,16 @@ void RFProgram::check_link_status(GLuint _id)
     }
 }
 
+string RFProgram::get_v_shader_name()
+{
+    return v_shader_name;
+}
+
+string RFProgram::get_f_shader_name()
+{
+    return f_shader_name;
+}
+
 void RFProgram::use()
 {
     glUseProgram(this->_id);

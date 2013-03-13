@@ -1,11 +1,18 @@
 #import "RFProgramFactory.h"
 
+RFProgramFactory* RFProgramFactory::_instance = NULL;
+
 RFProgramFactory* RFProgramFactory::shared_instance()
 {
     if (_instance == NULL) {
         _instance = new RFProgramFactory();
     }
     return _instance;
+}
+
+void RFProgramFactory::destroy_shared_instance()
+{
+    delete _instance; _instance = NULL;
 }
 
 // will try to retrieve shaders
@@ -34,9 +41,4 @@ void RFProgramFactory::release_program(string v_shader_name, string f_shader_nam
         delete program_retcount_pair.first;
         programs.erase(shader_name_pair);
     }
-}
-
-void RFProgramFactory::destroy_shared_instance()
-{
-    delete _instance; _instance = NULL;
 }

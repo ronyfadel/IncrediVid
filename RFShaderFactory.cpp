@@ -1,5 +1,7 @@
 #import "RFShaderFactory.h"
 
+RFShaderFactory* RFShaderFactory::_instance = NULL;
+
 RFShaderFactory* RFShaderFactory::shared_instance()
 {
     if (_instance == NULL) {

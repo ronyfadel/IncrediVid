@@ -4,8 +4,11 @@
 
 class RFProgramFactory {
     map<pair<string, string>, pair<RFProgram*, int> > programs;
-    RFProgramFactory();
     static RFProgramFactory* _instance;
+
+    RFProgramFactory(){};
+    RFProgramFactory(RFProgramFactory const&);
+    void operator=(RFProgramFactory const&);
 public:
     static RFProgramFactory* shared_instance();
     static void destroy_shared_instance();
@@ -13,5 +16,3 @@ public:
     RFProgram* retain_program(string v_shader_name, string f_shader_name);
     void release_program(string v_shader_name, string f_shader_name);
 };
-
-static RFProgramFactory* _instance = NULL;

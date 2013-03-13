@@ -17,6 +17,8 @@ public:
 //    virtual void draw() = 0;
     
     GLuint get_id();
+    string get_v_shader_name();
+    string get_f_shader_name();
     virtual void use();
     virtual ~RFProgram();
 };
