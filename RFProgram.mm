@@ -42,16 +42,18 @@ void RFProgram::check_link_status(GLuint _id)
     }
 }
 
-void RFProgram::use() {
+void RFProgram::use()
+{
     glUseProgram(this->_id);
 }
 
-GLuint RFProgram::get_id() {
+GLuint RFProgram::get_id()
+{
     return this->_id;
 }
 
-RFProgram::~RFProgram() {
-    
+RFProgram::~RFProgram()
+{
     RFShaderFactory* shared_instance = RFShaderFactory::shared_instance();
     shared_instance->release_shader(v_shader_name, GL_VERTEX_SHADER);
     shared_instance->release_shader(f_shader_name, GL_FRAGMENT_SHADER);

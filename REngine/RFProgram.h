@@ -13,8 +13,8 @@ public:
     
     RFProgram(string v_shader_name, string f_shader_name);
     
-    virtual void set_uniforms() = 0;
-    virtual void draw() = 0;
+//    virtual void set_uniforms() = 0;
+//    virtual void draw() = 0;
     
     GLuint get_id();
     virtual void use();

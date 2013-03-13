@@ -200,6 +200,15 @@
 			path = REngine;
 			sourceTree = "<group>";
 		};
+		53A85FE516F0DD90004095B3 /* Scene Graph */ = {
+			isa = PBXGroup;
+			children = (
+				53A85FE316EFAB04004095B3 /* RFNode.h */,
+				53A85FE216EFAB03004095B3 /* RFNode.cpp */,
+			);
+			name = "Scene Graph";
+			sourceTree = "<group>";
+		};
 		53B68CA3168A18170062636D /* Capture Session Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,8 +261,7 @@
 		53C8C7D616EC05CC00505767 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
-				53A85FE316EFAB04004095B3 /* RFNode.h */,
-				53A85FE216EFAB03004095B3 /* RFNode.cpp */,
+				53A85FE516F0DD90004095B3 /* Scene Graph */,
 				53C8C7EF16EC0E8200505767 /* Renderer */,
 				53C8C7EE16EC0E7300505767 /* Texture */,
 				53C8C7ED16EC0E5C00505767 /* Framebuffers */,
