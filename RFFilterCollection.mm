@@ -1,11 +1,11 @@
-#import "MyRenderer.h"
+#import "RFFilterCollection.h"
 #import "RFViewFramebuffer.h"
 #import "RFTextureFramebuffer.h"
 
 #define PREVIEW_WIDTH 360
 #define PREVIEW_HEIGHT 480
 
-MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
+RFFilterCollection::RFFilterCollection(UIView* superview):RFRenderer(superview)
 {
     current_filter_index = 0;
     
@@ -38,7 +38,7 @@ MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
     filter_list.push_back(fourth_filter);
 }
 
-void MyRenderer::render()
+void RFFilterCollection::render()
 {
     vector<pair<RFNode*, RFFramebuffer*>> current_filter = filter_list.at(current_filter_index);
     
@@ -50,17 +50,17 @@ void MyRenderer::render()
     RFRenderer::render();
 }
 
-void MyRenderer::use_next_filter()
+void RFFilterCollection::use_next_filter()
 {
     current_filter_index = (current_filter_index + 1) % filter_list.size();
 }
 
-void MyRenderer::use_previous_filter()
+void RFFilterCollection::use_previous_filter()
 {
     current_filter_index = (current_filter_index - 1) % filter_list.size();
 }
 
-MyRenderer::~MyRenderer()
+RFFilterCollection::~MyRenderer()
 {
     /* TODO */
 }

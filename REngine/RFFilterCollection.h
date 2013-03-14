@@ -3,14 +3,14 @@
 #import "RFFramebuffer.h"
 #import "RF2DPreviewNode.h"
 
-class MyRenderer : public RFRenderer {
+class RFFilterCollection : public RFRenderer {
 protected:
     vector<vector<pair<RFNode*, RFFramebuffer*> > > filter_list;
     int current_filter_index;
 public:
-    MyRenderer(UIView* superview);
+    RFFilterCollection(UIView* superview);
     void render();
     void use_next_filter();
     void use_previous_filter();
-    virtual ~MyRenderer();
+    virtual ~RFFilterCollection();
 };

@@ -6,8 +6,10 @@
     CADisplayLink* displayLink;
     RFRenderer* renderer;
     AVCaptureSessionManager* captureSessionManager;
-    IBOutlet UIButton *nextButton, *prevButton;
+    
+    IBOutlet UIButton *nextButton, *prevButton, *videoButton;
 }
 
 - (IBAction)changeFilter:(id)obj;
+- (IBAction)recordVideo:(id)obj;
 @end
