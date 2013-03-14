@@ -46,6 +46,7 @@ void RFShader::compile(string shader_source)
     const char* shader_source_c_str = shader_source.c_str();
     glShaderSource(_id, 1, &shader_source_c_str, NULL);
     glCompileShader(_id);
+    check_compilation_status(_id);
 }
 
 void RFShader::check_compilation_status(GLuint _id)

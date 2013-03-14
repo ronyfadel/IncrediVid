@@ -15,8 +15,8 @@ static const GLfloat vertices_straight_tex_coords[] = {
 };
 
 static const GLushort indexes[] = {
-    0,1,2,
-    2,3,0
+    0, 1, 2,
+    0, 2, 3
 };
 
 class RF2DPreviewNode : public RFNode {
@@ -33,15 +33,7 @@ public:
     {
     }
     
-    void set_uniforms()
-    {
-        GLuint program_id = program->get_id();
-        glUniform1i(glGetUniformLocation(program_id, "input_texture"), 0);
-        glUniform1f(glGetUniformLocation(program_id, "texel_width"), 1.f / width);
-        glUniform1f(glGetUniformLocation(program_id, "texel_height"), 1.f / height);
-    }
-    
-    void set_attribs_impl()
+    virtual void set_attribs()
     {
         GLuint program_id = program->get_id();
         int attrib = glGetAttribLocation(program_id, "position");
@@ -51,21 +43,19 @@ public:
         glEnableVertexAttribArray(attrib);
         glVertexAttribPointer(attrib, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (void*) (2 * sizeof(GLfloat)));
     }
-};
-
-class RFBlurPreviewNode : public RF2DPreviewNode {
-    RFBlurPreviewNode(GLsizei _width, GLsizei _height):
-    RF2DPreviewNode("preview.vsh", "blur.fsh", _width, _height)
+    
+    virtual void set_uniforms()
     {
-        fill_data((void*)vertices_flipped_tex_coords,
-                  sizeof(vertices_flipped_tex_coords),
-                  (void*)indexes,
-                  sizeof(indexes));
+        GLuint program_id = program->get_id();
+        glUniform1i(glGetUniformLocation(program_id, "input_texture"), 0);
+        glUniform1f(glGetUniformLocation(program_id, "texel_width"), 1.f / width);
+        glUniform1f(glGetUniformLocation(program_id, "texel_height"), 1.f / height);
     }
 };
 
-class RFToonPreviewNode : public RF2DPreviewNode {
-    RFToonPreviewNode(GLsizei _width, GLsizei _height):
+class RFBlurPreviewNode : public RF2DPreviewNode {
+public:
+    RFBlurPreviewNode(GLsizei _width, GLsizei _height):
     RF2DPreviewNode("preview.vsh", "blur.fsh", _width, _height)
     {
         fill_data((void*)vertices_straight_tex_coords,
@@ -73,11 +63,24 @@ class RFToonPreviewNode : public RF2DPreviewNode {
                   (void*)indexes,
                   sizeof(indexes));
     }
+};
+
+class RFToonPreviewNode : public RF2DPreviewNode {
+public:
+    RFToonPreviewNode(GLsizei _width, GLsizei _height):
+    RF2DPreviewNode("preview.vsh", "toon.fsh", _width, _height)
+    {
+        fill_data((void*)vertices_flipped_tex_coords,
+                  sizeof(vertices_flipped_tex_coords),
+                  (void*)indexes,
+                  sizeof(indexes));
+    }
     
-    void set_uniforms()
+    virtual void set_uniforms()
     {
         RF2DPreviewNode::set_uniforms();
         GLuint program_id = program->get_id();
         glUniform1i(glGetUniformLocation(program_id, "blurred_texture"), 1);
+        glUniform1f(glGetUniformLocation(program_id, "coefficient"), 1.5f);
     }
 };

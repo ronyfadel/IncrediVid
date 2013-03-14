@@ -1,46 +1,39 @@
 #import "MyRenderer.h"
-
 #import "RFViewFramebuffer.h"
 #import "RFTextureFramebuffer.h"
-#import "RFBlurProgram.h"
-#import "RFToonProgram.h"
+
+#define PREVIEW_WIDTH 360
+#define PREVIEW_HEIGHT 480
 
 MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
 {
-//    // Creating View framebuffer, setting Viewport and binding framebuffer
-//    framebuffers[VIEW_FRAMEBUFFER] = new RFViewFramebuffer(this->view);
-//    
-//    // Creating Blur texture framebuffer
-////    framebuffers[BLUR_FRAMEBUFFER] = new RFTextureFramebuffer(framebuffers[VIEW_FRAMEBUFFER]->get_width(),
-////                                                             framebuffers[VIEW_FRAMEBUFFER]->get_height());
-//    framebuffers[BLUR_FRAMEBUFFER] = new RFTextureFramebuffer(360, 480);
-//
-//    
-//    framebuffers[VIEW_FRAMEBUFFER]->use();
-//    
-//    programs[BLUR_PROGRAM] = new RFBlurProgram(framebuffers[BLUR_FRAMEBUFFER], true);
-//    programs[BLUR_PROGRAM]->set_uniforms();
-//    programs[TOON_PROGRAM] = new RFToonProgram(framebuffers[VIEW_FRAMEBUFFER], false);
-//    programs[TOON_PROGRAM]->set_uniforms();
+    RFFramebuffer *view_fb    = new RFViewFramebuffer(this->view);
+    RFFramebuffer *texture_fb = new RFTextureFramebuffer(PREVIEW_WIDTH, PREVIEW_HEIGHT);
+    
+    RFNode *blur     = (new RFBlurPreviewNode(PREVIEW_WIDTH, PREVIEW_HEIGHT))->setup();
+    RFNode *toon     = (new RFToonPreviewNode(view_fb->get_width(), view_fb->get_height()))->setup();
+
+    node_framebuffer_list.push_back(make_pair(blur, texture_fb));
+    node_framebuffer_list.push_back(make_pair(toon, view_fb));
 }
 
 void MyRenderer::render()
 {
-//    clear_display();
-//    
-//    glActiveTexture(GL_TEXTURE1);
-//    framebuffers[BLUR_PROGRAM]->use();
-//    programs[BLUR_PROGRAM]->use();
-//    programs[BLUR_PROGRAM]->draw();
-//    
-//    framebuffers[VIEW_FRAMEBUFFER]->use();
-//    programs[TOON_PROGRAM]->use();
-//    programs[TOON_PROGRAM]->draw();
-//    
-//    RFRenderer::render();
+    static int j = 0;
+    for (auto i = node_framebuffer_list.begin(); i != node_framebuffer_list.end(); ++i) {
+        if (j) { glActiveTexture(GL_TEXTURE1); } j = 1 - j;
+        
+        (*i).second->use();
+        clear_display();
+        (*i).first->draw();
+    }
+    RFRenderer::render();
 }
 
-RFProgram** MyRenderer::get_programs()
+MyRenderer::~MyRenderer()
 {
-    return programs;
+    for (auto i = node_framebuffer_list.begin(); i != node_framebuffer_list.end(); ++i)
+    {
+        
+    }
 }

@@ -1,4 +1,4 @@
-attribute vec4 position;
+attribute vec2 position;
 attribute vec2 tex_coord_in;
 
 uniform highp float texel_width; 
@@ -18,7 +18,7 @@ varying vec2 bottom_right_texture_coordinate;
 
 void main()
 {
-	gl_Position = position;
+	gl_Position = vec4(position, 0, 1);
     
     vec2 widthStep = vec2(texel_width, 0.0);
     vec2 heightStep = vec2(0.0, texel_height);

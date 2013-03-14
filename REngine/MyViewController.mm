@@ -1,8 +1,6 @@
 #import "MyViewController.h"
 #import "MyRenderer.h"
 
-extern float coefficient;
-
 @interface MyViewController ()
 - (void) setup;
 @end
@@ -26,7 +24,7 @@ extern float coefficient;
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
     displayLink.frameInterval = 2;
     [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode]; 
-        
+    
     UISlider* slider = [[UISlider alloc] init];
     [self.view addSubview:slider];
     [slider addTarget:self action:@selector(updatedSlider:) forControlEvents:UIControlEventValueChanged];
@@ -35,8 +33,8 @@ extern float coefficient;
 
 - (void)updatedSlider:(id)obj
 {
-    UISlider* slider = (UISlider*) obj;
-    glUniform1f(glGetUniformLocation(((MyRenderer*)renderer)->get_programs()[TOON_PROGRAM]->get_id(), "coefficient"), slider.value );//* 2.0);
+//    UISlider* slider = (UISlider*) obj;
+//    glUniform1f(glGetUniformLocation(((MyRenderer*)renderer)->get_programs()[TOON_PROGRAM]->get_id(), "coefficient"), slider.value );//* 2.0);
     
 }
 

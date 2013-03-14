@@ -12,13 +12,11 @@ protected:
 public:
     
     RFProgram(string v_shader_name, string f_shader_name);
-    
-//    virtual void set_uniforms() = 0;
-//    virtual void draw() = 0;
-    
+        
     GLuint get_id();
     string get_v_shader_name();
     string get_f_shader_name();
     virtual void use();
+    virtual void stop_using();
     virtual ~RFProgram();
 };

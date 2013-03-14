@@ -57,6 +57,11 @@ void RFProgram::use()
     glUseProgram(this->_id);
 }
 
+void RFProgram::stop_using()
+{
+    glUseProgram(0);
+}
+
 GLuint RFProgram::get_id()
 {
     return this->_id;
