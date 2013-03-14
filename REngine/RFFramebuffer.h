@@ -8,7 +8,7 @@ protected:
     void test_for_completeness();
     
 public:
-    void use();
+    virtual void use();
     GLsizei get_width();
     GLsizei get_height();
     virtual ~RFFramebuffer();

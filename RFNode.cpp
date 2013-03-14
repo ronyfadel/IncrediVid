@@ -38,9 +38,12 @@ RFNode* RFNode::setup()
     return this;
 }
 
+float coefficient = 1.0;
+
 void RFNode::draw()
 {
     program->use();
+    glUniform1f(glGetUniformLocation(program->get_id(), "coefficient"), coefficient);
     glBindVertexArrayOES(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo[ARRAY_BUFFER]);
     glDrawElements(GL_TRIANGLES, index_count, GL_UNSIGNED_SHORT, 0);

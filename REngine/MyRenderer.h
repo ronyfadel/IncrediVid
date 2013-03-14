@@ -5,9 +5,12 @@
 
 class MyRenderer : public RFRenderer {
 protected:
-    vector<pair<RFNode*, RFFramebuffer*> > node_framebuffer_list;
+    vector<vector<pair<RFNode*, RFFramebuffer*> > > filter_list;
+    int current_filter_index;
 public:
     MyRenderer(UIView* superview);
     void render();
+    void use_next_filter();
+    void use_previous_filter();
     virtual ~MyRenderer();
 };

@@ -81,6 +81,65 @@ public:
         RF2DPreviewNode::set_uniforms();
         GLuint program_id = program->get_id();
         glUniform1i(glGetUniformLocation(program_id, "blurred_texture"), 1);
-        glUniform1f(glGetUniformLocation(program_id, "coefficient"), 1.5f);
+        glUniform1f(glGetUniformLocation(program_id, "coefficient"), 1.f);
+    }
+};
+
+
+class RFToonPreviewNode2 : public RF2DPreviewNode {
+public:
+    RFToonPreviewNode2(GLsizei _width, GLsizei _height):
+    RF2DPreviewNode("preview.vsh", "toon2.fsh", _width, _height)
+    {
+        fill_data((void*)vertices_flipped_tex_coords,
+                  sizeof(vertices_flipped_tex_coords),
+                  (void*)indexes,
+                  sizeof(indexes));
+    }
+    
+    virtual void set_uniforms()
+    {
+        RF2DPreviewNode::set_uniforms();
+        GLuint program_id = program->get_id();
+        glUniform1f(glGetUniformLocation(program_id, "coefficient"), 1.f);
+    }
+};
+
+class RFToonPreviewNode3 : public RF2DPreviewNode {
+public:
+    RFToonPreviewNode3(GLsizei _width, GLsizei _height):
+    RF2DPreviewNode("preview.vsh", "toon3.fsh", _width, _height)
+    {
+        fill_data((void*)vertices_flipped_tex_coords,
+                  sizeof(vertices_flipped_tex_coords),
+                  (void*)indexes,
+                  sizeof(indexes));
+    }
+    
+    virtual void set_uniforms()
+    {
+        RF2DPreviewNode::set_uniforms();
+        GLuint program_id = program->get_id();
+        glUniform1i(glGetUniformLocation(program_id, "blurred_texture"), 1);
+        glUniform1f(glGetUniformLocation(program_id, "coefficient"), 1.f);
+    }
+};
+
+class RFToonPreviewNode4 : public RF2DPreviewNode {
+public:
+    RFToonPreviewNode4(GLsizei _width, GLsizei _height):
+    RF2DPreviewNode("preview.vsh", "toon4.fsh", _width, _height)
+    {
+        fill_data((void*)vertices_flipped_tex_coords,
+                  sizeof(vertices_flipped_tex_coords),
+                  (void*)indexes,
+                  sizeof(indexes));
+    }
+    
+    virtual void set_uniforms()
+    {
+        RF2DPreviewNode::set_uniforms();
+        GLuint program_id = program->get_id();
+        glUniform1f(glGetUniformLocation(program_id, "coefficient"), 1.f);
     }
 };

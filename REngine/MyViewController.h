@@ -6,5 +6,8 @@
     CADisplayLink* displayLink;
     RFRenderer* renderer;
     AVCaptureSessionManager* captureSessionManager;
+    IBOutlet UIButton *nextButton, *prevButton;
 }
+
+- (IBAction)changeFilter:(id)obj;
 @end

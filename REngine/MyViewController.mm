@@ -1,6 +1,8 @@
 #import "MyViewController.h"
 #import "MyRenderer.h"
 
+extern float coefficient;
+
 @interface MyViewController ()
 - (void) setup;
 @end
@@ -19,6 +21,9 @@
 - (void)setup
 {
     renderer = new MyRenderer(self.view);
+    [self.view bringSubviewToFront:nextButton];
+    [self.view bringSubviewToFront:prevButton];
+    
     captureSessionManager = [[AVCaptureSessionManager alloc] init];
     
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
@@ -31,11 +36,24 @@
     slider.frame = CGRectMake(5, self.view.frame.size.height - 30, self.view.frame.size.width - 40, slider.bounds.size.height);
 }
 
+- (void)changeFilter:(id)obj
+{
+    UIButton* target = (UIButton*)obj;
+    if ([target.titleLabel.text isEqualToString:@"Next"]) {
+        ((MyRenderer*)renderer)->use_next_filter();
+    } else {
+        ((MyRenderer*)renderer)->use_previous_filter();
+    }
+}
+
 - (void)updatedSlider:(id)obj
 {
-//    UISlider* slider = (UISlider*) obj;
-//    glUniform1f(glGetUniformLocation(((MyRenderer*)renderer)->get_programs()[TOON_PROGRAM]->get_id(), "coefficient"), slider.value );//* 2.0);
-    
+    cout<<"slider updated!!"<<endl;
+    UISlider* slider = (UISlider*) obj;
+    GLint program;
+    glGetIntegerv(GL_CURRENT_PROGRAM, (&program));
+    coefficient = slider.value * 2.f;
+//    glUniform1f(glGetUniformLocation(program, "coefficient"), slider.value * 2.0);
 }
 
 - (void)update

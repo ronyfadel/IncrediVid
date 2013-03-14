@@ -20,20 +20,20 @@ void main()
 {
 	gl_Position = vec4(position, 0, 1);
     
-    vec2 widthStep = vec2(texel_width, 0.0);
-    vec2 heightStep = vec2(0.0, texel_height);
+    vec2 width_step = vec2(texel_width, 0.0);
+    vec2 height_step = vec2(0.0, texel_height);
     vec2 width_height_step = vec2(texel_width, texel_height);
     vec2 width_negative_height_step = vec2(texel_width, -texel_height);
     
     texture_coordinate = tex_coord_in;
-    left_texture_coordinate = tex_coord_in - widthStep;
-    right_texture_coordinate = tex_coord_in + widthStep;
+    left_texture_coordinate = tex_coord_in - width_step;
+    right_texture_coordinate = tex_coord_in + width_step;
     
-    top_texture_coordinate = tex_coord_in - heightStep;
+    top_texture_coordinate = tex_coord_in - height_step;
     top_left_texture_coordinate = tex_coord_in - width_height_step;
     top_right_texture_coordinate = tex_coord_in + width_negative_height_step;
     
-    bottom_texture_coordinate = tex_coord_in + heightStep;
+    bottom_texture_coordinate = tex_coord_in + height_step;
     bottom_left_texture_coordinate = tex_coord_in - width_negative_height_step;
     bottom_right_texture_coordinate = tex_coord_in + width_height_step;
 }

@@ -10,7 +10,7 @@ RFViewFramebuffer::RFViewFramebuffer(RFGLView* view, bool has_depth_attachement)
     
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &width);
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &height);
-    
+        
     GLuint depth_render_buffer;
     
     if (has_depth_attachement) {

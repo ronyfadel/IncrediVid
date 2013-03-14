@@ -1,5 +1,11 @@
 #import "RFTextureFramebuffer.h"
 
+void RFTextureFramebuffer::use()
+{
+    glActiveTexture(GL_TEXTURE1);
+    RFFramebuffer::use();
+}
+
 RFTextureFramebuffer::RFTextureFramebuffer(GLsizei _width, GLsizei _height, bool has_depth_attachement)
 {
     width = _width;

@@ -21,6 +21,5 @@ public:
     virtual RFNode* setup();
     virtual void set_attribs()  = 0;
     virtual void set_uniforms() = 0;
-    
     virtual ~RFNode();
 };
