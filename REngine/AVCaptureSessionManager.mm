@@ -1,38 +1,49 @@
 #import <CoreMedia/CoreMedia.h>
 #import "AVCaptureSessionManager.h"
 
+#define CAPTURE_FRAMES_PER_SECOND 30
+
 @interface AVCaptureSessionManager(){
 @private
+    RFRenderer* renderer;
+    
     CVOpenGLESTextureCacheRef _videoTextureCache;
     CVOpenGLESTextureRef bgraTexture;
     CMBufferQueueRef previewBufferQueue;
     AVCaptureSession* captureSession;
-//    RFVideoProcessor* videoProcessor;
+    RFVideoProcessor* videoProcessor;
+    AVCaptureConnection *audioConnection;
+	AVCaptureConnection *videoConnection;
 }
-- (void)setupSession;
-- (void)cleanUpTextures;
+- (void)setupCaptureSession;
 - (void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer;
 @end
 
 @implementation AVCaptureSessionManager
 
-- (id)init
+- (id)initWithRenderer:(RFRenderer*)theRenderer;
 {
     if((self = [super init]))
     {
-        [self setupSession];
+        self->renderer = theRenderer;
+        videoProcessor = [[RFVideoProcessor alloc] init];
+        [self setupCaptureSession];
     }
     return self;
 }
 
-- (void)setupSession 
+- (void)setVideoProcessorDelegate:(id<RFVideoProcessorDelegate>)delegate
 {
-    
+    videoProcessor.delegate = delegate;
+}
+
+- (void)setupCaptureSession
+{
     OSStatus bufferQueueCreateError = CMBufferQueueCreate(kCFAllocatorDefault, 1, CMBufferQueueGetCallbacksForUnsortedSampleBuffers(), &previewBufferQueue);
 	if (bufferQueueCreateError) {
         NSLog(@"Error at CMBufferQueueCreate %ld", bufferQueueCreateError);
     }
-    
+
     CVReturn textureCacheCreateError = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, [EAGLContext currentContext], NULL, &_videoTextureCache);
     if (textureCacheCreateError)  {
         NSLog(@"Error at CVOpenGLESTextureCacheCreate %d", textureCacheCreateError);
@@ -41,39 +52,67 @@
     
     captureSession = [[AVCaptureSession alloc] init];
     [captureSession beginConfiguration];
-    
     captureSession.sessionPreset = AVCaptureSessionPresetMedium;
     
-    // config input & output
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
-    [captureSession addInput:input];
-    if (!input) {
-        NSLog(@"bad input %d %s", __LINE__, __FUNCTION__);
-    }
+    // audio
+    AVCaptureDeviceInput *audioIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil];
+    if ([captureSession canAddInput:audioIn])
+        [captureSession addInput:audioIn];
+	[audioIn release];
     
-    AVCaptureVideoDataOutput *output = [[[AVCaptureVideoDataOutput alloc] init] autorelease];
-    output.alwaysDiscardsLateVideoFrames = YES;
-    [captureSession addOutput:output];
-
-    // queue to process samples
+    AVCaptureAudioDataOutput *audioOut = [[AVCaptureAudioDataOutput alloc] init];
+	dispatch_queue_t audioCaptureQueue = dispatch_queue_create("Audio Capture Queue", DISPATCH_QUEUE_SERIAL);
+	[audioOut setSampleBufferDelegate:self queue:audioCaptureQueue];
+	dispatch_release(audioCaptureQueue);
+	if ([captureSession canAddOutput:audioOut])
+		[captureSession addOutput:audioOut];
+	audioConnection = [audioOut connectionWithMediaType:AVMediaTypeAudio];
+	[audioOut release];
+    
+    // video
+    AVCaptureDeviceInput *videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
+    if ([captureSession canAddInput:videoIn])
+        [captureSession addInput:videoIn];
+	[videoIn release];
+    
+    AVCaptureVideoDataOutput *videoOut = [[AVCaptureVideoDataOutput alloc] init];
+    [videoOut setAlwaysDiscardsLateVideoFrames:YES];
+    [videoOut setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
     dispatch_queue_t videoCaptureQueue = dispatch_queue_create("Video Capture Queue", DISPATCH_QUEUE_SERIAL);
-	[output setSampleBufferDelegate:self queue:videoCaptureQueue];
+    [videoOut setSampleBufferDelegate:self queue:videoCaptureQueue];
 	dispatch_release(videoCaptureQueue);
-    
-    output.videoSettings =  [NSDictionary dictionaryWithObject: [NSNumber numberWithInt:kCVPixelFormatType_32BGRA] 
-                                                        forKey:(id)kCVPixelBufferPixelFormatTypeKey];
-    
-    // configuring connection
-    AVCaptureConnection* connection = (AVCaptureConnection*)[output.connections objectAtIndex:0];
+	if ([captureSession canAddOutput:videoOut])
+		[captureSession addOutput:videoOut];
+	videoConnection = [videoOut connectionWithMediaType:AVMediaTypeVideo];
+    if([videoConnection isVideoOrientationSupported])
+        [videoConnection setVideoOrientation:AVCaptureVideoOrientationPortrait];
+    videoConnection.videoMinFrameDuration = CMTimeMake(1, CAPTURE_FRAMES_PER_SECOND);
+    videoConnection.videoMaxFrameDuration = CMTimeMake(1, CAPTURE_FRAMES_PER_SECOND);
 
-//    // setting capture rate at 30 FPS (kCMTimeZero for maximum FPS)
-//    connection.videoMinFrameDuration = CMTimeMake(1, 30);
-    if([connection isVideoOrientationSupported])
-        [connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
-
+	[videoOut release];
+    
+    videoProcessor.videoConnection = videoConnection;
+    videoProcessor.audioConnection = audioConnection;
+    
     [captureSession commitConfiguration];
-    [captureSession startRunning];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(captureSessionStoppedRunningNotification:) name:AVCaptureSessionDidStopRunningNotification object:captureSession];
+    
+    [captureSession startRunning];    
+}
+
+- (void)stopAndTearDownCaptureSession
+{
+    [captureSession stopRunning];
+	if (captureSession)
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureSessionDidStopRunningNotification object:captureSession];
+	[captureSession release];
+	captureSession = nil;
+	if (previewBufferQueue) {
+		CFRelease(previewBufferQueue);
+		previewBufferQueue = NULL;
+	}
+    [videoProcessor stopAndTearDownRecordingSession];
 }
 
 /*
@@ -89,25 +128,34 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
     
-    if (!_videoTextureCache)
-    {
-        NSLog(@"No video texture cache");
-        return;
-    }
+    if ( connection == videoConnection ) {
+        if (!_videoTextureCache)
+        {
+            NSLog(@"No video texture cache");
+            return;
+        }
         
-    [self cleanUpTextures];
-    
-    OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, sampleBuffer);
-    if ( !err ) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
-            if (sbuf) {
-                CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sbuf);
-                [self createTextureFromImageBuffer:imageBuffer];
-                CFRelease(sbuf);
-            }
-        });
+        OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, sampleBuffer);
+        if ( !err ) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
+                if (sbuf) {
+                    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sbuf);
+                    [self createTextureFromImageBuffer:imageBuffer];
+                    CFRelease(sbuf);
+                    self->renderer->render();
+                }
+            });
+        }
     }
+    
+    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
+    CFRetain(sampleBuffer);
+    CFRetain(formatDescription);
+
+    [videoProcessor processFrameWithSampleBuffer:sampleBuffer
+                            andFormatDescription:formatDescription
+                            andConnection:connection];
 }
 
 // CVOpenGLESTextureCacheCreateTextureFromImage will create GLES texture
@@ -137,31 +185,63 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
     
     glBindTexture(CVOpenGLESTextureGetTarget(bgraTexture), CVOpenGLESTextureGetName(bgraTexture));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-}
+    
+    glBindTexture(CVOpenGLESTextureGetTarget(bgraTexture), 0);
 
-- (void)cleanUpTextures
-{    
-    if (bgraTexture)
-    {
-        CFRelease(bgraTexture);
-        bgraTexture = NULL;        
-    }
-        
     // Periodic texture cache flush every frame
     CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
+    
+    if (bgraTexture) {
+        CFRelease(bgraTexture);
+        bgraTexture = NULL;
+    }
+}
+
+- (AVCaptureDevice *)audioDevice
+{
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeAudio];
+    if ([devices count] > 0)
+        return [devices objectAtIndex:0];
+    
+    return nil;
+}
+
+- (AVCaptureDevice *)videoDeviceWithPosition:(AVCaptureDevicePosition)position
+{
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices)
+        if ([device position] == position)
+            return device;
+    
+    return nil;
 }
 
 - (void)startRecording
-{}
+{
+    [videoProcessor startRecording];
+}
 
 - (void)stopRecording
-{}
+{
+    [videoProcessor stopRecording];
+}
+
+- (void)captureSessionStoppedRunningNotification:(NSNotification *)notification
+{
+    [videoProcessor stopRecording];
+}
 
 - (void)dealloc
 {
-    [captureSession stopRunning], [captureSession release];
+    [self stopAndTearDownCaptureSession], [captureSession release];
+    if (_videoTextureCache) {
+        CFRelease(_videoTextureCache);
+        _videoTextureCache = 0;
+    }
     [super dealloc];
 }
 

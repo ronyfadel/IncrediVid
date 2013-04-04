@@ -2,7 +2,7 @@
 #import "RFRenderer.h"
 #import "AVCaptureSessionManager.h"
 
-@interface MyViewController : UIViewController {
+@interface MyViewController : UIViewController <RFVideoProcessorDelegate> {
     CADisplayLink* displayLink;
     RFRenderer* renderer;
     AVCaptureSessionManager* captureSessionManager;

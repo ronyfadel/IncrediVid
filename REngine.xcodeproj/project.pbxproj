@@ -20,6 +20,8 @@
 		5373B16015FFA84E00D308A4 /* RFGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5373B15F15FFA84E00D308A4 /* RFGLView.mm */; };
 		5373B16415FFA97E00D308A4 /* MyViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5373B16315FFA97E00D308A4 /* MyViewController.mm */; };
 		5373B16C15FFAC2900D308A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B16B15FFAC2800D308A4 /* QuartzCore.framework */; };
+		5391F07F170D3F4B00B9FB22 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391F07E170D3F4B00B9FB22 /* MobileCoreServices.framework */; };
+		5391F081170D3F5A00B9FB22 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391F080170D3F5A00B9FB22 /* AssetsLibrary.framework */; };
 		53A85FDE16EF9893004095B3 /* RFShaderFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FDC16EF9893004095B3 /* RFShaderFactory.cpp */; };
 		53A85FE116EFA0D2004095B3 /* RFProgramFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FDF16EFA0D1004095B3 /* RFProgramFactory.cpp */; };
 		53A85FE416EFAB04004095B3 /* RFNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FE216EFAB03004095B3 /* RFNode.cpp */; };
@@ -92,6 +94,8 @@
 		537AA9B316EBFF9F0050C635 /* preview.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = preview.vsh; path = REngine/preview.vsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		537AA9B416EBFF9F0050C635 /* toon.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = toon.fsh; path = REngine/toon.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		537AA9B816EBFFAA0050C635 /* MyRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRenderer.h; path = REngine/MyRenderer.h; sourceTree = "<group>"; };
+		5391F07E170D3F4B00B9FB22 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		5391F080170D3F5A00B9FB22 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		53A85FDC16EF9893004095B3 /* RFShaderFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RFShaderFactory.cpp; sourceTree = "<group>"; };
 		53A85FDD16EF9893004095B3 /* RFShaderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFShaderFactory.h; sourceTree = "<group>"; };
 		53A85FDF16EFA0D1004095B3 /* RFProgramFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RFProgramFactory.cpp; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5391F081170D3F5A00B9FB22 /* AssetsLibrary.framework in Frameworks */,
+				5391F07F170D3F4B00B9FB22 /* MobileCoreServices.framework in Frameworks */,
 				53B68CB7168A23950062636D /* CoreMedia.framework in Frameworks */,
 				53B68CB5168A23880062636D /* AVFoundation.framework in Frameworks */,
 				53B68CB3168A23730062636D /* CoreVideo.framework in Frameworks */,
@@ -176,6 +182,8 @@
 		5373B0F815FF8A4400D308A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5391F080170D3F5A00B9FB22 /* AssetsLibrary.framework */,
+				5391F07E170D3F4B00B9FB22 /* MobileCoreServices.framework */,
 				53B68CB6168A23950062636D /* CoreMedia.framework */,
 				53B68CB4168A23880062636D /* AVFoundation.framework */,
 				53B68CB2168A23730062636D /* CoreVideo.framework */,

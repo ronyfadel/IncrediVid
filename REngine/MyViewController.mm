@@ -23,17 +23,12 @@
     [self.view bringSubviewToFront:prevButton];
     [self.view bringSubviewToFront:videoButton];
     
-//    captureSessionManager = [[AVCaptureSessionManager alloc] initWithRenderer:(RFRenderer*)renderer];
-    captureSessionManager = [[AVCaptureSessionManager alloc] init];
+    captureSessionManager = [[AVCaptureSessionManager alloc] initWithRenderer:(renderer)];
+    [captureSessionManager setVideoProcessorDelegate:self];
     
-    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
-    displayLink.frameInterval = 2;
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode]; 
-    
-//    UISlider* slider = [[UISlider alloc] init];
-//    [self.view addSubview:slider];
-//    [slider addTarget:self action:@selector(updatedSlider:) forControlEvents:UIControlEventValueChanged];
-//    slider.frame = CGRectMake(5, self.view.frame.size.height - 30, self.view.frame.size.width - 40, slider.bounds.size.height);
+//    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
+//    displayLink.frameInterval = 2;
+//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];    
 }
 
 - (IBAction)changeFilter:(id)obj
@@ -50,22 +45,18 @@
 {
     UIButton* theVideoButton = (UIButton*)obj;
     if ([theVideoButton.titleLabel.text isEqualToString:@"Record"]) {
-        
+        [captureSessionManager startRecording];
         [theVideoButton setTitle:@"Stop" forState:UIControlStateNormal];
     } else {
+        [captureSessionManager stopRecording];
         [theVideoButton setTitle:@"Record" forState:UIControlStateNormal];
     }
 }
 
-- (void)updatedSlider:(id)obj
-{
-//    cout<<"slider updated!!"<<endl;
-//    UISlider* slider = (UISlider*) obj;
-//    GLint program;
-//    glGetIntegerv(GL_CURRENT_PROGRAM, (&program));
-//    coefficient = slider.value * 2.f;
-//    glUniform1f(glGetUniformLocation(program, "coefficient"), slider.value * 2.0);
-}
+- (void)recordingWillStart{ NSLog(@"recordingWillStart"); }
+- (void)recordingDidStart{ NSLog(@"recordingDidStart"); }
+- (void)recordingWillStop{ NSLog(@"recordingWillStop"); }
+- (void)recordingDidStop{ NSLog(@"recordingDidStop"); }
 
 - (void)update
 {
