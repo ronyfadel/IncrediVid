@@ -1,20 +1,14 @@
 attribute vec2 position;
 attribute vec2 tex_coord_in;
 
-uniform highp float texel_width; 
+uniform highp float texel_width;
 uniform highp float texel_height;
 
 varying vec2 texture_coordinate;
-varying vec2 left_texture_coordinate;
-varying vec2 right_texture_coordinate;
-
-varying vec2 top_texture_coordinate;
-varying vec2 top_left_texture_coordinate;
-varying vec2 top_right_texture_coordinate;
-
-varying vec2 bottom_texture_coordinate;
-varying vec2 bottom_left_texture_coordinate;
-varying vec2 bottom_right_texture_coordinate;
+varying vec4 left_right_coordinate;
+varying vec4 top_bottom_coordinate;
+varying vec4 top_left_top_right_coordinate;
+varying vec4 bottom_left_bottom_right_coordinate;
 
 void main()
 {
@@ -26,18 +20,12 @@ void main()
     vec2 width_negative_height_step = vec2(texel_width, -texel_height);
     
     texture_coordinate = tex_coord_in;
-    left_texture_coordinate = tex_coord_in - width_step;
-    right_texture_coordinate = tex_coord_in + width_step;
-    
-    top_texture_coordinate = tex_coord_in - height_step;
-    top_left_texture_coordinate = tex_coord_in - width_height_step;
-    top_right_texture_coordinate = tex_coord_in + width_negative_height_step;
-    
-    bottom_texture_coordinate = tex_coord_in + height_step;
-    bottom_left_texture_coordinate = tex_coord_in - width_negative_height_step;
-    bottom_right_texture_coordinate = tex_coord_in + width_height_step;
+    left_right_coordinate.xy = tex_coord_in - width_step;
+    left_right_coordinate.zw = tex_coord_in + width_step;
+    top_bottom_coordinate.xy = tex_coord_in - height_step;
+    top_bottom_coordinate.zw = tex_coord_in + height_step;
+    top_left_top_right_coordinate.xy = tex_coord_in - width_height_step;
+    top_left_top_right_coordinate.zw = tex_coord_in + width_negative_height_step;
+    bottom_left_bottom_right_coordinate.xy = tex_coord_in - width_negative_height_step;
+    bottom_left_bottom_right_coordinate.zw = tex_coord_in + width_height_step;
 }
-
-
-
-left_right
