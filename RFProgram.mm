@@ -1,21 +1,18 @@
-#import "RFProgram.h"
-
 #import <fstream>
 #import <iostream>
 #import <string>
 using namespace std;
 
-RFProgram::RFProgram(string v_shader_name, string f_shader_name):
-RFProgram((new RFShader(GL_VERTEX_SHADER, get_ios_file_path(v_shader_name)))->get_id(),
-          (new RFShader(GL_FRAGMENT_SHADER, get_ios_file_path(f_shader_name)))->get_id())
-{
-    
-}
+#import "RFProgram.h"
+#import "RFShaderFactory.h"
 
-RFProgram::RFProgram(GLuint v_shader_id, GLuint f_shader_id)
+RFProgram::RFProgram(string v_shader_name, string f_shader_name)
 {
-    this->v_shader_id = v_shader_id;
-    this->f_shader_id = f_shader_id;
+    RFShaderFactory* shared_instance = RFShaderFactory::shared_instance();
+    this->v_shader_id = shared_instance->retain_shader(v_shader_name, GL_VERTEX_SHADER);
+    this->f_shader_id = shared_instance->retain_shader(f_shader_name, GL_FRAGMENT_SHADER);
+    this->v_shader_name = v_shader_name;
+    this->f_shader_name = f_shader_name;
     
     this->_id = glCreateProgram();
     this->link();
@@ -45,14 +42,35 @@ void RFProgram::check_link_status(GLuint _id)
     }
 }
 
-void RFProgram::use() {
+string RFProgram::get_v_shader_name()
+{
+    return v_shader_name;
+}
+
+string RFProgram::get_f_shader_name()
+{
+    return f_shader_name;
+}
+
+void RFProgram::use()
+{
     glUseProgram(this->_id);
 }
 
-GLuint RFProgram::get_id() {
+void RFProgram::stop_using()
+{
+    glUseProgram(0);
+}
+
+GLuint RFProgram::get_id()
+{
     return this->_id;
 }
 
-RFProgram::~RFProgram() {
+RFProgram::~RFProgram()
+{
+    RFShaderFactory* shared_instance = RFShaderFactory::shared_instance();
+    shared_instance->release_shader(v_shader_name, GL_VERTEX_SHADER);
+    shared_instance->release_shader(f_shader_name, GL_FRAGMENT_SHADER);
     glDeleteProgram(_id);
 }

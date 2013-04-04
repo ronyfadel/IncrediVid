@@ -1,26 +1,17 @@
+#import <vector>
 #import "RFRenderer.h"
-#import "RFProgram.h"
 #import "RFFramebuffer.h"
-
-enum {
-    BLUR_PROGRAM,
-    TOON_PROGRAM,
-    NUM_PROGRAMS
-};
-
-enum {
-    BLUR_FRAMEBUFFER,
-    VIEW_FRAMEBUFFER,
-    NUM_FRAMEBUFFERS
-};
+#import "RFFilter.h"
+using namespace std;
 
 class MyRenderer : public RFRenderer {
 protected:
-    RFProgram* programs[NUM_PROGRAMS];
-    RFFramebuffer* framebuffers[NUM_FRAMEBUFFERS];
+    vector<RFFilterCollection*> filters;
+    int current_filter_index;
 public:
     MyRenderer(UIView* superview);
     void render();
-    RFProgram** get_programs();
+    void use_next_filter();
+    void use_previous_filter();
+    virtual ~MyRenderer();
 };
-

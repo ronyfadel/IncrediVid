@@ -3,10 +3,10 @@
 RFRenderer::RFRenderer(UIView* superview)
 {
 //#warning changed superview frame
-//    superview.frame = CGRectMake(superview.frame.origin.x - 26.0,
-//                                 superview.frame.origin.y,
-//                                 superview.frame.size.width + 26.0,
-//                                 superview.frame.size.height);
+    superview.frame = CGRectMake(superview.frame.origin.x - 20.0,
+                                 superview.frame.origin.y,
+                                 superview.frame.size.width + 20.0,
+                                 superview.frame.size.height);
 
     view = [[RFGLView alloc] initWithFrame:superview.frame];
     [superview addSubview:view];
@@ -23,6 +23,10 @@ void RFRenderer::set_culling(bool enabled)
 void RFRenderer::clear_display(GLbitfield mask)
 {
     glClear(mask);
+}
+
+void RFRenderer::setup()
+{
 }
 
 void RFRenderer::render()

@@ -1,8 +1,6 @@
 #import "MyViewController.h"
 #import "MyRenderer.h"
 
-extern float coefficient;
-
 @interface MyViewController ()
 - (void) setup;
 @end
@@ -21,24 +19,44 @@ extern float coefficient;
 - (void)setup
 {
     renderer = new MyRenderer(self.view);
-    captureSessionManager = [[AVCaptureSessionManager alloc] init];
+    [self.view bringSubviewToFront:nextButton];
+    [self.view bringSubviewToFront:prevButton];
+    [self.view bringSubviewToFront:videoButton];
     
-    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
-    displayLink.frameInterval = 2;
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode]; 
-        
-    UISlider* slider = [[UISlider alloc] init];
-    [self.view addSubview:slider];
-    [slider addTarget:self action:@selector(updatedSlider:) forControlEvents:UIControlEventValueChanged];
-    slider.frame = CGRectMake(5, self.view.frame.size.height - 30, self.view.frame.size.width - 40, slider.bounds.size.height);
+    captureSessionManager = [[AVCaptureSessionManager alloc] initWithRenderer:(renderer)];
+    [captureSessionManager setVideoProcessorDelegate:self];
+    
+//    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
+//    displayLink.frameInterval = 2;
+//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];    
 }
 
-- (void)updatedSlider:(id)obj
+- (IBAction)changeFilter:(id)obj
 {
-    UISlider* slider = (UISlider*) obj;
-    glUniform1f(glGetUniformLocation(((MyRenderer*)renderer)->get_programs()[TOON_PROGRAM]->get_id(), "coefficient"), slider.value );//* 2.0);
-    
+    UIButton* target = (UIButton*)obj;
+    if ([target.titleLabel.text isEqualToString:@"Next"]) {
+        ((MyRenderer*)renderer)->use_next_filter();
+    } else {
+        ((MyRenderer*)renderer)->use_previous_filter();
+    }
 }
+
+- (IBAction)recordVideo:(id)obj
+{
+    UIButton* theVideoButton = (UIButton*)obj;
+    if ([theVideoButton.titleLabel.text isEqualToString:@"Record"]) {
+        [captureSessionManager startRecording];
+        [theVideoButton setTitle:@"Stop" forState:UIControlStateNormal];
+    } else {
+        [captureSessionManager stopRecording];
+        [theVideoButton setTitle:@"Record" forState:UIControlStateNormal];
+    }
+}
+
+- (void)recordingWillStart{ NSLog(@"recordingWillStart"); }
+- (void)recordingDidStart{ NSLog(@"recordingDidStart"); }
+- (void)recordingWillStop{ NSLog(@"recordingWillStop"); }
+- (void)recordingDidStop{ NSLog(@"recordingDidStop"); }
 
 - (void)update
 {

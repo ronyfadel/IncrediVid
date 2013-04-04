@@ -2,18 +2,18 @@
 using namespace std;
 
 string get_ios_file_path(string file_name);
-void get_file_contents(string const& filePath, char*& buffer);
+string get_file_contents(string const& file_path);
 
 class RFShader {
 protected:
     GLuint _id;
     GLenum type;
-    string path;
+    string name;
     
-    void compile();
+    void compile(string shader_source);
     void check_compilation_status(GLuint _id);
 public:
-    RFShader(GLenum type, string path);
+    RFShader(string name, GLenum type);
     GLuint get_id();
     GLuint get_type();
     virtual ~RFShader();
