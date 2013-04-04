@@ -23,11 +23,17 @@
     [self.view bringSubviewToFront:prevButton];
     [self.view bringSubviewToFront:videoButton];
     
-    captureSessionManager = [[AVCaptureSessionManager alloc] initWithRenderer:(RFRenderer*)renderer];
+//    captureSessionManager = [[AVCaptureSessionManager alloc] initWithRenderer:(RFRenderer*)renderer];
+    captureSessionManager = [[AVCaptureSessionManager alloc] init];
     
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
     displayLink.frameInterval = 2;
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];     
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode]; 
+    
+//    UISlider* slider = [[UISlider alloc] init];
+//    [self.view addSubview:slider];
+//    [slider addTarget:self action:@selector(updatedSlider:) forControlEvents:UIControlEventValueChanged];
+//    slider.frame = CGRectMake(5, self.view.frame.size.height - 30, self.view.frame.size.width - 40, slider.bounds.size.height);
 }
 
 - (IBAction)changeFilter:(id)obj
@@ -64,13 +70,6 @@
 - (void)update
 {
     renderer->render();
-}
-
-- (void)dealloc
-{
-    [captureSessionManager release];
-    delete renderer;
-    [super dealloc];
 }
 
 @end
