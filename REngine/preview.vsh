@@ -37,3 +37,7 @@ void main()
     bottom_left_texture_coordinate = tex_coord_in - width_negative_height_step;
     bottom_right_texture_coordinate = tex_coord_in + width_height_step;
 }
+
+
+
+left_right
