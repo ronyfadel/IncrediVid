@@ -6,9 +6,12 @@
     CVOpenGLESTextureCacheRef _videoTextureCache;
     CVOpenGLESTextureRef bgraTexture;
     CMBufferQueueRef previewBufferQueue;
+    AVCaptureSession* captureSession;
+//    RFVideoProcessor* videoProcessor;
 }
 - (void)setupSession;
 - (void)cleanUpTextures;
+- (void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer;
 @end
 
 @implementation AVCaptureSessionManager
@@ -109,7 +112,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 // CVOpenGLESTextureCacheCreateTextureFromImage will create GLES texture
 // optimally from CVImageBufferRef.
--(void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer
+- (void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer
 {
     CVReturn err;
     GLsizei _textureWidth = CVPixelBufferGetWidth(imageBuffer);
@@ -149,6 +152,12 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     // Periodic texture cache flush every frame
     CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
 }
+
+- (void)startRecording
+{}
+
+- (void)stopRecording
+{}
 
 - (void)dealloc
 {

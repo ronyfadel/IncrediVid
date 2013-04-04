@@ -1,5 +1,5 @@
 #import "MyViewController.h"
-#import "RFFilterCollection.h"
+#import "MyRenderer.h"
 
 @interface MyViewController ()
 - (void) setup;
@@ -18,7 +18,7 @@
 
 - (void)setup
 {
-    renderer = new RFFilterCollection(self.view);
+    renderer = new MyRenderer(self.view);
     [self.view bringSubviewToFront:nextButton];
     [self.view bringSubviewToFront:prevButton];
     [self.view bringSubviewToFront:videoButton];
@@ -40,9 +40,9 @@
 {
     UIButton* target = (UIButton*)obj;
     if ([target.titleLabel.text isEqualToString:@"Next"]) {
-        ((RFFilterCollection*)renderer)->use_next_filter();
+        ((MyRenderer*)renderer)->use_next_filter();
     } else {
-        ((RFFilterCollection*)renderer)->use_previous_filter();
+        ((MyRenderer*)renderer)->use_previous_filter();
     }
 }
 
