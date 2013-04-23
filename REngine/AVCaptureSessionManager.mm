@@ -55,7 +55,7 @@ extern CVPixelBufferRef __renderTarget;
     
     captureSession = [[AVCaptureSession alloc] init];
     [captureSession beginConfiguration];
-    captureSession.sessionPreset = AVCaptureSessionPresetMedium;
+    captureSession.sessionPreset =  AVCaptureSessionPresetMedium; //AVCaptureSessionPresetHigh;
     
     // audio
     AVCaptureDeviceInput *audioIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil];
@@ -84,6 +84,7 @@ extern CVPixelBufferRef __renderTarget;
     dispatch_queue_t videoCaptureQueue = dispatch_queue_create("Video Capture Queue", DISPATCH_QUEUE_SERIAL);
     [videoOut setSampleBufferDelegate:self queue:videoCaptureQueue];
 	dispatch_release(videoCaptureQueue);
+//    [videoOut setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
 	if ([captureSession canAddOutput:videoOut])
 		[captureSession addOutput:videoOut];
 	videoConnection = [videoOut connectionWithMediaType:AVMediaTypeVideo];
@@ -130,7 +131,6 @@ extern CVPixelBufferRef __renderTarget;
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer 
        fromConnection:(AVCaptureConnection *)connection
 {
-    
     if ( connection == videoConnection ) {
         if (!_videoTextureCache)
         {
@@ -153,31 +153,34 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         }
     }
     
-//    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
-//    CFRetain(formatDescription);
-//    if (connection == audioConnection) {
-//        CFRetain(sampleBuffer);
-//    }
-//    else {
-//        CMVideoFormatDescriptionRef videoInfo = NULL;
-//        CMSampleTimingInfo timimgInfo = kCMTimingInfoInvalid;
-//        CMSampleBufferRef newSampleBuffer;
-//
-//        CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
-//        if (!err) {
-//            OSStatus result = CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
-//            CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timimgInfo);
-//            CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, true, NULL, NULL, videoInfo, &timimgInfo, &newSampleBuffer);
-//            sampleBuffer = newSampleBuffer;
-//        } else {
-//            NSLog(@"huge error: %d", err);
-//        }
-//        CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
-//    }
-//    
-//    [videoProcessor processFrameWithSampleBuffer:sampleBuffer
-//                            andFormatDescription:formatDescription
-//                            andConnection:connection];
+    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
+    CFRetain(formatDescription);
+    
+    if (connection == audioConnection) {
+        CFRetain(sampleBuffer);
+    }
+    else {
+        CMVideoFormatDescriptionRef videoInfo = NULL;
+        CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
+        CMSampleBufferRef newSampleBuffer;
+
+        CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+        if (!err) {
+            OSStatus result = CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
+            
+            CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
+            
+            CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, YES, NULL, NULL, videoInfo, &timingInfo, &newSampleBuffer);
+            sampleBuffer = newSampleBuffer;
+        } else {
+            NSLog(@"huge error: %d", err);
+        }
+        CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+    }
+   
+    [videoProcessor processFrameWithSampleBuffer:sampleBuffer
+                            andFormatDescription:formatDescription
+                            andConnection:connection];
 }
 
 // CVOpenGLESTextureCacheCreateTextureFromImage will create GLES texture

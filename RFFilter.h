@@ -65,7 +65,7 @@ class RFToonFilter : public RFFilter {
 public:
     RFToonFilter(GLsizei _width, GLsizei _height):RFFilter("preview.vsh", "toon.fsh", _width, _height)
     {
-        fill_data((void*)vertices_flipped_tex_coords, sizeof(vertices_flipped_tex_coords), (void*)indexes, sizeof(indexes));
+        fill_data((void*)vertices_straight_tex_coords, sizeof(vertices_straight_tex_coords), (void*)indexes, sizeof(indexes));
     }
     
     virtual void set_uniforms()
@@ -81,7 +81,7 @@ class RFCopyFilter : public RFFilter {
 public:
     RFCopyFilter(GLsizei _width, GLsizei _height):RFFilter("copy.vsh", "copy.fsh", _width, _height)
     {
-        fill_data((void*)vertices_straight_tex_coords, sizeof(vertices_straight_tex_coords), (void*)indexes, sizeof(indexes));
+        fill_data((void*)vertices_flipped_tex_coords, sizeof(vertices_flipped_tex_coords), (void*)indexes, sizeof(indexes));
     }
     
     virtual void set_uniforms()
