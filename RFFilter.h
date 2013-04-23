@@ -25,18 +25,12 @@ protected:
     GLsizei width, height;
     RFFramebuffer* framebuffer;
 public:
-    RFFilter(string v_shader_name, string f_shader_name, RFFramebuffer* _framebuffer):
+    
+    RFFilter(string v_shader_name, string f_shader_name, GLsizei _width, GLsizei _height):
         RFNode(v_shader_name, f_shader_name)
     {
-        framebuffer = _framebuffer;
-        width = framebuffer->get_width();
-        height = framebuffer->get_height();
-    }
-    
-    virtual void draw()
-    {
-        framebuffer->use();
-        RFNode::draw();
+        width = _width;
+        height = _height;
     }
     
     virtual void set_attribs()
@@ -61,8 +55,7 @@ public:
 
 class RFBlurFilter : public RFFilter {
 public:
-    RFBlurFilter(RFFramebuffer* _framebuffer):
-    RFFilter("preview.vsh", "blur.fsh", _framebuffer)
+    RFBlurFilter(GLsizei _width, GLsizei _height):RFFilter("preview.vsh", "blur.fsh", _width, _height)
     {
         fill_data((void*)vertices_straight_tex_coords, sizeof(vertices_straight_tex_coords), (void*)indexes, sizeof(indexes));
     }
@@ -70,8 +63,7 @@ public:
 
 class RFToonFilter : public RFFilter {
 public:
-    RFToonFilter(RFFramebuffer* _framebuffer):
-    RFFilter("preview.vsh", "toon.fsh", _framebuffer)
+    RFToonFilter(GLsizei _width, GLsizei _height):RFFilter("preview.vsh", "toon.fsh", _width, _height)
     {
         fill_data((void*)vertices_flipped_tex_coords, sizeof(vertices_flipped_tex_coords), (void*)indexes, sizeof(indexes));
     }
@@ -85,13 +77,41 @@ public:
     }
 };
 
+class RFCopyFilter : public RFFilter {
+public:
+    RFCopyFilter(GLsizei _width, GLsizei _height):RFFilter("copy.vsh", "copy.fsh", _width, _height)
+    {
+        fill_data((void*)vertices_straight_tex_coords, sizeof(vertices_straight_tex_coords), (void*)indexes, sizeof(indexes));
+    }
+    
+    virtual void set_uniforms()
+    {
+        GLuint program_id = program->get_id();
+        glUniform1i(glGetUniformLocation(program_id, "input_texture"), 2);
+    }
+};
 
 class RFFilterCollection {
 protected:
-    vector<RFFilter*> filter_list;
+    vector<pair<RFFilter*, RFFramebuffer*> > filter_list;
 public:
-    void add_filter(RFFilter* filter){ filter_list.push_back(filter); }
-    void draw() { for (auto i = filter_list.begin(); i != filter_list.end(); ++i) (*i)->draw(); }
+    void add_filter_framebuffer_pair(RFFilter* filter, RFFramebuffer* framebuffer)
+    {
+        filter_list.push_back(make_pair(filter, framebuffer));
+    }
+    void draw()
+    {
+        for (auto i = filter_list.begin(); i != filter_list.end(); ++i) {
+            if (!dynamic_cast<RFFilter*>(i->first)) {
+                throw "boom";
+            }
+            if (!dynamic_cast<RFFramebuffer*>(i->second)) {
+                throw "boom";
+            }
+            NSLog(@"drawing to framebuffer");
+            i->first->drawToFramebuffer(i->second);
+        }
+    }
 };
 
 

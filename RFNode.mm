@@ -11,8 +11,7 @@ RFNode::RFNode(string v_shader_name, string f_shader_name)
 }
 
 // indexes are to be unsigned shorts
-void RFNode::fill_data(void* array_buffer, GLsizeiptr array_buffer_size,
-                       void* index_buffer, GLsizeiptr index_buffer_size)
+void RFNode::fill_data(void* array_buffer, GLsizeiptr array_buffer_size, void* index_buffer, GLsizeiptr index_buffer_size)
 {
     glBindBuffer(GL_ARRAY_BUFFER, vbo[ARRAY_BUFFER]);
     glBufferData(GL_ARRAY_BUFFER, array_buffer_size, array_buffer, GL_STATIC_DRAW);
@@ -38,8 +37,11 @@ RFNode* RFNode::setup()
     return this;
 }
 
-void RFNode::draw()
+
+void RFNode::drawToFramebuffer(RFFramebuffer* framebuffer)
 {
+    NSLog(@"herezz");
+    framebuffer->use();
     program->use();
     glBindVertexArrayOES(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo[ARRAY_BUFFER]);
@@ -51,8 +53,7 @@ void RFNode::draw()
 
 RFNode::~RFNode()
 {
-    RFProgramFactory::shared_instance()->release_program(program->get_v_shader_name(),
-                                                         program->get_f_shader_name());
+    RFProgramFactory::shared_instance()->release_program(program->get_v_shader_name(), program->get_f_shader_name());
     glDeleteBuffers(2, vbo);
     glDeleteVertexArraysOES(1, &vao);
 }

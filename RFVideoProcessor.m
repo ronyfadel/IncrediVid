@@ -1,6 +1,5 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-
 #import "RFVideoProcessor.h"
 
 @interface RFVideoProcessor () {
@@ -137,6 +136,49 @@
 			}
 		}
 	}
+}
+
+- (void)processFrameWithSampleBuffer:(CMSampleBufferRef)sampleBuffer
+                andFormatDescription:(CMFormatDescriptionRef)formatDescription
+                       andConnection:(AVCaptureConnection*)connection
+{
+    dispatch_async(movieWritingQueue, ^{
+        
+		if ( assetWriter ) {
+            
+			BOOL wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
+			
+			if (connection == videoConnection) {
+				
+				// Initialize the video input if this is not done yet
+				if (!readyToRecordVideo)
+					readyToRecordVideo = [self setupAssetWriterVideoInput:formatDescription];
+				
+				// Write video data to file
+				if (readyToRecordVideo && readyToRecordAudio)
+					[self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeVideo];
+			}
+			else if (connection == audioConnection) {
+				
+				// Initialize the audio input if this is not done yet
+				if (!readyToRecordAudio)
+					readyToRecordAudio = [self setupAssetWriterAudioInput:formatDescription];
+				
+				// Write audio data to file
+				if (readyToRecordAudio && readyToRecordVideo)
+					[self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeAudio];
+			}
+			
+			BOOL isReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
+			if ( !wasReadyToRecord && isReadyToRecord ) {
+				recordingWillBeStarted = NO;
+				self.recording = YES;
+				[self.delegate recordingDidStart];
+			}
+		}
+//		CFRelease(sampleBuffer);
+		CFRelease(formatDescription);
+	});
 }
 
 - (BOOL) setupAssetWriterAudioInput:(CMFormatDescriptionRef)currentFormatDescription
@@ -279,52 +321,4 @@
         movieWritingQueue = NULL;
     }
 }
-
-
-
-#pragma mark Capture
-
-- (void)processFrameWithSampleBuffer:(CMSampleBufferRef)sampleBuffer
-                andFormatDescription:(CMFormatDescriptionRef)formatDescription
-                       andConnection:(AVCaptureConnection*)connection
-{
-    dispatch_async(movieWritingQueue, ^{
-        
-		if ( assetWriter ) {
-            
-			BOOL wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
-			
-			if (connection == videoConnection) {
-				
-				// Initialize the video input if this is not done yet
-				if (!readyToRecordVideo)
-					readyToRecordVideo = [self setupAssetWriterVideoInput:formatDescription];
-				
-				// Write video data to file
-				if (readyToRecordVideo && readyToRecordAudio)
-					[self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeVideo];
-			}
-			else if (connection == audioConnection) {
-				
-				// Initialize the audio input if this is not done yet
-				if (!readyToRecordAudio)
-					readyToRecordAudio = [self setupAssetWriterAudioInput:formatDescription];
-				
-				// Write audio data to file
-				if (readyToRecordAudio && readyToRecordVideo)
-					[self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeAudio];
-			}
-			
-			BOOL isReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
-			if ( !wasReadyToRecord && isReadyToRecord ) {
-				recordingWillBeStarted = NO;
-				self.recording = YES;
-				[self.delegate recordingDidStart];
-			}
-		}
-		CFRelease(sampleBuffer);
-		CFRelease(formatDescription);
-	});
-}
-
 @end

@@ -3,7 +3,9 @@
 
 #define CAPTURE_FRAMES_PER_SECOND 30
 
-@interface AVCaptureSessionManager(){
+extern CVPixelBufferRef __renderTarget;
+
+@interface AVCaptureSessionManager() {
 @private
     RFRenderer* renderer;
     
@@ -15,6 +17,7 @@
     AVCaptureConnection *audioConnection;
 	AVCaptureConnection *videoConnection;
 }
+
 - (void)setupCaptureSession;
 - (void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer;
 @end
@@ -143,25 +146,49 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sbuf);
                     [self createTextureFromImageBuffer:imageBuffer];
                     CFRelease(sbuf);
+                    NSLog(@"rendering");
                     self->renderer->render();
                 }
             });
         }
     }
     
-    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
-    CFRetain(sampleBuffer);
-    CFRetain(formatDescription);
-
-    [videoProcessor processFrameWithSampleBuffer:sampleBuffer
-                            andFormatDescription:formatDescription
-                            andConnection:connection];
+//    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
+//    CFRetain(formatDescription);
+//    if (connection == audioConnection) {
+//        CFRetain(sampleBuffer);
+//    }
+//    else {
+//        CMVideoFormatDescriptionRef videoInfo = NULL;
+//        CMSampleTimingInfo timimgInfo = kCMTimingInfoInvalid;
+//        CMSampleBufferRef newSampleBuffer;
+//
+//        CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+//        if (!err) {
+//            OSStatus result = CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
+//            CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timimgInfo);
+//            CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, true, NULL, NULL, videoInfo, &timimgInfo, &newSampleBuffer);
+//            sampleBuffer = newSampleBuffer;
+//        } else {
+//            NSLog(@"huge error: %d", err);
+//        }
+//        CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+//    }
+//    
+//    [videoProcessor processFrameWithSampleBuffer:sampleBuffer
+//                            andFormatDescription:formatDescription
+//                            andConnection:connection];
 }
 
 // CVOpenGLESTextureCacheCreateTextureFromImage will create GLES texture
 // optimally from CVImageBufferRef.
 - (void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer
 {
+    if (bgraTexture) {
+        CFRelease(bgraTexture);
+        bgraTexture = NULL;
+    }
+    
     CVReturn err;
     GLsizei _textureWidth = CVPixelBufferGetWidth(imageBuffer);
     GLsizei _textureHeight = CVPixelBufferGetHeight(imageBuffer);
@@ -190,15 +217,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     
-    glBindTexture(CVOpenGLESTextureGetTarget(bgraTexture), 0);
+//    glBindTexture(CVOpenGLESTextureGetTarget(bgraTexture), 0);
 
     // Periodic texture cache flush every frame
     CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
-    
-    if (bgraTexture) {
-        CFRelease(bgraTexture);
-        bgraTexture = NULL;
-    }
 }
 
 - (AVCaptureDevice *)audioDevice
