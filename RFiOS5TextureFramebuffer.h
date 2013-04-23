@@ -5,12 +5,11 @@
 
 class RFiOS5TextureFramebuffer : public RFFramebuffer {
 protected:
-    CVOpenGLESTextureRef renderTexture;
-    CVPixelBufferRef renderTarget;
+    CVOpenGLESTextureRef _renderTexture;
+    CVPixelBufferRef _renderTarget;
     CVOpenGLESTextureCacheRef _videoTextureCache;
 public:
     RFiOS5TextureFramebuffer(GLsizei _width, GLsizei _height);
-    virtual void use();
     CVPixelBufferRef get_pixel_buffer_ref();
     virtual ~RFiOS5TextureFramebuffer();
 };

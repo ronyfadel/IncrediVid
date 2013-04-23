@@ -5,7 +5,7 @@ CVPixelBufferRef __renderTarget;
 
 RFiOS5TextureFramebuffer::RFiOS5TextureFramebuffer(GLsizei _width, GLsizei _height)
 {
-    renderTexture = 0;
+    _renderTexture = 0;
     width = _width;
     height = _height;
     
@@ -14,17 +14,6 @@ RFiOS5TextureFramebuffer::RFiOS5TextureFramebuffer(GLsizei _width, GLsizei _heig
         NSLog(@"Error at CVOpenGLESTextureCacheCreate %d", error);
         return;
     }
-    
-    glGenFramebuffers(1, &_id);
-}
-
-void RFiOS5TextureFramebuffer::use()
-{
-//    if (renderTexture) {
-//        CFRelease(renderTexture);
-//        renderTexture = NULL;
-//    }
-    CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
     
     CFDictionaryRef empty; // empty value for attr value.
     CFMutableDictionaryRef attrs;
@@ -43,21 +32,25 @@ void RFiOS5TextureFramebuffer::use()
                          kCVPixelBufferIOSurfacePropertiesKey,
                          empty);
     
-    CVPixelBufferRef renderTarget;
     CVPixelBufferCreate(kCFAllocatorDefault, width, height,
                         kCVPixelFormatType_32BGRA,
                         attrs,
-                        &renderTarget);
+                        &_renderTarget);
+
+    __renderTarget = _renderTarget;
+    
+    glGenFramebuffers(1, &_id);
+
+    CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
     
     // first create a texture from our renderTarget
     // textureCache will be what you previously made with CVOpenGLESTextureCacheCreate
     glActiveTexture(GL_TEXTURE2);
-    CVOpenGLESTextureRef renderTexture;
-    CVReturn err = 
+    CVReturn err =
     CVOpenGLESTextureCacheCreateTextureFromImage (
                                                   kCFAllocatorDefault,
                                                   _videoTextureCache,
-                                                  renderTarget,
+                                                  _renderTarget,
                                                   NULL, // texture attributes
                                                   GL_TEXTURE_2D,
                                                   GL_RGBA, // opengl format
@@ -66,29 +59,33 @@ void RFiOS5TextureFramebuffer::use()
                                                   GL_BGRA, // native iOS format
                                                   GL_UNSIGNED_BYTE,
                                                   0,
-                                                  &renderTexture);
+                                                  &_renderTexture);
     if (err)
     {
         NSLog(@"Error at CVOpenGLESTextureCacheCreateTextureFromImage %d (RFiOS5TextureFramebuffer)", err);
     }
-
+    
     // set the texture up like any other texture
-    glBindTexture(CVOpenGLESTextureGetTarget(renderTexture), CVOpenGLESTextureGetName(renderTexture));
+    glBindTexture(CVOpenGLESTextureGetTarget(_renderTexture), CVOpenGLESTextureGetName(_renderTexture));
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     
     glBindFramebuffer(GL_FRAMEBUFFER, _id);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-                           GL_TEXTURE_2D, CVOpenGLESTextureGetName(renderTexture), 0);
-    RFFramebuffer::use();
-    
-    __renderTarget = renderTarget;
-    NSLog(@"new render target: %p", renderTarget);
+                           GL_TEXTURE_2D, CVOpenGLESTextureGetName(_renderTexture), 0);
 }
 
 RFiOS5TextureFramebuffer::~RFiOS5TextureFramebuffer() {
     if (_videoTextureCache) {
         CFRelease(_videoTextureCache);
         _videoTextureCache = 0;
+    }
+    if (_renderTarget) {
+        CVPixelBufferRelease(_renderTarget);
+        _renderTarget = 0;
+    }
+    if (_renderTexture) {
+        CFRelease(_renderTexture);
+        _renderTexture = 0;
     }
 }
