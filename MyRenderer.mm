@@ -4,17 +4,17 @@
 
 #import "MyRenderer.h"
 
-#define PREVIEW_WIDTH 360
-#define PREVIEW_HEIGHT 480
+#define PREVIEW_WIDTH 480
+#define PREVIEW_HEIGHT 640
 
 MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
 {
     current_filter_index = 0;
     
     RFFramebuffer *view_fb    = new RFViewFramebuffer(this->view);
-    RFFramebuffer *texture_fb = new RFTextureFramebuffer(PREVIEW_WIDTH, PREVIEW_HEIGHT);
     RFFramebuffer *iOS5_texture_fb = new RFiOS5TextureFramebuffer(view_fb->get_width(), view_fb->get_height());
-    
+    RFFramebuffer *texture_fb = new RFTextureFramebuffer(PREVIEW_WIDTH, PREVIEW_HEIGHT);
+        
     RFFilter *blur = ( RFFilter* )(new RFBlurFilter(texture_fb->get_width(), texture_fb->get_height()))->setup(),
              *toon = ( RFFilter* )(new RFToonFilter(iOS5_texture_fb->get_width(), iOS5_texture_fb->get_height()))->setup(),
              *copy = ( RFFilter* )(new RFCopyFilter(view_fb->get_width(), view_fb->get_height()))->setup();

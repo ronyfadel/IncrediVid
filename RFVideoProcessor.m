@@ -32,7 +32,7 @@
 
 @synthesize delegate;
 @synthesize videoFrameRate, videoDimensions, videoType;
-@synthesize recording;
+@synthesize recording, recordingWillBeStarted;
 
 @synthesize videoConnection, audioConnection;
 
@@ -176,7 +176,7 @@
 				[self.delegate recordingDidStart];
 			}
 		}
-//		CFRelease(sampleBuffer);
+		CFRelease(sampleBuffer);
 		CFRelease(formatDescription);
 	});
 }
@@ -228,11 +228,11 @@
 	int bitsPerSecond;
 	
 	// Assume that lower-than-SD resolutions are intended for streaming, and use a lower bitrate
-	if ( numPixels < (640 * 480) ) {
-		bitsPerPixel = 4.05; // This bitrate matches the quality produced by AVCaptureSessionPresetMedium or Low.
-    } else {
+//	if ( numPixels < (640 * 480) ) {
+//		bitsPerPixel = 4.05; // This bitrate matches the quality produced by AVCaptureSessionPresetMedium or Low.
+//    } else {
 		bitsPerPixel = 11.4; // This bitrate matches the quality produced by AVCaptureSessionPresetHigh.
-    }
+//    }
 	
 	bitsPerSecond = numPixels * bitsPerPixel;
 	

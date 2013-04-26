@@ -1,7 +1,9 @@
+#import <iostream>
 #import <CoreMedia/CoreMedia.h>
 #import "AVCaptureSessionManager.h"
 
 #define CAPTURE_FRAMES_PER_SECOND 30
+
 
 extern CVPixelBufferRef __renderTarget;
 
@@ -9,9 +11,10 @@ extern CVPixelBufferRef __renderTarget;
 @private
     RFRenderer* renderer;
     
+    std::mutex m;
     CVOpenGLESTextureCacheRef _videoTextureCache;
     CVOpenGLESTextureRef bgraTexture;
-    CMBufferQueueRef previewBufferQueue;
+    CMBufferQueueRef previewBufferQueue, savingBufferQueue;
     AVCaptureSession* captureSession;
     RFVideoProcessor* videoProcessor;
     AVCaptureConnection *audioConnection;
@@ -46,6 +49,11 @@ extern CVPixelBufferRef __renderTarget;
 	if (bufferQueueCreateError) {
         NSLog(@"Error at CMBufferQueueCreate %ld", bufferQueueCreateError);
     }
+    
+    bufferQueueCreateError = CMBufferQueueCreate(kCFAllocatorDefault, 1, CMBufferQueueGetCallbacksForUnsortedSampleBuffers(), &savingBufferQueue);
+	if (bufferQueueCreateError) {
+        NSLog(@"Error at CMBufferQueueCreate %ld", bufferQueueCreateError);
+    }
 
     CVReturn textureCacheCreateError = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, [EAGLContext currentContext], NULL, &_videoTextureCache);
     if (textureCacheCreateError)  {
@@ -55,7 +63,7 @@ extern CVPixelBufferRef __renderTarget;
     
     captureSession = [[AVCaptureSession alloc] init];
     [captureSession beginConfiguration];
-    captureSession.sessionPreset =  AVCaptureSessionPresetMedium; //AVCaptureSessionPresetHigh;
+    captureSession.sessionPreset =  AVCaptureSessionPreset640x480;
     
     // audio
     AVCaptureDeviceInput *audioIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil];
@@ -145,42 +153,56 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                 if (sbuf) {
                     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sbuf);
                     [self createTextureFromImageBuffer:imageBuffer];
-                    CFRelease(sbuf);
+//                    CFRelease(sbuf);
                     NSLog(@"rendering");
                     self->renderer->render();
+                    
+                    CMVideoFormatDescriptionRef videoInfo = NULL;
+                    CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
+                    CMSampleBufferRef newSampleBuffer;
+                    CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+                    if (!err) {
+                        OSStatus result = CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
+                        CMVideoDimensions b =  CMVideoFormatDescriptionGetDimensions(videoInfo);
+                        CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
+                        CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, YES, NULL, NULL, videoInfo, &timingInfo, &newSampleBuffer);
+                        
+                        m.lock();
+                        CMBufferQueueEnqueue(savingBufferQueue, newSampleBuffer);
+                        m.unlock();
+                        
+                    } else {
+                        NSLog(@"huge error: %d", err);
+                    }
+                    CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+                    
+                    if (! (videoProcessor.recording || videoProcessor.recordingWillBeStarted) ) {
+                        CFRelease((CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue));
+                    }
+                    CFRelease(sbuf);
                 }
             });
         }
     }
     
-    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
-    CFRetain(formatDescription);
-    
-    if (connection == audioConnection) {
-        CFRetain(sampleBuffer);
-    }
-    else {
-        CMVideoFormatDescriptionRef videoInfo = NULL;
-        CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
-        CMSampleBufferRef newSampleBuffer;
-
-        CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
-        if (!err) {
-            OSStatus result = CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
-            
-            CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
-            
-            CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, YES, NULL, NULL, videoInfo, &timingInfo, &newSampleBuffer);
-            sampleBuffer = newSampleBuffer;
+    if (videoProcessor.recording || videoProcessor.recordingWillBeStarted) {
+                
+        if (connection == audioConnection) {
+            CFRetain(sampleBuffer);
         } else {
-            NSLog(@"huge error: %d", err);
+            m.lock();
+            sampleBuffer = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue);
+            m.unlock();
         }
-        CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+        if (sampleBuffer) {
+            CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
+            CFRetain(formatDescription);
+
+            [videoProcessor processFrameWithSampleBuffer:sampleBuffer
+                                    andFormatDescription:formatDescription
+                                           andConnection:connection];
+        }
     }
-   
-    [videoProcessor processFrameWithSampleBuffer:sampleBuffer
-                            andFormatDescription:formatDescription
-                            andConnection:connection];
 }
 
 // CVOpenGLESTextureCacheCreateTextureFromImage will create GLES texture
@@ -220,8 +242,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     
-//    glBindTexture(CVOpenGLESTextureGetTarget(bgraTexture), 0);
-
     // Periodic texture cache flush every frame
     CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
 }

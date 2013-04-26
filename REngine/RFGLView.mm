@@ -22,6 +22,11 @@
 
 - (void)setup
 {
+    self.frame = CGRectMake(0,
+                            70,
+                            320,
+                            320);
+    
     // For retina display
     if([[UIScreen mainScreen] respondsToSelector: NSSelectorFromString(@"scale")])
     {

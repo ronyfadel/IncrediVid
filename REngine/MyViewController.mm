@@ -18,6 +18,8 @@
 
 - (void)setup
 {
+    self.view.backgroundColor = [UIColor colorWithRed:0.23f green:0.23f blue:0.22f alpha:1.f];
+    
     renderer = new MyRenderer(self.view);
     [self.view bringSubviewToFront:nextButton];
     [self.view bringSubviewToFront:prevButton];

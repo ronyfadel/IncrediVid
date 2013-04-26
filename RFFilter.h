@@ -1,6 +1,13 @@
 #import <vector>
 #import "RFNode.h"
 
+static const GLfloat vertices_straight_crop_tex_coords[] = {
+    -1.f, -1.f, 0.f, 0.15f,
+    1.f, -1.f, 1.f, 0.15f,
+    1.f,  1.f, 1.f, 0.85f,
+    -1.f,  1.f, 0.f, 0.85f
+};
+
 static const GLfloat vertices_flipped_tex_coords[] = {
     -1.f, -1.f, 0.f, 1.f,
     1.f, -1.f, 1.f, 1.f,
@@ -65,7 +72,7 @@ class RFToonFilter : public RFFilter {
 public:
     RFToonFilter(GLsizei _width, GLsizei _height):RFFilter("preview.vsh", "toon.fsh", _width, _height)
     {
-        fill_data((void*)vertices_straight_tex_coords, sizeof(vertices_straight_tex_coords), (void*)indexes, sizeof(indexes));
+        fill_data((void*)vertices_straight_crop_tex_coords, sizeof(vertices_straight_crop_tex_coords), (void*)indexes, sizeof(indexes));
     }
     
     virtual void set_uniforms()
@@ -73,7 +80,7 @@ public:
         RFFilter::set_uniforms();
         GLuint program_id = program->get_id();
         glUniform1i(glGetUniformLocation(program_id, "blurred_texture"), 1);
-        glUniform1f(glGetUniformLocation(program_id, "coefficient"), 1.f);
+        glUniform1f(glGetUniformLocation(program_id, "coefficient"), 1.5f);
     }
 };
 

@@ -20,6 +20,8 @@
                 andConnection:(AVCaptureConnection*)connection;
 - (void)stopAndTearDownRecordingSession;
 
+@property (readonly) BOOL recording;
+@property (readonly) BOOL recordingWillBeStarted;
 @end
 
 @protocol RFVideoProcessorDelegate <NSObject>
