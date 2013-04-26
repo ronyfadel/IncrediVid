@@ -153,8 +153,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                 if (sbuf) {
                     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sbuf);
                     [self createTextureFromImageBuffer:imageBuffer];
-//                    CFRelease(sbuf);
-                    NSLog(@"rendering");
+//                    NSLog(@"rendering");
                     self->renderer->render();
                     
                     CMVideoFormatDescriptionRef videoInfo = NULL;
@@ -218,7 +217,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     GLsizei _textureWidth = CVPixelBufferGetWidth(imageBuffer);
     GLsizei _textureHeight = CVPixelBufferGetHeight(imageBuffer);
     
-    glActiveTexture(GL_TEXTURE0);
     err = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
                                                        _videoTextureCache,
                                                        imageBuffer,
@@ -236,6 +234,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         NSLog(@"Error at CVOpenGLESTextureCacheCreateTextureFromImage %d", err);
     }
     
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(CVOpenGLESTextureGetTarget(bgraTexture), CVOpenGLESTextureGetName(bgraTexture));
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

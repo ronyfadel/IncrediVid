@@ -40,7 +40,6 @@ RFNode* RFNode::setup()
 
 void RFNode::drawToFramebuffer(RFFramebuffer* framebuffer)
 {
-    NSLog(@"herezz");
     framebuffer->use();
     program->use();
     glBindVertexArrayOES(vao);

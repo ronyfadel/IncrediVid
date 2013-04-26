@@ -39,6 +39,7 @@
     if ([target.titleLabel.text isEqualToString:@"Next"]) {
         ((MyRenderer*)renderer)->use_next_filter();
     } else {
+        NSLog(@"PREVvvvVVVV");
         ((MyRenderer*)renderer)->use_previous_filter();
     }
 }

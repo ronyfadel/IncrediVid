@@ -20,6 +20,18 @@
 		5373B16015FFA84E00D308A4 /* RFGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5373B15F15FFA84E00D308A4 /* RFGLView.mm */; };
 		5373B16415FFA97E00D308A4 /* MyViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5373B16315FFA97E00D308A4 /* MyViewController.mm */; };
 		5373B16C15FFAC2900D308A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B16B15FFAC2800D308A4 /* QuartzCore.framework */; };
+		5376196A172A3112004ECE27 /* lookup_amatorka.png in Resources */ = {isa = PBXBuildFile; fileRef = 53761968172A3112004ECE27 /* lookup_amatorka.png */; };
+		5376196B172A3112004ECE27 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 53761969172A3112004ECE27 /* lookup_miss_etikate.png */; };
+		5376196D172A31BD004ECE27 /* lookup.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 5376196C172A31BD004ECE27 /* lookup.fsh */; };
+		5376196E172A370A004ECE27 /* lookup.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 5376196C172A31BD004ECE27 /* lookup.fsh */; };
+		53761981172A557A004ECE27 /* TKAlertCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53761979172A557A004ECE27 /* TKAlertCenter.m */; };
+		53761982172A557A004ECE27 /* TKEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5376197A172A557A004ECE27 /* TKEmptyView.m */; };
+		53761983172A557A004ECE27 /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5376197B172A557A004ECE27 /* UIView+TKCategory.m */; };
+		53761984172A557A004ECE27 /* UIImage+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5376197C172A557A004ECE27 /* UIImage+TKCategory.m */; };
+		53761985172A5667004ECE27 /* TKAlertCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53761979172A557A004ECE27 /* TKAlertCenter.m */; };
+		53761986172A5667004ECE27 /* TKEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5376197A172A557A004ECE27 /* TKEmptyView.m */; };
+		53761987172A5667004ECE27 /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5376197B172A557A004ECE27 /* UIView+TKCategory.m */; };
+		53761988172A5667004ECE27 /* UIImage+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5376197C172A557A004ECE27 /* UIImage+TKCategory.m */; };
 		5391F07F170D3F4B00B9FB22 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391F07E170D3F4B00B9FB22 /* MobileCoreServices.framework */; };
 		5391F081170D3F5A00B9FB22 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391F080170D3F5A00B9FB22 /* AssetsLibrary.framework */; };
 		5391F084170DA2EE00B9FB22 /* RFiOS5TextureFramebuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5391F082170DA2EE00B9FB22 /* RFiOS5TextureFramebuffer.mm */; };
@@ -27,8 +39,8 @@
 		5399262D172733B8003B008A /* copy.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 5399262C172733B8003B008A /* copy.vsh */; };
 		5399262E1727345D003B008A /* copy.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 5399262C172733B8003B008A /* copy.vsh */; };
 		5399262F1727345D003B008A /* copy.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 5399262A1727336F003B008A /* copy.fsh */; };
-		53A85FDE16EF9893004095B3 /* RFShaderFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FDC16EF9893004095B3 /* RFShaderFactory.cpp */; };
-		53A85FE116EFA0D2004095B3 /* RFProgramFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FDF16EFA0D1004095B3 /* RFProgramFactory.cpp */; };
+		53A85FDE16EF9893004095B3 /* RFShaderFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FDC16EF9893004095B3 /* RFShaderFactory.mm */; };
+		53A85FE116EFA0D2004095B3 /* RFProgramFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FDF16EFA0D1004095B3 /* RFProgramFactory.mm */; };
 		53A85FE416EFAB04004095B3 /* RFNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FE216EFAB03004095B3 /* RFNode.mm */; };
 		53A85FE816F16953004095B3 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53A85FE716F16953004095B3 /* MyViewController.xib */; };
 		53A85FF416F244BC004095B3 /* RFVideoProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FF316F244BC004095B3 /* RFVideoProcessor.m */; };
@@ -90,6 +102,17 @@
 		5373B16215FFA97E00D308A4 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyViewController.h; path = REngine/MyViewController.h; sourceTree = "<group>"; };
 		5373B16315FFA97E00D308A4 /* MyViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MyViewController.mm; path = REngine/MyViewController.mm; sourceTree = "<group>"; };
 		5373B16B15FFAC2800D308A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		53761968172A3112004ECE27 /* lookup_amatorka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_amatorka.png; sourceTree = "<group>"; };
+		53761969172A3112004ECE27 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
+		5376196C172A31BD004ECE27 /* lookup.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lookup.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		53761979172A557A004ECE27 /* TKAlertCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKAlertCenter.m; sourceTree = "<group>"; };
+		5376197A172A557A004ECE27 /* TKEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKEmptyView.m; sourceTree = "<group>"; };
+		5376197B172A557A004ECE27 /* UIView+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKCategory.m"; sourceTree = "<group>"; };
+		5376197C172A557A004ECE27 /* UIImage+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TKCategory.m"; sourceTree = "<group>"; };
+		5376197D172A557A004ECE27 /* TKEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKEmptyView.h; sourceTree = "<group>"; };
+		5376197E172A557A004ECE27 /* UIView+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TKCategory.h"; sourceTree = "<group>"; };
+		5376197F172A557A004ECE27 /* UIImage+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TKCategory.h"; sourceTree = "<group>"; };
+		53761980172A557A004ECE27 /* TKAlertCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKAlertCenter.h; sourceTree = "<group>"; };
 		537AA9B216EBFF9F0050C635 /* blur.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = blur.fsh; path = REngine/blur.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		537AA9B316EBFF9F0050C635 /* preview.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = preview.vsh; path = REngine/preview.vsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		537AA9B416EBFF9F0050C635 /* toon.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = toon.fsh; path = REngine/toon.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
@@ -100,9 +123,9 @@
 		5391F083170DA2EE00B9FB22 /* RFiOS5TextureFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFiOS5TextureFramebuffer.h; sourceTree = "<group>"; };
 		5399262A1727336F003B008A /* copy.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = copy.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		5399262C172733B8003B008A /* copy.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = copy.vsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
-		53A85FDC16EF9893004095B3 /* RFShaderFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RFShaderFactory.cpp; sourceTree = "<group>"; };
+		53A85FDC16EF9893004095B3 /* RFShaderFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFShaderFactory.mm; sourceTree = "<group>"; };
 		53A85FDD16EF9893004095B3 /* RFShaderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFShaderFactory.h; sourceTree = "<group>"; };
-		53A85FDF16EFA0D1004095B3 /* RFProgramFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RFProgramFactory.cpp; sourceTree = "<group>"; };
+		53A85FDF16EFA0D1004095B3 /* RFProgramFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFProgramFactory.mm; sourceTree = "<group>"; };
 		53A85FE016EFA0D1004095B3 /* RFProgramFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFProgramFactory.h; sourceTree = "<group>"; };
 		53A85FE216EFAB03004095B3 /* RFNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFNode.mm; sourceTree = "<group>"; };
 		53A85FE316EFAB04004095B3 /* RFNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFNode.h; sourceTree = "<group>"; };
@@ -163,8 +186,10 @@
 		5373B0EA15FF8A4400D308A4 = {
 			isa = PBXGroup;
 			children = (
+				53761975172A5129004ECE27 /* 3rd Party */,
 				53C8C7D316EC056F00505767 /* Classes */,
 				53B68CA7168A20000062636D /* Shaders */,
+				53761967172A30F2004ECE27 /* Lookup */,
 				5373B0F815FF8A4400D308A4 /* Frameworks */,
 				5373B0F615FF8A4400D308A4 /* Products */,
 				5373B10015FF8A4500D308A4 /* Supporting Files */,
@@ -210,6 +235,38 @@
 			path = REngine;
 			sourceTree = "<group>";
 		};
+		53761967172A30F2004ECE27 /* Lookup */ = {
+			isa = PBXGroup;
+			children = (
+				53761968172A3112004ECE27 /* lookup_amatorka.png */,
+				53761969172A3112004ECE27 /* lookup_miss_etikate.png */,
+			);
+			name = Lookup;
+			sourceTree = "<group>";
+		};
+		53761975172A5129004ECE27 /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				5376198D172A59A7004ECE27 /* TapKu */,
+			);
+			name = "3rd Party";
+			sourceTree = "<group>";
+		};
+		5376198D172A59A7004ECE27 /* TapKu */ = {
+			isa = PBXGroup;
+			children = (
+				53761979172A557A004ECE27 /* TKAlertCenter.m */,
+				5376197A172A557A004ECE27 /* TKEmptyView.m */,
+				5376197B172A557A004ECE27 /* UIView+TKCategory.m */,
+				5376197C172A557A004ECE27 /* UIImage+TKCategory.m */,
+				5376197D172A557A004ECE27 /* TKEmptyView.h */,
+				5376197E172A557A004ECE27 /* UIView+TKCategory.h */,
+				5376197F172A557A004ECE27 /* UIImage+TKCategory.h */,
+				53761980172A557A004ECE27 /* TKAlertCenter.h */,
+			);
+			name = TapKu;
+			sourceTree = "<group>";
+		};
 		5391F07D170D1F9600B9FB22 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +310,7 @@
 				537AA9B416EBFF9F0050C635 /* toon.fsh */,
 				5399262C172733B8003B008A /* copy.vsh */,
 				5399262A1727336F003B008A /* copy.fsh */,
+				5376196C172A31BD004ECE27 /* lookup.fsh */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -316,9 +374,9 @@
 			isa = PBXGroup;
 			children = (
 				53A85FDD16EF9893004095B3 /* RFShaderFactory.h */,
-				53A85FDC16EF9893004095B3 /* RFShaderFactory.cpp */,
+				53A85FDC16EF9893004095B3 /* RFShaderFactory.mm */,
 				53A85FE016EFA0D1004095B3 /* RFProgramFactory.h */,
-				53A85FDF16EFA0D1004095B3 /* RFProgramFactory.cpp */,
+				53A85FDF16EFA0D1004095B3 /* RFProgramFactory.mm */,
 				5373B13915FF8B6700D308A4 /* RFShader.h */,
 				53C8C7D716EC071E00505767 /* RFShader.mm */,
 				5373B13715FF8B6700D308A4 /* RFProgram.h */,
@@ -439,6 +497,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5376196E172A370A004ECE27 /* lookup.fsh in Resources */,
 				5399262E1727345D003B008A /* copy.vsh in Resources */,
 				5399262F1727345D003B008A /* copy.fsh in Resources */,
 				53C8C7FF16EC1CF800505767 /* blur.fsh in Resources */,
@@ -446,6 +505,8 @@
 				53C8C80116EC1CF800505767 /* toon.fsh in Resources */,
 				5373B10415FF8A4500D308A4 /* InfoPlist.strings in Resources */,
 				53A85FE816F16953004095B3 /* MyViewController.xib in Resources */,
+				5376196A172A3112004ECE27 /* lookup_amatorka.png in Resources */,
+				5376196B172A3112004ECE27 /* lookup_miss_etikate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +545,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53761985172A5667004ECE27 /* TKAlertCenter.m in Sources */,
+				53761986172A5667004ECE27 /* TKEmptyView.m in Sources */,
+				53761987172A5667004ECE27 /* UIView+TKCategory.m in Sources */,
+				53761988172A5667004ECE27 /* UIImage+TKCategory.m in Sources */,
 				53C8C80216EC235A00505767 /* MyRenderer.mm in Sources */,
 				53C8C80316EC235A00505767 /* RFRenderer.mm in Sources */,
 				53C8C80416EC235A00505767 /* RFTexture.mm in Sources */,
@@ -497,13 +562,14 @@
 				5373B16015FFA84E00D308A4 /* RFGLView.mm in Sources */,
 				5373B16415FFA97E00D308A4 /* MyViewController.mm in Sources */,
 				53B68CA6168A18410062636D /* AVCaptureSessionManager.mm in Sources */,
-				53A85FDE16EF9893004095B3 /* RFShaderFactory.cpp in Sources */,
-				53A85FE116EFA0D2004095B3 /* RFProgramFactory.cpp in Sources */,
+				53A85FDE16EF9893004095B3 /* RFShaderFactory.mm in Sources */,
+				53A85FE116EFA0D2004095B3 /* RFProgramFactory.mm in Sources */,
 				53A85FE416EFAB04004095B3 /* RFNode.mm in Sources */,
 				53A85FF416F244BC004095B3 /* RFVideoProcessor.m in Sources */,
 				5391F084170DA2EE00B9FB22 /* RFiOS5TextureFramebuffer.mm in Sources */,
 				5399262B1727336F003B008A /* copy.fsh in Sources */,
 				5399262D172733B8003B008A /* copy.vsh in Sources */,
+				5376196D172A31BD004ECE27 /* lookup.fsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +581,10 @@
 				53C8C7DB16EC077200505767 /* RFProgram.mm in Sources */,
 				53C8C7DD16EC077C00505767 /* RFFramebuffer.mm in Sources */,
 				53C8C7F216EC0ECB00505767 /* RFRenderer.mm in Sources */,
+				53761981172A557A004ECE27 /* TKAlertCenter.m in Sources */,
+				53761982172A557A004ECE27 /* TKEmptyView.m in Sources */,
+				53761983172A557A004ECE27 /* UIView+TKCategory.m in Sources */,
+				53761984172A557A004ECE27 /* UIImage+TKCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

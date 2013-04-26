@@ -21,5 +21,5 @@ void main()
     sum += texture2D(input_texture, bottom_left_bottom_right_coordinate.xy) * 0.111;
     sum += texture2D(input_texture, bottom_left_bottom_right_coordinate.zw) * 0.111;
     
-    gl_FragColor = sum.rgba;
+    gl_FragColor = sum.bgra;
 }

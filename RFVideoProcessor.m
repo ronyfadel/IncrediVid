@@ -1,6 +1,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "RFVideoProcessor.h"
+#import "TKAlertCenter.h"
 
 @interface RFVideoProcessor () {
     // Only accessed on movie writing queue
@@ -96,6 +97,8 @@
                                         NSLog(@"%@", error);
 									else
 										[self removeFile:movieURL];
+                                    
+                                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Saved to Camera Roll!"];
 									
 									dispatch_async(movieWritingQueue, ^{
 										recordingWillBeStopped = NO;

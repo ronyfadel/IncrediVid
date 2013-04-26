@@ -46,7 +46,7 @@ float grad()
 void main()
 {
     float gradient = grad();
-    gl_FragColor = vec4(texture2D(input_texture, texture_coordinate).bgr * gradient, 1.0);
+    gl_FragColor = vec4(texture2D(input_texture, texture_coordinate).rgb * gradient, 1.0);
     
     //    float quantization_levels = 32.0;
     //    vec3 original_fragment_color = texture2D(original_texture, vec2(texture_coordinate.x, 1.0 - texture_coordinate.y)).bgr;

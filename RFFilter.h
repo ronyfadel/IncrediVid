@@ -1,4 +1,5 @@
 #import <vector>
+#import <OpenGLES/ES2/gl.h>
 #import "RFNode.h"
 
 static const GLfloat vertices_straight_crop_tex_coords[] = {
@@ -98,10 +99,81 @@ public:
     }
 };
 
+class RFLookupFilter : public RFFilter {
+protected:
+    GLuint texture_id;
+public:
+    
+    void drawToFramebuffer(RFFramebuffer* framebuffer)
+    {
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, texture_id);
+        RFFilter::drawToFramebuffer(framebuffer);
+    }
+    
+    RFLookupFilter(string texture_name):RFFilter("copy.vsh", "lookup.fsh", 0, 0)
+    {
+        fill_data((void*)vertices_straight_crop_tex_coords, sizeof(vertices_straight_crop_tex_coords), (void*)indexes, sizeof(indexes));
+
+        cout<<texture_name<<endl;
+        string texture_path = get_ios_file_path(texture_name);
+        cout<<texture_path<<endl;
+        
+        UIImage* texture = [UIImage imageWithContentsOfFile:[NSString stringWithCString:texture_path.c_str() encoding:NSASCIIStringEncoding]];
+                
+        // First get the image into your data buffer
+        CGImageRef imageRef = [texture CGImage];
+        NSUInteger width = CGImageGetWidth(imageRef);
+        NSUInteger height = CGImageGetHeight(imageRef);
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+        NSUInteger bytesPerPixel = 4;
+        NSUInteger bytesPerRow = bytesPerPixel * width;
+        NSUInteger bitsPerComponent = 8;
+        CGContextRef context = CGBitmapContextCreate(rawData, width, height,
+                                                     bitsPerComponent, bytesPerRow, colorSpace,
+                                                     kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+        CGColorSpaceRelease(colorSpace);
+        
+        CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+        CGContextRelease(context);
+                
+        glGenTextures(1, &texture_id);
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, texture_id);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, rawData);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+                
+        free(rawData);
+    }
+    
+    virtual void set_uniforms()
+    {
+        GLuint program_id = program->get_id();
+        glUniform1i(glGetUniformLocation(program_id, "input_texture"), 1);
+        glUniform1i(glGetUniformLocation(program_id, "lookup_texture"), 3);
+    }
+    
+    ~RFLookupFilter(){ glDeleteTextures(1, &texture_id); }
+};
+
 class RFFilterCollection {
 protected:
     vector<pair<RFFilter*, RFFramebuffer*> > filter_list;
+    string name;
 public:
+    
+    void setName(string name) {
+        this->name = name;
+    }
+    
+    string getName() {
+        return name;
+    }
+    
     void add_filter_framebuffer_pair(RFFilter* filter, RFFramebuffer* framebuffer)
     {
         filter_list.push_back(make_pair(filter, framebuffer));
@@ -109,13 +181,6 @@ public:
     void draw()
     {
         for (auto i = filter_list.begin(); i != filter_list.end(); ++i) {
-            if (!dynamic_cast<RFFilter*>(i->first)) {
-                throw "boom";
-            }
-            if (!dynamic_cast<RFFramebuffer*>(i->second)) {
-                throw "boom";
-            }
-            NSLog(@"drawing to framebuffer");
             i->first->drawToFramebuffer(i->second);
         }
     }
