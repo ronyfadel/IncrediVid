@@ -12,6 +12,7 @@
 #define OUTPUT_TEXTURE_1 1
 #define OUTPUT_TEXTURE_2 2
 #define iOS5_FRAMEBUFFER_TEXTURE 3
+#define LOOKUP_TEXTURE 4
 
 MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
 {
@@ -44,7 +45,7 @@ MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
     toon->bind_uniform_to_int_value("blurred_texture", OUTPUT_TEXTURE_2);
     toon->bind_uniform_to_float_value("texel_width",  1.f / TARGET_TEXTURE_WIDTH);
     toon->bind_uniform_to_float_value("texel_height", 1.f / TARGET_TEXTURE_HEIGHT);
-    toon->bind_uniform_to_float_value("coefficient", 1.f);
+    toon->bind_uniform_to_float_value("coefficient", 1.0f);
     toon->setup();
     cartoon->add_filter_framebuffer_pair(toon, iOS5_texture_fb);
     
@@ -55,6 +56,27 @@ MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
 
     filters.push_back(cartoon);
     
+    // Amatorka Filter
+    RFFilterCollection* amatorka = new RFFilterCollection("Amatorka");
+    amatorka->add_filter_framebuffer_pair(crop, texture_fb_1);
+    RFFilter *lookup_amatorka = new RFLookupFilter("lookup_amatorka.png");
+    lookup_amatorka->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_1);
+    lookup_amatorka->bind_uniform_to_int_value("lookup_texture", LOOKUP_TEXTURE);
+    lookup_amatorka->setup();
+    amatorka->add_filter_framebuffer_pair(lookup_amatorka, iOS5_texture_fb);
+    amatorka->add_filter_framebuffer_pair(copy, view_fb);
+    filters.push_back(amatorka);
+    
+    // Miss Etikate Filter
+    RFFilterCollection* miss_etikate = new RFFilterCollection("Miss Etikate");
+    miss_etikate->add_filter_framebuffer_pair(crop, texture_fb_1);
+    RFFilter *lookup_miss_etikate = new RFLookupFilter("lookup_miss_etikate.png");
+    lookup_miss_etikate->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_1);
+    lookup_miss_etikate->bind_uniform_to_int_value("lookup_texture", LOOKUP_TEXTURE);
+    lookup_miss_etikate->setup();
+    miss_etikate->add_filter_framebuffer_pair(lookup_miss_etikate, iOS5_texture_fb);
+    miss_etikate->add_filter_framebuffer_pair(copy, view_fb);
+    filters.push_back(miss_etikate);
 
 //    RFFilter *crop = new RFFilter("copy.vsh", "crop.fsh", true);
 //    crop->bind_uniform_to_int_value("input_texture", CAPTURED_FRAME_TEXTURE);

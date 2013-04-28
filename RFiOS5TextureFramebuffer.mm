@@ -46,7 +46,6 @@ RFiOS5TextureFramebuffer::RFiOS5TextureFramebuffer(GLsizei _width, GLsizei _heig
         
         // first create a texture from our renderTarget
         // textureCache will be what you previously made with CVOpenGLESTextureCacheCreate
-        NSLog(@"Active texture: %u", texture_num);
         glActiveTexture(GL_TEXTURE0 + texture_num);
         CVReturn err =
         CVOpenGLESTextureCacheCreateTextureFromImage (
