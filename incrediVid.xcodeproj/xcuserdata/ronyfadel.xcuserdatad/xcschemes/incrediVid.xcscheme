@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
                BuildableName = "REngine.app"
-               BlueprintName = "REngine"
-               ReferencedContainer = "container:REngine.xcodeproj">
+               BlueprintName = "incrediVid"
+               ReferencedContainer = "container:incrediVid.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5373B10F15FF8A4500D308A4"
                BuildableName = "REngineTests.octest"
-               BlueprintName = "REngineTests"
-               ReferencedContainer = "container:REngine.xcodeproj">
+               BlueprintName = "incrediVidTests"
+               ReferencedContainer = "container:incrediVid.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
             BuildableName = "REngine.app"
-            BlueprintName = "REngine"
-            ReferencedContainer = "container:REngine.xcodeproj">
+            BlueprintName = "incrediVid"
+            ReferencedContainer = "container:incrediVid.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
             BuildableName = "REngine.app"
-            BlueprintName = "REngine"
-            ReferencedContainer = "container:REngine.xcodeproj">
+            BlueprintName = "incrediVid"
+            ReferencedContainer = "container:incrediVid.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
             BuildableName = "REngine.app"
-            BlueprintName = "REngine"
-            ReferencedContainer = "container:REngine.xcodeproj">
+            BlueprintName = "incrediVid"
+            ReferencedContainer = "container:incrediVid.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

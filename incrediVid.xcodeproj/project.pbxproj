@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530D2C45172CC24D004C8713 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 530D2C44172CC24C004C8713 /* Icon.png */; };
+		530D2C47172CC24F004C8713 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 530D2C46172CC24F004C8713 /* Icon@2x.png */; };
+		530D2C4A172CC679004C8713 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 530D2C49172CC679004C8713 /* Default-568h@2x.png */; };
+		530D2C4C172CC681004C8713 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 530D2C4B172CC681004C8713 /* Default@2x.png */; };
+		530D2C4E172CC688004C8713 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 530D2C4D172CC688004C8713 /* Default.png */; };
+		530D2C50172CCA33004C8713 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 530D2C4F172CCA33004C8713 /* Lato-Black.ttf */; };
+		530D2C51172CCCDC004C8713 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 530D2C4F172CCA33004C8713 /* Lato-Black.ttf */; };
 		5373B0FA15FF8A4400D308A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B0F915FF8A4400D308A4 /* UIKit.framework */; };
 		5373B0FC15FF8A4400D308A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B0FB15FF8A4400D308A4 /* Foundation.framework */; };
 		5373B0FE15FF8A4400D308A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B0FD15FF8A4400D308A4 /* CoreGraphics.framework */; };
@@ -80,14 +87,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		530D2C44172CC24C004C8713 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		530D2C46172CC24F004C8713 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		530D2C49172CC679004C8713 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		530D2C4B172CC681004C8713 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		530D2C4D172CC688004C8713 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		530D2C4F172CCA33004C8713 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		5373B0F515FF8A4400D308A4 /* REngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373B0F915FF8A4400D308A4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5373B0FB15FF8A4400D308A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5373B0FD15FF8A4400D308A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		5373B10115FF8A4500D308A4 /* REngine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "REngine-Info.plist"; sourceTree = "<group>"; };
+		5373B10115FF8A4500D308A4 /* incrediVid-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "incrediVid-Info.plist"; sourceTree = "<group>"; };
 		5373B10315FF8A4500D308A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5373B10515FF8A4500D308A4 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		5373B10715FF8A4500D308A4 /* REngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "REngine-Prefix.pch"; sourceTree = "<group>"; };
+		5373B10715FF8A4500D308A4 /* incrediVid-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "incrediVid-Prefix.pch"; sourceTree = "<group>"; };
 		5373B10815FF8A4500D308A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = REngine/AppDelegate.h; sourceTree = "<group>"; };
 		5373B10915FF8A4500D308A4 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = REngine/AppDelegate.mm; sourceTree = "<group>"; };
 		5373B11015FF8A4500D308A4 /* REngineTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = REngineTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,9 +198,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		530D2C48172CC33B004C8713 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				530D2C4F172CCA33004C8713 /* Lato-Black.ttf */,
+				530D2C4D172CC688004C8713 /* Default.png */,
+				530D2C4B172CC681004C8713 /* Default@2x.png */,
+				530D2C49172CC679004C8713 /* Default-568h@2x.png */,
+				530D2C46172CC24F004C8713 /* Icon@2x.png */,
+				530D2C44172CC24C004C8713 /* Icon.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		5373B0EA15FF8A4400D308A4 = {
 			isa = PBXGroup;
 			children = (
+				530D2C48172CC33B004C8713 /* Resources */,
 				53761975172A5129004ECE27 /* 3rd Party */,
 				53C8C7D316EC056F00505767 /* Classes */,
 				53B68CA7168A20000062636D /* Shaders */,
@@ -228,10 +255,10 @@
 		5373B10015FF8A4500D308A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5373B10115FF8A4500D308A4 /* REngine-Info.plist */,
+				5373B10115FF8A4500D308A4 /* incrediVid-Info.plist */,
 				5373B10215FF8A4500D308A4 /* InfoPlist.strings */,
 				5373B10515FF8A4500D308A4 /* main.mm */,
-				5373B10715FF8A4500D308A4 /* REngine-Prefix.pch */,
+				5373B10715FF8A4500D308A4 /* incrediVid-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = REngine;
@@ -435,9 +462,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5373B0F415FF8A4400D308A4 /* REngine */ = {
+		5373B0F415FF8A4400D308A4 /* incrediVid */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5373B12215FF8A4500D308A4 /* Build configuration list for PBXNativeTarget "REngine" */;
+			buildConfigurationList = 5373B12215FF8A4500D308A4 /* Build configuration list for PBXNativeTarget "incrediVid" */;
 			buildPhases = (
 				5373B0F115FF8A4400D308A4 /* Sources */,
 				5373B0F215FF8A4400D308A4 /* Frameworks */,
@@ -447,14 +474,14 @@
 			);
 			dependencies = (
 			);
-			name = REngine;
+			name = incrediVid;
 			productName = REngine;
 			productReference = 5373B0F515FF8A4400D308A4 /* REngine.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5373B10F15FF8A4500D308A4 /* REngineTests */ = {
+		5373B10F15FF8A4500D308A4 /* incrediVidTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5373B12515FF8A4500D308A4 /* Build configuration list for PBXNativeTarget "REngineTests" */;
+			buildConfigurationList = 5373B12515FF8A4500D308A4 /* Build configuration list for PBXNativeTarget "incrediVidTests" */;
 			buildPhases = (
 				5373B10B15FF8A4500D308A4 /* Sources */,
 				5373B10C15FF8A4500D308A4 /* Frameworks */,
@@ -466,7 +493,7 @@
 			dependencies = (
 				5373B11615FF8A4500D308A4 /* PBXTargetDependency */,
 			);
-			name = REngineTests;
+			name = incrediVidTests;
 			productName = REngineTests;
 			productReference = 5373B11015FF8A4500D308A4 /* REngineTests.octest */;
 			productType = "com.apple.product-type.bundle";
@@ -479,7 +506,7 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 			};
-			buildConfigurationList = 5373B0EF15FF8A4400D308A4 /* Build configuration list for PBXProject "REngine" */;
+			buildConfigurationList = 5373B0EF15FF8A4400D308A4 /* Build configuration list for PBXProject "incrediVid" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -491,8 +518,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5373B0F415FF8A4400D308A4 /* REngine */,
-				5373B10F15FF8A4500D308A4 /* REngineTests */,
+				5373B0F415FF8A4400D308A4 /* incrediVid */,
+				5373B10F15FF8A4500D308A4 /* incrediVidTests */,
 			);
 		};
 /* End PBXProject section */
@@ -502,6 +529,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				530D2C51172CCCDC004C8713 /* Lato-Black.ttf in Resources */,
 				53E2B39E172C3367009B3C24 /* crop.fsh in Resources */,
 				5376196E172A370A004ECE27 /* lookup.fsh in Resources */,
 				5399262E1727345D003B008A /* copy.vsh in Resources */,
@@ -513,6 +541,11 @@
 				53A85FE816F16953004095B3 /* MyViewController.xib in Resources */,
 				5376196A172A3112004ECE27 /* lookup_amatorka.png in Resources */,
 				5376196B172A3112004ECE27 /* lookup_miss_etikate.png in Resources */,
+				530D2C45172CC24D004C8713 /* Icon.png in Resources */,
+				530D2C47172CC24F004C8713 /* Icon@2x.png in Resources */,
+				530D2C4A172CC679004C8713 /* Default-568h@2x.png in Resources */,
+				530D2C4C172CC681004C8713 /* Default@2x.png in Resources */,
+				530D2C4E172CC688004C8713 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +558,7 @@
 				53C8C7E416EC0B4C00505767 /* RFTextureFramebuffer.h in Resources */,
 				53C8C7E616EC0B5000505767 /* RFTextureFramebuffer.mm in Resources */,
 				53C8C7EA16EC0B5800505767 /* RFTexture.mm in Resources */,
+				530D2C50172CCA33004C8713 /* Lato-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,7 +631,7 @@
 /* Begin PBXTargetDependency section */
 		5373B11615FF8A4500D308A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5373B0F415FF8A4400D308A4 /* REngine */;
+			target = 5373B0F415FF8A4400D308A4 /* incrediVid */;
 			targetProxy = 5373B11515FF8A4500D308A4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -678,10 +712,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "REngine/REngine-Prefix.pch";
-				INFOPLIST_FILE = "REngine/REngine-Info.plist";
+				GCC_PREFIX_HEADER = "REngine/incrediVid-Prefix.pch";
+				INFOPLIST_FILE = "REngine/incrediVid-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = incrediVid;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -693,9 +727,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "REngine/REngine-Prefix.pch";
-				INFOPLIST_FILE = "REngine/REngine-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "REngine/incrediVid-Prefix.pch";
+				INFOPLIST_FILE = "REngine/incrediVid-Info.plist";
+				PRODUCT_NAME = incrediVid;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -711,7 +745,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REngine/REngine-Prefix.pch";
 				INFOPLIST_FILE = "REngineTests/REngineTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = incrediVidTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -728,7 +762,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REngine/REngine-Prefix.pch";
 				INFOPLIST_FILE = "REngineTests/REngineTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = incrediVidTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -737,7 +771,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5373B0EF15FF8A4400D308A4 /* Build configuration list for PBXProject "REngine" */ = {
+		5373B0EF15FF8A4400D308A4 /* Build configuration list for PBXProject "incrediVid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5373B12015FF8A4500D308A4 /* Debug */,
@@ -746,7 +780,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5373B12215FF8A4500D308A4 /* Build configuration list for PBXNativeTarget "REngine" */ = {
+		5373B12215FF8A4500D308A4 /* Build configuration list for PBXNativeTarget "incrediVid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5373B12315FF8A4500D308A4 /* Debug */,
@@ -755,7 +789,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5373B12515FF8A4500D308A4 /* Build configuration list for PBXNativeTarget "REngineTests" */ = {
+		5373B12515FF8A4500D308A4 /* Build configuration list for PBXNativeTarget "incrediVidTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5373B12615FF8A4500D308A4 /* Debug */,

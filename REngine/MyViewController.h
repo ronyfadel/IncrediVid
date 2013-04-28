@@ -8,6 +8,7 @@
     AVCaptureSessionManager* captureSessionManager;
     
     IBOutlet UIButton *nextButton, *prevButton, *videoButton;
+    IBOutlet UILabel *logoLabel;
 }
 
 - (IBAction)changeFilter:(id)obj;

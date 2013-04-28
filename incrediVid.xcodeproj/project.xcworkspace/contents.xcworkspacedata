@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:REngine.xcodeproj">
+      location = "self:incrediVid.xcodeproj">
    </FileRef>
 </Workspace>
