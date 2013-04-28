@@ -18,7 +18,12 @@
 
 - (void)setup
 {
-    self.view.backgroundColor = [UIColor colorWithRed:0.23f green:0.23f blue:0.22f alpha:1.f];
+    self.view.backgroundColor = [UIColor colorWithRed:0.23f green:0.23f blue:0.22f alpha:1.f]; // Vine gray
+    self.view.backgroundColor = [UIColor colorWithRed:0.1f green:0.09f blue:0.11f alpha:1.f]; // dribbble gray/black
+    
+    // dribble blue             31.0	77.0	95.0
+    // dribble lighter blue     32.0	81.0	75.0
+    // dribbe orange            98.0	44.0	19.0
     
     renderer = new MyRenderer(self.view);
     [self.view bringSubviewToFront:nextButton];

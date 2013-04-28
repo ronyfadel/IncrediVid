@@ -1,8 +1,8 @@
 class RFTexture {
 public:
-    GLuint _id;
-    RFTexture(GLsizei width, GLsizei height);
-    void activate(GLuint texture_num);
+    GLuint _id, texture_num;
+    RFTexture(GLsizei width, GLsizei height, GLuint _texture_num);
+    void activate();
     GLuint get_id();
     virtual ~RFTexture();
 };

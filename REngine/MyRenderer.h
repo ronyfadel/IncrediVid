@@ -1,7 +1,7 @@
 #import <vector>
 #import "RFRenderer.h"
 #import "RFFramebuffer.h"
-#import "RFFilter.h"
+#import "RFFilterCollection.h"
 using namespace std;
 
 class MyRenderer : public RFRenderer {

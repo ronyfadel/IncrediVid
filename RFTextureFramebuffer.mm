@@ -2,17 +2,17 @@
 
 void RFTextureFramebuffer::use()
 {
-    glActiveTexture(GL_TEXTURE1);
+    texture->activate();
     RFFramebuffer::use();
 }
 
-RFTextureFramebuffer::RFTextureFramebuffer(GLsizei _width, GLsizei _height, bool has_depth_attachement)
+RFTextureFramebuffer::RFTextureFramebuffer(GLsizei _width, GLsizei _height, GLuint texture_num, bool has_depth_attachement)
 {
     width = _width;
     height = _height;
 
     glActiveTexture(GL_TEXTURE1);
-    texture = new RFTexture(width, height);
+    texture = new RFTexture(width, height, texture_num);
     glGenFramebuffers(1, &_id);
     glBindFramebuffer(GL_FRAMEBUFFER, _id);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture->get_id(), 0);

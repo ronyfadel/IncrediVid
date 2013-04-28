@@ -5,8 +5,9 @@
 
 CVPixelBufferRef __renderTarget;
 
-RFiOS5TextureFramebuffer::RFiOS5TextureFramebuffer(GLsizei _width, GLsizei _height)
+RFiOS5TextureFramebuffer::RFiOS5TextureFramebuffer(GLsizei _width, GLsizei _height, GLuint _texture_num)
 {
+    texture_num = _texture_num;
     width = _width;
     height = _height;
     current_renderTarget_index = 0;
@@ -45,7 +46,8 @@ RFiOS5TextureFramebuffer::RFiOS5TextureFramebuffer(GLsizei _width, GLsizei _heig
         
         // first create a texture from our renderTarget
         // textureCache will be what you previously made with CVOpenGLESTextureCacheCreate
-        glActiveTexture(GL_TEXTURE2);
+        NSLog(@"Active texture: %u", texture_num);
+        glActiveTexture(GL_TEXTURE0 + texture_num);
         CVReturn err =
         CVOpenGLESTextureCacheCreateTextureFromImage (
                                                       kCFAllocatorDefault,
@@ -82,13 +84,8 @@ RFiOS5TextureFramebuffer::RFiOS5TextureFramebuffer(GLsizei _width, GLsizei _heig
 
 void RFiOS5TextureFramebuffer::use()
 {
-//    m.lock();
-//    __renderTarget = _renderPixelBuffer[current_renderTarget_index];
-//    m.unlock();
-    
-//    current_renderTarget_index = (current_renderTarget_index + 1) % PIXEL_BUFFER_COUNT;
-//    _id = _ids[current_renderTarget_index];
-    
+    glActiveTexture(GL_TEXTURE0 + texture_num);
+    glBindTexture(GL_TEXTURE_2D, CVOpenGLESTextureGetName(_renderTexture[0]));
     RFFramebuffer::use();
 }
 

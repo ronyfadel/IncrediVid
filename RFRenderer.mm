@@ -4,6 +4,9 @@ RFRenderer::RFRenderer(UIView* superview)
 {
     view = [[RFGLView alloc] initWithFrame:superview.frame];
     [superview addSubview:view];
+
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_BLEND);
     glClearColor(1.f, 0.f, 0.f, 1.f);
 }
 

@@ -1,5 +1,8 @@
 #import "RFGLView.h"
 
+#define PREVIEW_POINTS_WIDTH 320
+#define PREVIEW_POINTS_HEIGHT 320
+
 @interface RFGLView ()
 - (void)setup;
 @end
@@ -20,12 +23,13 @@
     return self;
 }
 
+
 - (void)setup
 {
     self.frame = CGRectMake(0,
                             70,
-                            320,
-                            320);
+                            PREVIEW_POINTS_WIDTH,
+                            PREVIEW_POINTS_HEIGHT);
     
     // For retina display
     if([[UIScreen mainScreen] respondsToSelector: NSSelectorFromString(@"scale")])

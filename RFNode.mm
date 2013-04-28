@@ -37,6 +37,45 @@ RFNode* RFNode::setup()
     return this;
 }
 
+void RFNode::bind_uniform_to_int_value(string uniform_name, int value)
+{
+    uniform_value tmp;
+    tmp.i = value;
+    bind_uniform_to_value(uniform_name, tmp, INTEGER_UNIFORM);
+}
+
+void RFNode::bind_uniform_to_float_value(string uniform_name, float value)
+{
+    uniform_value tmp;
+    tmp.f = value;
+    bind_uniform_to_value(uniform_name, tmp, FLOAT_UNIFORM);
+}
+
+void RFNode::bind_uniform_to_value(string uniform_name, uniform_value value, uniform_type type)
+{
+    uniforms[uniform_name] = make_pair(value, type);
+}
+
+void RFNode::set_uniforms()
+{
+    for (auto i = uniforms.begin(); i != uniforms.end(); ++i) {
+        GLuint uniform_id = glGetUniformLocation(program->get_id(), i->first.c_str());
+        
+        switch (i->second.second) {
+            case INTEGER_UNIFORM:
+                glUniform1i(uniform_id, i->second.first.i);
+                cout<<i->first<<" glUniform1i("<<uniform_id<<", "<<i->second.first.i<<");"<<endl;
+                break;
+            case FLOAT_UNIFORM:
+                glUniform1f(uniform_id, i->second.first.f);
+                cout<<i->first<<" glUniform1f("<<uniform_id<<", "<<i->second.first.f<<");"<<endl;
+                break;
+            default:
+                break;
+        }
+    }
+    cout<<endl;
+}
 
 void RFNode::drawToFramebuffer(RFFramebuffer* framebuffer)
 {

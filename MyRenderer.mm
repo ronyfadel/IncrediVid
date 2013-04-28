@@ -5,47 +5,98 @@
 
 #import "MyRenderer.h"
 
-#define PREVIEW_WIDTH 480
-#define PREVIEW_HEIGHT 640
+#define TARGET_TEXTURE_WIDTH 480
+#define TARGET_TEXTURE_HEIGHT 480
+
+#define CAPTURED_FRAME_TEXTURE 0
+#define OUTPUT_TEXTURE_1 1
+#define OUTPUT_TEXTURE_2 2
+#define iOS5_FRAMEBUFFER_TEXTURE 3
 
 MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
 {
     current_filter_index = 0;
     
-    RFFramebuffer *view_fb    = new RFViewFramebuffer(this->view);
-    RFFramebuffer *iOS5_texture_fb = new RFiOS5TextureFramebuffer(view_fb->get_width(), view_fb->get_height());
-    RFFramebuffer *texture_fb = new RFTextureFramebuffer(PREVIEW_WIDTH, PREVIEW_HEIGHT);
-        
-    RFFilter *blur = ( RFFilter* )(new RFBlurFilter(texture_fb->get_width(), texture_fb->get_height()))->setup(),
-             *toon = ( RFFilter* )(new RFToonFilter(iOS5_texture_fb->get_width(), iOS5_texture_fb->get_height()))->setup(),
-             *copy = ( RFFilter* )(new RFCopyFilter(view_fb->get_width(), view_fb->get_height()))->setup(),
-             *etikate = ( RFFilter* )(new RFLookupFilter("lookup_miss_etikate.png"))->setup(),
-             *amatorka = ( RFFilter* )(new RFLookupFilter("lookup_amatorka.png"))->setup();
+    RFFramebuffer *view_fb            = new RFViewFramebuffer(this->view),
+                  *iOS5_texture_fb    = new RFiOS5TextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, iOS5_FRAMEBUFFER_TEXTURE),
+                  *texture_fb_1       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_1),
+                  *texture_fb_2       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_2);
     
-    RFFilterCollection* filter_collections[3];
-    filter_collections[0] = new RFFilterCollection();
-    filter_collections[0]->add_filter_framebuffer_pair(blur, texture_fb);
-    filter_collections[0]->add_filter_framebuffer_pair(toon, iOS5_texture_fb);
-    filter_collections[0]->add_filter_framebuffer_pair(copy, view_fb);
+    vector<RFFilterCollection*> fc;
+
+    // Cartoon Filter
+    RFFilterCollection* cartoon = new RFFilterCollection("Cartoon");
     
-    filter_collections[1] = new RFFilterCollection();
-    filter_collections[1]->add_filter_framebuffer_pair(blur, texture_fb);
-    filter_collections[1]->add_filter_framebuffer_pair(etikate, iOS5_texture_fb);
-    filter_collections[1]->add_filter_framebuffer_pair(copy, view_fb);
+    RFFilter *crop = new RFFilter("copy.vsh", "crop.fsh", true);
+    crop->bind_uniform_to_int_value("input_texture", CAPTURED_FRAME_TEXTURE);
+    crop->setup();
+    cartoon->add_filter_framebuffer_pair(crop, texture_fb_1);
+
+    RFFilter *blur = new RFFilter("preview.vsh", "blur.fsh");
+    blur->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_1);
+    blur->bind_uniform_to_float_value("texel_width",  1.f / TARGET_TEXTURE_WIDTH);
+    blur->bind_uniform_to_float_value("texel_height", 1.f / TARGET_TEXTURE_HEIGHT);
+    blur->setup();
+    cartoon->add_filter_framebuffer_pair(blur, texture_fb_2);
+
+    RFFilter *toon = new RFFilter("preview.vsh", "toon.fsh");
+    toon->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_1);
+    toon->bind_uniform_to_int_value("blurred_texture", OUTPUT_TEXTURE_2);
+    toon->bind_uniform_to_float_value("texel_width",  1.f / TARGET_TEXTURE_WIDTH);
+    toon->bind_uniform_to_float_value("texel_height", 1.f / TARGET_TEXTURE_HEIGHT);
+    toon->bind_uniform_to_float_value("coefficient", 1.f);
+    toon->setup();
+    cartoon->add_filter_framebuffer_pair(toon, iOS5_texture_fb);
     
-    filter_collections[2] = new RFFilterCollection();
-    filter_collections[2]->add_filter_framebuffer_pair(blur, texture_fb);
-    filter_collections[2]->add_filter_framebuffer_pair(amatorka, iOS5_texture_fb);
-    filter_collections[2]->add_filter_framebuffer_pair(copy, view_fb);
+    RFFilter *copy = new RFFilter("copy.vsh", "copy.fsh");
+    copy->bind_uniform_to_int_value("input_texture", iOS5_FRAMEBUFFER_TEXTURE);
+    copy->setup();
+    cartoon->add_filter_framebuffer_pair(copy, view_fb);
+
+    filters.push_back(cartoon);
     
+
+//    RFFilter *crop = new RFFilter("copy.vsh", "crop.fsh", true);
+//    crop->bind_uniform_to_int_value("input_texture", CAPTURED_FRAME_TEXTURE);
+//    crop->setup();
+//    cartoon->add_filter_framebuffer_pair((RFFilter*)crop, iOS5_texture_fb);
+//        
+//    RFFilter *copy = new RFFilter("copy.vsh", "copy.fsh");
+//    copy->bind_uniform_to_int_value("input_texture", iOS5_FRAMEBUFFER_TEXTURE);
+//    crop->setup();
+//    cartoon->add_filter_framebuffer_pair((RFFilter*)copy, view_fb);
+//
+//    filters.push_back(cartoon);
+
+
+//    RFFilter *crop = ( RFFilter* )(new RFCropFilter())->setup(),
+//             *copy = ( RFFilter* )(new RFCopyFilter())->setup(),
+//             *blur = ( RFFilter* )(new RFBlurFilter(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT))->setup(),
+//             *toon = ( RFFilter* )(new RFToonFilter(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT))->setup(),
+//             *etikate = ( RFFilter* )(new RFLookupFilter("lookup_miss_etikate.png"))->setup(),
+//             *amatorka = ( RFFilter* )(new RFLookupFilter("lookup_amatorka.png"))->setup();
+//        
+//    RFFilterCollection* filter_collections[1];
+//    filter_collections[0] = new RFFilterCollection("Cartoon");
+//    filter_collections[0]->add_filter_framebuffer_pair(crop, texture_fb);
+//    filter_collections[0]->add_filter_framebuffer_pair(blur, texture_fb);
+//    filter_collections[0]->add_filter_framebuffer_pair(toon, iOS5_texture_fb);
+//    filter_collections[0]->add_filter_framebuffer_pair(copy, view_fb);
     
-    filter_collections[0]->setName("Cartoon");
-    filter_collections[1]->setName("Miss Etikate");
-    filter_collections[2]->setName("Amatorka");
+//    filter_collections[1] = new RFFilterCollection("Miss Etikate");
+////    filter_collections[1]->add_filter_framebuffer_pair(blur, texture_fb);
+////    filter_collections[1]->add_filter_framebuffer_pair(etikate, iOS5_texture_fb);
+////    filter_collections[1]->add_filter_framebuffer_pair(copy, view_fb);
+//    filter_collections[1]->add_filter_framebuffer_pair(etikate, view_fb);
+//    
+//    filter_collections[2] = new RFFilterCollection("Amatorka");
+//    filter_collections[2]->add_filter_framebuffer_pair(blur, texture_fb);
+//    filter_collections[2]->add_filter_framebuffer_pair(amatorka, iOS5_texture_fb);
+//    filter_collections[2]->add_filter_framebuffer_pair(copy, view_fb);
     
-    for (int i = 0; i < sizeof(filter_collections) / sizeof(RFFilterCollection*); ++i) {
-        filters.push_back(filter_collections[i]);
-    }
+//    for (int i = 0; i < sizeof(filter_collections) / sizeof(RFFilterCollection*); ++i) {
+//        filters.push_back(filter_collections[i]);
+//    }
 }
 
 void MyRenderer::render()

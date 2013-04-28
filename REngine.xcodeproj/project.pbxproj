@@ -22,7 +22,6 @@
 		5373B16C15FFAC2900D308A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B16B15FFAC2800D308A4 /* QuartzCore.framework */; };
 		5376196A172A3112004ECE27 /* lookup_amatorka.png in Resources */ = {isa = PBXBuildFile; fileRef = 53761968172A3112004ECE27 /* lookup_amatorka.png */; };
 		5376196B172A3112004ECE27 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 53761969172A3112004ECE27 /* lookup_miss_etikate.png */; };
-		5376196D172A31BD004ECE27 /* lookup.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 5376196C172A31BD004ECE27 /* lookup.fsh */; };
 		5376196E172A370A004ECE27 /* lookup.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 5376196C172A31BD004ECE27 /* lookup.fsh */; };
 		53761981172A557A004ECE27 /* TKAlertCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53761979172A557A004ECE27 /* TKAlertCenter.m */; };
 		53761982172A557A004ECE27 /* TKEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5376197A172A557A004ECE27 /* TKEmptyView.m */; };
@@ -35,8 +34,6 @@
 		5391F07F170D3F4B00B9FB22 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391F07E170D3F4B00B9FB22 /* MobileCoreServices.framework */; };
 		5391F081170D3F5A00B9FB22 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5391F080170D3F5A00B9FB22 /* AssetsLibrary.framework */; };
 		5391F084170DA2EE00B9FB22 /* RFiOS5TextureFramebuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5391F082170DA2EE00B9FB22 /* RFiOS5TextureFramebuffer.mm */; };
-		5399262B1727336F003B008A /* copy.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 5399262A1727336F003B008A /* copy.fsh */; };
-		5399262D172733B8003B008A /* copy.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 5399262C172733B8003B008A /* copy.vsh */; };
 		5399262E1727345D003B008A /* copy.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 5399262C172733B8003B008A /* copy.vsh */; };
 		5399262F1727345D003B008A /* copy.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 5399262A1727336F003B008A /* copy.fsh */; };
 		53A85FDE16EF9893004095B3 /* RFShaderFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53A85FDC16EF9893004095B3 /* RFShaderFactory.mm */; };
@@ -68,6 +65,8 @@
 		53C8C80716EC235A00505767 /* RFTextureFramebuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7E516EC0B5000505767 /* RFTextureFramebuffer.mm */; };
 		53C8C80816EC235A00505767 /* RFShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7D716EC071E00505767 /* RFShader.mm */; };
 		53C8C80916EC235A00505767 /* RFProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7DA16EC077200505767 /* RFProgram.mm */; };
+		53E2B39E172C3367009B3C24 /* crop.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 53E2B39C172C3247009B3C24 /* crop.fsh */; };
+		53E2B3A1172CA31D009B3C24 /* RFFilterCollection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53E2B39F172CA31D009B3C24 /* RFFilterCollection.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +149,9 @@
 		53C8C7F016EC0ECB00505767 /* RFRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFRenderer.mm; sourceTree = "<group>"; };
 		53C8C7F116EC0ECB00505767 /* RFRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFRenderer.h; sourceTree = "<group>"; };
 		53C8C7FE16EC1AA300505767 /* MyRenderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MyRenderer.mm; sourceTree = "<group>"; };
+		53E2B39C172C3247009B3C24 /* crop.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crop.fsh; sourceTree = "<group>"; };
+		53E2B39F172CA31D009B3C24 /* RFFilterCollection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFFilterCollection.mm; sourceTree = "<group>"; };
+		53E2B3A0172CA31D009B3C24 /* RFFilterCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFFilterCollection.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				53A85FE616F0F984004095B3 /* RFFilter.h */,
+				53E2B3A0172CA31D009B3C24 /* RFFilterCollection.h */,
+				53E2B39F172CA31D009B3C24 /* RFFilterCollection.mm */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -310,6 +314,7 @@
 				537AA9B416EBFF9F0050C635 /* toon.fsh */,
 				5399262C172733B8003B008A /* copy.vsh */,
 				5399262A1727336F003B008A /* copy.fsh */,
+				53E2B39C172C3247009B3C24 /* crop.fsh */,
 				5376196C172A31BD004ECE27 /* lookup.fsh */,
 			);
 			name = Shaders;
@@ -497,6 +502,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53E2B39E172C3367009B3C24 /* crop.fsh in Resources */,
 				5376196E172A370A004ECE27 /* lookup.fsh in Resources */,
 				5399262E1727345D003B008A /* copy.vsh in Resources */,
 				5399262F1727345D003B008A /* copy.fsh in Resources */,
@@ -567,9 +573,7 @@
 				53A85FE416EFAB04004095B3 /* RFNode.mm in Sources */,
 				53A85FF416F244BC004095B3 /* RFVideoProcessor.m in Sources */,
 				5391F084170DA2EE00B9FB22 /* RFiOS5TextureFramebuffer.mm in Sources */,
-				5399262B1727336F003B008A /* copy.fsh in Sources */,
-				5399262D172733B8003B008A /* copy.vsh in Sources */,
-				5376196D172A31BD004ECE27 /* lookup.fsh in Sources */,
+				53E2B3A1172CA31D009B3C24 /* RFFilterCollection.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
