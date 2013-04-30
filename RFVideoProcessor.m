@@ -31,7 +31,6 @@
 
 @implementation RFVideoProcessor
 
-@synthesize delegate;
 @synthesize videoFrameRate, videoDimensions, videoType;
 @synthesize recording, recordingWillBeStarted;
 
@@ -104,7 +103,7 @@
 										recordingWillBeStopped = NO;
 										self.recording = NO;
 										
-										[self.delegate recordingDidStop];
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Stop" object:nil];
 									});
 								}];
 	[library release];
@@ -176,7 +175,7 @@
 			if ( !wasReadyToRecord && isReadyToRecord ) {
 				recordingWillBeStarted = NO;
 				self.recording = YES;
-				[self.delegate recordingDidStart];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Start" object:nil];
 			}
 		}
 		CFRelease(sampleBuffer);
@@ -276,7 +275,7 @@
 		recordingWillBeStarted = YES;
         
 		// recordingDidStart is called from captureOutput:didOutputSampleBuffer:fromConnection: once the asset writer is setup
-		[self.delegate recordingWillStart];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Will Start" object:nil];
         
 		// Remove the file if one with the same name already exists
 		[self removeFile:movieURL];
@@ -299,7 +298,7 @@
 		recordingWillBeStopped = YES;
 		
 		// recordingDidStop is called from saveMovieToCameraRoll
-		[self.delegate recordingWillStop];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Will Stop" object:nil];
         
 		if ([assetWriter finishWriting]) {
 			[assetWriterAudioIn release];

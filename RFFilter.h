@@ -2,16 +2,15 @@
 #import <OpenGLES/ES2/gl.h>
 #import "RFNode.h"
 
+enum BUFFER_DATA {
+    STRAIGHT,
+    FLIPPED,
+    FLIPPED_CROPPED
+};
+
 static const GLushort indexes[] = {
     0, 1, 2,
     0, 2, 3
-};
-
-static const GLfloat vertices_flipped_cropped_tex_coords[] = {
-    -1.f, -1.f, 0.f, 0.875f,
-    1.f, -1.f, 1.f, 0.875f,
-    1.f,  1.f, 1.f, 0.125f,
-    -1.f,  1.f, 0.f, 0.125f
 };
 
 static const GLfloat vertices_straight_tex_coords[] = {
@@ -21,23 +20,40 @@ static const GLfloat vertices_straight_tex_coords[] = {
     -1.f,  1.f, 0.f, 1.f
 };
 
+static const GLfloat vertices_flipped_tex_coords[] = {
+    -1.f, -1.f, 0.f, 1.f,
+    1.f, -1.f, 1.f, 1.f,
+    1.f,  1.f, 1.f, 0.f,
+    -1.f,  1.f, 0.f, 0.f
+};
+
+static const GLfloat vertices_flipped_cropped_tex_coords[] = {
+    -1.f, -1.f, 0.f, 0.875f,
+    1.f, -1.f, 1.f, 0.875f,
+    1.f,  1.f, 1.f, 0.125f,
+    -1.f,  1.f, 0.f, 0.125f
+};
+
 class RFFilter : public RFNode {
 public:
-    RFFilter(string v_shader_name, string f_shader_name, bool cropped = false):RFNode(v_shader_name, f_shader_name)
+    RFFilter(string v_shader_name, string f_shader_name, BUFFER_DATA mode = STRAIGHT):RFNode(v_shader_name, f_shader_name)
     {
-        if (cropped) {
-            fill_data((void*)vertices_flipped_cropped_tex_coords, sizeof(vertices_flipped_cropped_tex_coords),
-                      (void*)indexes, sizeof(indexes));
-        } else {
-            fill_data((void*)vertices_straight_tex_coords, sizeof(vertices_straight_tex_coords),
-                      (void*)indexes, sizeof(indexes));
+        switch (mode) {
+            case STRAIGHT:
+                fill_data((void*)vertices_straight_tex_coords, sizeof(vertices_straight_tex_coords),
+                          (void*)indexes, sizeof(indexes));
+                break;
+            case FLIPPED:
+                fill_data((void*)vertices_flipped_tex_coords, sizeof(vertices_flipped_tex_coords),
+                          (void*)indexes, sizeof(indexes));
+                break;
+            case FLIPPED_CROPPED:
+                fill_data((void*)vertices_flipped_cropped_tex_coords, sizeof(vertices_flipped_cropped_tex_coords),
+                          (void*)indexes, sizeof(indexes));
+                break;
+            default:
+                break;
         }
-//        cropped ? 
-//        fill_data((void*)vertices_flipped_cropped_tex_coords, sizeof(vertices_flipped_cropped_tex_coords),
-//                  (void*)indexes, sizeof(indexes))
-//        :
-//        fill_data((void*)vertices_straight_tex_coords, sizeof(vertices_straight_tex_coords),
-//                  (void*)indexes, sizeof(indexes));
     }
 
     virtual void set_attribs()
@@ -64,7 +80,7 @@ public:
         RFFilter::drawToFramebuffer(framebuffer);
     }
     
-    RFLookupFilter(string texture_name):RFFilter("copy.vsh", "lookup.fsh")
+    RFLookupFilter(string texture_name, BUFFER_DATA mode = STRAIGHT):RFFilter("copy.vsh", "lookup.fsh", mode)
     {
         load_texture(texture_name);
     }

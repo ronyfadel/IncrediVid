@@ -31,18 +31,18 @@ MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
     framebuffers.push_back(texture_fb_2);
     
     // some oft used filters
-    RFFilter *crop = new RFFilter("copy.vsh", "crop.fsh", true);
+    RFFilter *crop = new RFFilter("copy.vsh", "crop.fsh", FLIPPED_CROPPED);
     crop->bind_uniform_to_int_value("input_texture", CAPTURED_FRAME_TEXTURE);
     crop->setup();
     
-    RFFilter *copy = new RFFilter("copy.vsh", "copy.fsh");
+    RFFilter *copy = new RFFilter("copy.vsh", "copy.fsh", FLIPPED);
     copy->bind_uniform_to_int_value("input_texture", iOS5_FRAMEBUFFER_TEXTURE);
     copy->setup();
 
     // Amatorka Filter
     RFFilterCollection* amatorka = new RFFilterCollection("Amatorka");
     amatorka->add_filter_framebuffer_pair(crop, texture_fb_1);
-    RFFilter *lookup_amatorka = new RFLookupFilter("lookup_amatorka.png");
+    RFFilter *lookup_amatorka = new RFLookupFilter("lookup_amatorka.png", FLIPPED);
     lookup_amatorka->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_1);
     lookup_amatorka->bind_uniform_to_int_value("lookup_texture", LOOKUP_TEXTURE);
     lookup_amatorka->setup();
@@ -53,7 +53,7 @@ MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
     // Miss Etikate Filter
     RFFilterCollection* miss_etikate = new RFFilterCollection("Miss Etikate");
     miss_etikate->add_filter_framebuffer_pair(crop, texture_fb_1);
-    RFFilter *lookup_miss_etikate = new RFLookupFilter("lookup_miss_etikate.png");
+    RFFilter *lookup_miss_etikate = new RFLookupFilter("lookup_miss_etikate.png", FLIPPED);
     lookup_miss_etikate->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_1);
     lookup_miss_etikate->bind_uniform_to_int_value("lookup_texture", LOOKUP_TEXTURE);
     lookup_miss_etikate->setup();
@@ -72,7 +72,7 @@ MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
     blur->setup();
     cartoon->add_filter_framebuffer_pair(blur, texture_fb_2);
 
-    RFFilter *toon = new RFFilter("preview.vsh", "toon.fsh");
+    RFFilter *toon = new RFFilter("preview.vsh", "toon.fsh", FLIPPED);
     toon->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_1);
     toon->bind_uniform_to_int_value("blurred_texture", OUTPUT_TEXTURE_2);
     toon->bind_uniform_to_float_value("texel_width",  1.f / TARGET_TEXTURE_WIDTH);
@@ -92,16 +92,9 @@ void MyRenderer::render()
     RFRenderer::render();
 }
 
-void MyRenderer::use_next_filter()
+void MyRenderer::useFilterNumber(int number)
 {
-    current_filter_index = (current_filter_index + 1) % filters.size();
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithCString:filters.at(current_filter_index)->getName().c_str() encoding:NSASCIIStringEncoding]];
-}
-
-void MyRenderer::use_previous_filter()
-{
-    current_filter_index = (current_filter_index + filters.size() - 1) % filters.size();
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithCString:filters.at(current_filter_index)->getName().c_str() encoding:NSASCIIStringEncoding]];
+    current_filter_index = number;
 }
 
 MyRenderer::~MyRenderer()

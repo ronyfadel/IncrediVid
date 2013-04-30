@@ -1,16 +1,15 @@
 #import <UIKit/UIKit.h>
-#import "RFRenderer.h"
+#import "MyRenderer.h"
 #import "AVCaptureSessionManager.h"
 
 @interface MyViewController : UIViewController <RFVideoProcessorDelegate> {
     CADisplayLink* displayLink;
-    RFRenderer* renderer;
+    MyRenderer* renderer;
     AVCaptureSessionManager* captureSessionManager;
     
-    IBOutlet UIButton *nextButton, *prevButton, *videoButton;
+    IBOutlet UIButton *chooseFilterButton, *videoButton;
     IBOutlet UILabel *logoLabel;
 }
 
-- (IBAction)changeFilter:(id)obj;
-- (IBAction)recordVideo:(id)obj;
+- (IBAction)wandPushed:(id)obj;
 @end

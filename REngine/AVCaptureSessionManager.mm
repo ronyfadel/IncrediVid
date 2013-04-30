@@ -38,11 +38,6 @@ extern CVPixelBufferRef __renderTarget;
     return self;
 }
 
-- (void)setVideoProcessorDelegate:(id<RFVideoProcessorDelegate>)delegate
-{
-    videoProcessor.delegate = delegate;
-}
-
 - (void)setupCaptureSession
 {
     OSStatus bufferQueueCreateError = CMBufferQueueCreate(kCFAllocatorDefault, 1, CMBufferQueueGetCallbacksForUnsortedSampleBuffers(), &previewBufferQueue);
@@ -162,7 +157,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                     CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
                     if (!err) {
                         OSStatus result = CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
-                        CMVideoDimensions b =  CMVideoFormatDescriptionGetDimensions(videoInfo);
                         CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
                         CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, YES, NULL, NULL, videoInfo, &timingInfo, &newSampleBuffer);
                         

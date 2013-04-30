@@ -12,7 +12,6 @@ protected:
 public:
     MyRenderer(UIView* superview);
     void render();
-    void use_next_filter();
-    void use_previous_filter();
+    void useFilterNumber(int number);
     virtual ~MyRenderer();
 };

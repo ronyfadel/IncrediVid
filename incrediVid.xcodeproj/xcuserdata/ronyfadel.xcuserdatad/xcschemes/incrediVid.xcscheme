@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
-               BuildableName = "REngine.app"
+               BuildableName = "incrediVid.app"
                BlueprintName = "incrediVid"
                ReferencedContainer = "container:incrediVid.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5373B10F15FF8A4500D308A4"
-               BuildableName = "REngineTests.octest"
+               BuildableName = "incrediVidTests.octest"
                BlueprintName = "incrediVidTests"
                ReferencedContainer = "container:incrediVid.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
-            BuildableName = "REngine.app"
+            BuildableName = "incrediVid.app"
             BlueprintName = "incrediVid"
             ReferencedContainer = "container:incrediVid.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
-            BuildableName = "REngine.app"
+            BuildableName = "incrediVid.app"
             BlueprintName = "incrediVid"
             ReferencedContainer = "container:incrediVid.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
-            BuildableName = "REngine.app"
+            BuildableName = "incrediVid.app"
             BlueprintName = "incrediVid"
             ReferencedContainer = "container:incrediVid.xcodeproj">
          </BuildableReference>

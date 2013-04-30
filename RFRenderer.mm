@@ -1,4 +1,5 @@
 #import "RFRenderer.h"
+#import "RFGLView.h"
 
 RFRenderer::RFRenderer(UIView* superview)
 {

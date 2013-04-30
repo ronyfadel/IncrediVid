@@ -1,4 +1,4 @@
-#import "RFGLView.h"
+@class RFGLView;
 
 class RFRenderer {
 protected:

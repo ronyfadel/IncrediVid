@@ -26,8 +26,9 @@
 
 - (void)setup
 {
+    
     self.frame = CGRectMake(0,
-                            70,
+                            50,
                             PREVIEW_POINTS_WIDTH,
                             PREVIEW_POINTS_HEIGHT);
     

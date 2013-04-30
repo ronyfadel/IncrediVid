@@ -8,7 +8,6 @@
 }
 
 - (id)initWithRenderer:(RFRenderer*)theRenderer;
-- (void)setVideoProcessorDelegate:(id<RFVideoProcessorDelegate>)delegate;
 - (void)startRecording;
 - (void)stopRecording;
 - (void)stopAndTearDownCaptureSession;
