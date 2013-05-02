@@ -16,11 +16,11 @@ extern CVPixelBufferRef __renderTarget;
     CVOpenGLESTextureRef bgraTexture;
     CMBufferQueueRef previewBufferQueue, savingBufferQueue;
     AVCaptureSession* captureSession;
-    RFVideoProcessor* videoProcessor;
     AVCaptureConnection *audioConnection;
 	AVCaptureConnection *videoConnection;
 }
 
+@property (readwrite, retain) RFVideoProcessor* videoProcessor;
 - (void)setupCaptureSession;
 - (void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer;
 @end
@@ -32,7 +32,7 @@ extern CVPixelBufferRef __renderTarget;
     if((self = [super init]))
     {
         self->renderer = theRenderer;
-        videoProcessor = [[RFVideoProcessor alloc] init];
+        self.videoProcessor = [[[RFVideoProcessor alloc] init] autorelease];
         [self setupCaptureSession];
     }
     return self;
@@ -98,8 +98,8 @@ extern CVPixelBufferRef __renderTarget;
 
 	[videoOut release];
     
-    videoProcessor.videoConnection = videoConnection;
-    videoProcessor.audioConnection = audioConnection;
+    self.videoProcessor.videoConnection = videoConnection;
+    self.videoProcessor.audioConnection = audioConnection;
     
     [captureSession commitConfiguration];
     
@@ -119,7 +119,7 @@ extern CVPixelBufferRef __renderTarget;
 		CFRelease(previewBufferQueue);
 		previewBufferQueue = NULL;
 	}
-    [videoProcessor stopAndTearDownRecordingSession];
+    [self.videoProcessor stopAndTearDownRecordingSession];
 }
 
 /*
@@ -140,7 +140,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
             NSLog(@"No video texture cache");
             return;
         }
-        
+    
         OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, sampleBuffer);
         if ( !err ) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -155,6 +155,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                     CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
                     CMSampleBufferRef newSampleBuffer;
                     CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+                    
                     if (!err) {
                         OSStatus result = CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
                         CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
@@ -167,18 +168,20 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                     } else {
                         NSLog(@"huge error: %d", err);
                     }
+                    
                     CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
                     
-                    if (! (videoProcessor.recording || videoProcessor.recordingWillBeStarted) ) {
+                    if (! (self.videoProcessor.recording || self.videoProcessor.recordingWillBeStarted) ) {
                         CFRelease((CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue));
                     }
+                    
                     CFRelease(sbuf);
                 }
             });
         }
     }
     
-    if (videoProcessor.recording || videoProcessor.recordingWillBeStarted) {
+    if (self.videoProcessor.recording || self.videoProcessor.recordingWillBeStarted) {
                 
         if (connection == audioConnection) {
             CFRetain(sampleBuffer);
@@ -191,7 +194,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
             CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
             CFRetain(formatDescription);
 
-            [videoProcessor processFrameWithSampleBuffer:sampleBuffer
+            [self.videoProcessor processFrameWithSampleBuffer:sampleBuffer
                                     andFormatDescription:formatDescription
                                            andConnection:connection];
         }
@@ -260,17 +263,18 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)startRecording
 {
-    [videoProcessor startRecording];
+    [self.videoProcessor startRecording];
 }
 
 - (void)stopRecording
 {
-    [videoProcessor stopRecording];
+    NSLog(@"should ficking fucking yes");
+    [self.videoProcessor stopRecording];
 }
 
 - (void)captureSessionStoppedRunningNotification:(NSNotification *)notification
 {
-    [videoProcessor stopRecording];
+    [self.videoProcessor stopRecording];
 }
 
 - (void)dealloc

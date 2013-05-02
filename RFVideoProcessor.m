@@ -267,6 +267,7 @@
 
 - (void) startRecording
 {
+    NSLog(@"should start recording");
 	dispatch_async(movieWritingQueue, ^{
         
 		if ( recordingWillBeStarted || self.recording )
@@ -290,6 +291,7 @@
 
 - (void) stopRecording
 {
+    NSLog(@"SHOULD ficking stop recording");
 	dispatch_async(movieWritingQueue, ^{
 		
 		if ( recordingWillBeStopped || (self.recording == NO) )

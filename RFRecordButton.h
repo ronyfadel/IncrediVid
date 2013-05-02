@@ -10,4 +10,6 @@
 
 @interface RFRecordButton : UIButton
 
+@property (nonatomic, retain) CALayer *haloLayer;
+
 @end

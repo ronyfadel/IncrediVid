@@ -26,7 +26,6 @@
 
 - (void)setup
 {
-    
     self.frame = CGRectMake(0,
                             50,
                             PREVIEW_POINTS_WIDTH,
