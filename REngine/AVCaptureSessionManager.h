@@ -6,7 +6,7 @@
 @interface AVCaptureSessionManager : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate> {
     
 }
-@property (readonly) RFVideoProcessor* videoProcessor;
+@property (retain) RFVideoProcessor* videoProcessor;
 - (id)initWithRenderer:(RFRenderer*)theRenderer;
 - (void)startRecording;
 - (void)stopRecording;

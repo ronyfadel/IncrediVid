@@ -23,8 +23,6 @@ MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
                   *texture_fb_1       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_1),
                   *texture_fb_2       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_2);
     
-    
-    
     framebuffers.push_back(view_fb);
     framebuffers.push_back(iOS5_texture_fb);
     framebuffers.push_back(texture_fb_1);

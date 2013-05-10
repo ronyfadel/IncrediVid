@@ -88,6 +88,7 @@
 		530D2DFA172F0113004C8713 /* wand.png in Resources */ = {isa = PBXBuildFile; fileRef = 530D2DF9172F0113004C8713 /* wand.png */; };
 		530D2DFB172F029E004C8713 /* wand.png in Resources */ = {isa = PBXBuildFile; fileRef = 530D2DF9172F0113004C8713 /* wand.png */; };
 		530D2E07172F0D76004C8713 /* RFAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530D2E06172F0D75004C8713 /* RFAnnotationView.m */; };
+		530FC33B173D6A660063F1E5 /* lux.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 530FC33A173D6A660063F1E5 /* lux.jpg */; };
 		533777F41731A3AC00CC6910 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533777F21731A3AC00CC6910 /* GalleryViewController.m */; };
 		533777F51731A3AC00CC6910 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533777F31731A3AC00CC6910 /* GalleryViewController.xib */; };
 		5373B0FA15FF8A4400D308A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373B0F915FF8A4400D308A4 /* UIKit.framework */; };
@@ -322,6 +323,7 @@
 		530D2DF9172F0113004C8713 /* wand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wand.png; sourceTree = "<group>"; };
 		530D2E05172F0D75004C8713 /* RFAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFAnnotationView.h; sourceTree = "<group>"; };
 		530D2E06172F0D75004C8713 /* RFAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFAnnotationView.m; sourceTree = "<group>"; };
+		530FC33A173D6A660063F1E5 /* lux.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lux.jpg; sourceTree = "<group>"; };
 		533777F11731A3AC00CC6910 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		533777F21731A3AC00CC6910 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		533777F31731A3AC00CC6910 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
@@ -817,6 +819,7 @@
 		530D2C48172CC33B004C8713 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				530FC33A173D6A660063F1E5 /* lux.jpg */,
 				5380BB8B172F4F7C007DC069 /* Thumbnails */,
 				530D2C4F172CCA33004C8713 /* Lato-Black.ttf */,
 				53FCB759173039B30072C527 /* gallery.png */,
@@ -829,6 +832,15 @@
 				53FCB75B17306B330072C527 /* filters.plist */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		530FC33C173D71080063F1E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5373B15E15FFA84E00D308A4 /* RFGLView.h */,
+				5373B15F15FFA84E00D308A4 /* RFGLView.mm */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		533777EB1731A29400CC6910 /* Gallery View Controller */ = {
@@ -846,6 +858,7 @@
 			children = (
 				530D2C48172CC33B004C8713 /* Resources */,
 				53761975172A5129004ECE27 /* 3rd Party */,
+				53C8C7D616EC05CC00505767 /* Engine */,
 				53C8C7D316EC056F00505767 /* Classes */,
 				53B68CA7168A20000062636D /* Shaders */,
 				53761967172A30F2004ECE27 /* Lookup */,
@@ -998,8 +1011,8 @@
 		53C8C7D316EC056F00505767 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				53C8C7EB16EC0E4500505767 /* Views */,
 				53C8C7F316EC0FC500505767 /* App */,
-				53C8C7D616EC05CC00505767 /* Engine */,
 				53C8C7D416EC057700505767 /* Application */,
 				53084DB91731EFA3004D89AD /* Sharing View Controller */,
 				53C8C7D516EC058E00505767 /* Main View Controller */,
@@ -1032,13 +1045,13 @@
 		53C8C7D616EC05CC00505767 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				530FC33C173D71080063F1E5 /* View */,
 				5391F07D170D1F9600B9FB22 /* Filters */,
 				53A85FE516F0DD90004095B3 /* Scene Graph */,
 				53C8C7EF16EC0E8200505767 /* Renderer */,
 				53C8C7EE16EC0E7300505767 /* Texture */,
 				53C8C7ED16EC0E5C00505767 /* Framebuffers */,
 				53C8C7EC16EC0E4D00505767 /* Shader+Program */,
-				53C8C7EB16EC0E4500505767 /* Views */,
 			);
 			name = Engine;
 			sourceTree = "<group>";
@@ -1046,8 +1059,6 @@
 		53C8C7EB16EC0E4500505767 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5373B15E15FFA84E00D308A4 /* RFGLView.h */,
-				5373B15F15FFA84E00D308A4 /* RFGLView.mm */,
 				530D2E05172F0D75004C8713 /* RFAnnotationView.h */,
 				530D2E06172F0D75004C8713 /* RFAnnotationView.m */,
 				530D2DF3172EDF96004C8713 /* RFFilterScrollView.h */,
@@ -1222,6 +1233,7 @@
 				53084D8D1731E3E3004D89AD /* Localizable.strings in Resources */,
 				53084D941731E3E3004D89AD /* FBConnect.bundle in Resources */,
 				53084DBE1731EFD3004D89AD /* SharingViewController.xib in Resources */,
+				530FC33B173D6A660063F1E5 /* lux.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,6 +26,7 @@
 @property (readwrite) Float64 videoFrameRate;
 @property (readwrite) CMVideoDimensions videoDimensions;
 @property (readwrite) CMVideoCodecType videoType;
+@property (readwrite) BOOL recordingWillBeStarted;
 @property (readwrite) BOOL recording;
 @end
 
@@ -40,11 +41,7 @@
 {
     if (self = [super init]) {
         previousSecondTimestamps = [[NSMutableArray alloc] init];
-        
         movieWritingQueue = dispatch_queue_create("Movie Writing Queue", DISPATCH_QUEUE_SERIAL);
-        // The temporary path for the video before saving it to the photo album
-        movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"Movie.MOV"]];
-        [movieURL retain];
     }
     return self;
 }
@@ -102,7 +99,6 @@
 									dispatch_async(movieWritingQueue, ^{
 										recordingWillBeStopped = NO;
 										self.recording = NO;
-										
                                         [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Stop" object:nil];
 									});
 								}];
@@ -281,6 +277,14 @@
 		// Remove the file if one with the same name already exists
 		[self removeFile:movieURL];
         
+        // The temporary path for the video before saving it to the photo album
+        NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+        dateFormatter.dateFormat = @"YYYY_MM_dd_HH_mm_ss";
+
+        movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@incrediVid_%@.MOV", NSTemporaryDirectory(), [dateFormatter stringFromDate:now]]];
+        [movieURL retain];
+
 		// Create an asset writer
 		NSError *error;
 		assetWriter = [[AVAssetWriter alloc] initWithURL:movieURL fileType:(NSString *)kUTTypeQuickTimeMovie error:&error];
@@ -291,7 +295,6 @@
 
 - (void) stopRecording
 {
-    NSLog(@"SHOULD ficking stop recording");
 	dispatch_async(movieWritingQueue, ^{
 		
 		if ( recordingWillBeStopped || (self.recording == NO) )
@@ -310,6 +313,8 @@
 			
 			readyToRecordVideo = NO;
 			readyToRecordAudio = NO;
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Stop" object:movieURL];
 			
 			[self saveMovieToCameraRoll];
 		}

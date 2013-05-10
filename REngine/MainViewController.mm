@@ -29,6 +29,7 @@ static void NSLogRect(CGRect rect)
 @synthesize annotationBubble;
 @synthesize chooseFilterButton, openGalleryButton, recordButton;
 @synthesize logoLabel, elapsedTimeLabel;
+@synthesize captureSessionManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,9 +46,42 @@ static void NSLogRect(CGRect rect)
 
 - (void)viewDidLoad
 {
-#if ! TARGET_IPHONE_SIMULATOR
-    // Backend
+#if TARGET_IPHONE_SIMULATOR
     renderer = new MyRenderer(self.view);
+    
+    // Texture 0 is pre-defined image
+    string texture_name = "lux.jpg";
+    string texture_path = get_ios_file_path(texture_name);
+    cout<<texture_path<<endl;
+    UIImage* texture = [UIImage imageWithContentsOfFile:[NSString stringWithCString:texture_path.c_str() encoding:NSASCIIStringEncoding]];
+    
+    // First get the image into your data buffer
+    CGImageRef imageRef = [texture CGImage];
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
+                                                 bitsPerComponent, bytesPerRow, colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    
+    GLuint new_tex;
+    glGenTextures(1, &new_tex);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, new_tex);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, rawData);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+#else
     captureSessionManager = [[AVCaptureSessionManager alloc] initWithRenderer:(renderer)];
 #endif
 
@@ -56,7 +90,7 @@ static void NSLogRect(CGRect rect)
     logoLabel.font = latoBlack;
     UIFont *latoBlackSmall = [UIFont fontWithName:@"Lato-Black" size:20.0];
     elapsedTimeLabel.font = latoBlackSmall;
-	elapsedTimeLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.45];
+	elapsedTimeLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35];
     elapsedTimeLabel.layer.cornerRadius = 4;
     elapsedTimeLabel.layer.opacity = 0;
     [self.view bringSubviewToFront:elapsedTimeLabel];
@@ -76,14 +110,22 @@ static void NSLogRect(CGRect rect)
     [self.view addSubview:self.annotationBubble];
     [self.view bringSubviewToFront:self.annotationBubble];
 
-    SharingViewController* sharingViewController = [[SharingViewController alloc] initWithNibName:@"SharingViewController" bundle:[NSBundle mainBundle]];
-    [self.view addSubview:sharingViewController.view];
-    [self.view bringSubviewToFront:sharingViewController.view];
-    NSLogRect(sharingViewController.view.frame);
-    
-//    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
-//    displayLink.frameInterval = 2;
-//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];    
+//    SharingViewController* sharingViewController = [[SharingViewController alloc] initWithNibName:@"SharingViewController" bundle:[NSBundle mainBundle]];
+//    sharingViewController.view.backgroundColor = [UIColor clearColor];
+//    sharingViewController.view.frame = CGRectMake(50, 60, 220, 300);
+//    [self.view addSubview:sharingViewController.view];
+
+
+#if TARGET_IPHONE_SIMULATOR
+    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
+    displayLink.frameInterval = 30;
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+#endif
+}
+
+- (void)update
+{
+    self->renderer->render();
 }
 
 - (IBAction)alternateFilterPicker:(id)sender

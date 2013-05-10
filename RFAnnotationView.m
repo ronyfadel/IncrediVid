@@ -54,7 +54,7 @@
 }
 
 - (CGPathRef)newBubbleWithRect:(CGRect)rect {
-    CGFloat nibPositionRatio = 0.87f;
+    CGFloat nibPositionRatio = 0.9f;
     CGFloat stroke = 1.0;
 	CGFloat radius = 4.0;
 	CGMutablePathRef path = CGPathCreateMutable();

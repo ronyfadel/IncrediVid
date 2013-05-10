@@ -4,14 +4,12 @@
 
 #define CAPTURE_FRAMES_PER_SECOND 30
 
-
 extern CVPixelBufferRef __renderTarget;
 
 @interface AVCaptureSessionManager() {
 @private
     RFRenderer* renderer;
-    
-    std::mutex m;
+
     CVOpenGLESTextureCacheRef _videoTextureCache;
     CVOpenGLESTextureRef bgraTexture;
     CMBufferQueueRef previewBufferQueue, savingBufferQueue;
@@ -20,12 +18,12 @@ extern CVPixelBufferRef __renderTarget;
 	AVCaptureConnection *videoConnection;
 }
 
-@property (readwrite, retain) RFVideoProcessor* videoProcessor;
 - (void)setupCaptureSession;
 - (void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer;
 @end
 
 @implementation AVCaptureSessionManager
+@synthesize videoProcessor;
 
 - (id)initWithRenderer:(RFRenderer*)theRenderer;
 {
@@ -126,9 +124,6 @@ extern CVPixelBufferRef __renderTarget;
  delegate routine for processing samples
  to use sample buffer outside this scope, have
  to CFRetain then CFRelease it
- Autorelease pool necessary, sampleBuffer is added to
- autorelease pool, if its processing was not fast enough
- pool cleaned up every once in a while
  */
 - (void)captureOutput:(AVCaptureOutput *)captureOutput 
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer 
@@ -139,6 +134,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         {
             NSLog(@"No video texture cache");
             return;
+        } else {
+            CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
         }
     
         OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, sampleBuffer);
@@ -148,25 +145,24 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                 if (sbuf) {
                     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sbuf);
                     [self createTextureFromImageBuffer:imageBuffer];
-//                    NSLog(@"rendering");
                     self->renderer->render();
                     
-                    CMVideoFormatDescriptionRef videoInfo = NULL;
-                    CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
-                    CMSampleBufferRef newSampleBuffer;
                     CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
                     
                     if (!err) {
-                        OSStatus result = CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
+                        CMVideoFormatDescriptionRef videoInfo = NULL;
+                        CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
+
+                        CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
                         CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
+                        
+                        CMSampleBufferRef newSampleBuffer = NULL;
                         CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, YES, NULL, NULL, videoInfo, &timingInfo, &newSampleBuffer);
                         
-                        m.lock();
-                        CMBufferQueueEnqueue(savingBufferQueue, newSampleBuffer);
-                        m.unlock();
                         
+                        CMBufferQueueEnqueue(savingBufferQueue, newSampleBuffer);
                     } else {
-                        NSLog(@"huge error: %d", err);
+                        NSLog(@"Error locking __renderTarget: %d", err);
                     }
                     
                     CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
@@ -186,9 +182,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         if (connection == audioConnection) {
             CFRetain(sampleBuffer);
         } else {
-            m.lock();
             sampleBuffer = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue);
-            m.unlock();
         }
         if (sampleBuffer) {
             CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
@@ -268,7 +262,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)stopRecording
 {
-    NSLog(@"should ficking fucking yes");
     [self.videoProcessor stopRecording];
 }
 

@@ -39,13 +39,12 @@
     
     //// Shadow Declarations
     UIColor* shadow = strokeColor;
-    CGSize shadowOffset = CGSizeMake(0.1, -0.1);
-    CGFloat shadowBlurRadius = 13;
+    CGFloat shadowBlurRadius = -10;
     
     //// Rounded Rectangle Drawing
-    UIBezierPath* roundedRectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0, 0, 220, 300) cornerRadius: 4];
+    UIBezierPath* roundedRectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0, 0, 220, 300) cornerRadius: 20];
     CGContextSaveGState(context);
-    CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
+    CGContextSetShadowWithColor(context, CGSizeZero, shadowBlurRadius, shadow.CGColor);
     CGContextBeginTransparencyLayer(context, NULL);
     [roundedRectanglePath addClip];
     CGContextDrawLinearGradient(context, gradient, CGPointMake(110, 0), CGPointMake(110, 300), 0);

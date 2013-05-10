@@ -14,4 +14,5 @@
     IBOutlet UILabel *logoLabel, *elapsedTimeLabel;
 }
 
+@property(retain) AVCaptureSessionManager* captureSessionManager;
 @end

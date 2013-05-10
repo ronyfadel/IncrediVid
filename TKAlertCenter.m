@@ -252,7 +252,7 @@ CGRect subtractRect(CGRect wf,CGRect kf){
 	[self adjust];
 }
 - (void) drawRect:(CGRect)rect{
-	[[UIColor colorWithWhite:0 alpha:0.8] set];
+	[[UIColor colorWithWhite:0 alpha:0.45] set]; // edited by RFF
 	[UIView drawRoundRectangleInRect:rect withRadius:10];
 	[[UIColor whiteColor] set];
 	[text drawInRect:messageRect withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
