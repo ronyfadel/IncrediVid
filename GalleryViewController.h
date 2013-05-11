@@ -8,5 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GalleryViewController : UIViewController
+@interface GalleryViewController : UIViewController {
+    NSMutableArray *videos;
+}
 @end

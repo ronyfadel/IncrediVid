@@ -314,7 +314,7 @@
 			readyToRecordVideo = NO;
 			readyToRecordAudio = NO;
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Stop" object:movieURL];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Stop" object:nil userInfo:@{@"movieURL" : movieURL}];
 			
 			[self saveMovieToCameraRoll];
 		}

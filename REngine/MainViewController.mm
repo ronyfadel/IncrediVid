@@ -110,11 +110,9 @@ static void NSLogRect(CGRect rect)
     [self.view addSubview:self.annotationBubble];
     [self.view bringSubviewToFront:self.annotationBubble];
 
-//    SharingViewController* sharingViewController = [[SharingViewController alloc] initWithNibName:@"SharingViewController" bundle:[NSBundle mainBundle]];
-//    sharingViewController.view.backgroundColor = [UIColor clearColor];
-//    sharingViewController.view.frame = CGRectMake(50, 60, 220, 300);
-//    [self.view addSubview:sharingViewController.view];
-
+    SharingViewController* sharingViewController = [[SharingViewController alloc] initWithNibName:@"SharingViewController" bundle:[NSBundle mainBundle]];
+//    sharingViewController.parentController = self;
+    [self.view addSubview:sharingViewController.view];
 
 #if TARGET_IPHONE_SIMULATOR
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];

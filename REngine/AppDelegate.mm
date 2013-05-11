@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "RFVideoCollection.h"
 
 @implementation AppDelegate
 
@@ -18,14 +19,14 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    [RFVideoCollection sharedCollection];
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    MainViewController *mainViewController = (MainViewController*)self.window.rootViewController;    
+    MainViewController *mainViewController = (MainViewController*)self.window.rootViewController;
     if (mainViewController.captureSessionManager.videoProcessor.recording) {
-        NSLog(@"is recording");
         [mainViewController.captureSessionManager stopRecording];
     }
     

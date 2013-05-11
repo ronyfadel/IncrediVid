@@ -3,6 +3,7 @@
 #import "AVCaptureSessionManager.h"
 
 @class RFRecordButton;
+@class SharingViewController;
 
 @interface MainViewController : UIViewController {
     CADisplayLink* displayLink;
@@ -15,4 +16,6 @@
 }
 
 @property(retain) AVCaptureSessionManager* captureSessionManager;
+
+- (void)dismissSharingViewController:(SharingViewController*)sharingViewController;
 @end
