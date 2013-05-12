@@ -71,7 +71,7 @@
 {
     Class sharer;
     NSString *someText = @"This is a blurb of text I highlighted from a document.";
-//    SHKItem *item = [SHKItem text:someText];
+    SHKItem *item = [SHKItem text:someText];
     
 //    UIButton *pressedButton = (UIButton*)sender;
 //    NSString *serviceName = pressedButton.titleLabel.text;
