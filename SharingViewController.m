@@ -13,11 +13,11 @@
 
 @implementation SharingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil video:(NSDictionary*)video
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        self.video = video;
     }
     return self;
 }
@@ -69,9 +69,9 @@
 
 - (IBAction)share:(id)sender
 {
-    Class sharer;
-    NSString *someText = @"This is a blurb of text I highlighted from a document.";
-    SHKItem *item = [SHKItem text:someText];
+//    Class sharer;
+//    NSString *someText = @"This is a blurb of text I highlighted from a document.";
+//    SHKItem *item = [SHKItem text:someText];
     
 //    UIButton *pressedButton = (UIButton*)sender;
 //    NSString *serviceName = pressedButton.titleLabel.text;
@@ -100,6 +100,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [self.video release];
+    [super dealloc];
 }
 
 @end

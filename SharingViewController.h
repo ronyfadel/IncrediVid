@@ -16,6 +16,8 @@
 - (IBAction)tapped:(UITapGestureRecognizer *)recognizer;
 - (void)dismiss;
 
+@property (retain) NSDictionary* video;
+
 @property IBOutlet UILabel *shareLabel;
 @property IBOutlet UIView *shareLabelBackgroundView;
 @property IBOutlet UIView *holderView;
