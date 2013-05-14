@@ -20,6 +20,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [RFVideoCollection sharedCollection];
+    
     return YES;
 }
 

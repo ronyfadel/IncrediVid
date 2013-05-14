@@ -10,4 +10,5 @@
 
 @interface GalleryViewController : UIViewController {
 }
+@property IBOutlet UIScrollView* galleryScrollView;
 @end

@@ -16,7 +16,7 @@ static void NSLogRect(CGRect rect)
     
 }
 @property RFAnnotationView* annotationBubble;
-@property UIButton *chooseFilterButton, *openGalleryButton;
+@property IBOutlet UIButton *chooseFilterButton, *openGalleryButton, *upgradeToProButton;
 @property RFRecordButton *recordButton;
 @property UILabel *logoLabel, *elapsedTimeLabel;
 
@@ -46,8 +46,10 @@ static void NSLogRect(CGRect rect)
 
 - (void)viewDidLoad
 {
-#if TARGET_IPHONE_SIMULATOR
     renderer = new MyRenderer(self.view);
+#if ! TARGET_IPHONE_SIMULATOR
+    captureSessionManager = [[AVCaptureSessionManager alloc] initWithRenderer:(renderer)];
+#else
     
     // Texture 0 is pre-defined image
     string texture_name = "lux.jpg";
@@ -81,8 +83,6 @@ static void NSLogRect(CGRect rect)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-#else
-    captureSessionManager = [[AVCaptureSessionManager alloc] initWithRenderer:(renderer)];
 #endif
 
     // UI
@@ -94,6 +94,9 @@ static void NSLogRect(CGRect rect)
     elapsedTimeLabel.layer.cornerRadius = 4;
     elapsedTimeLabel.layer.opacity = 0;
     [self.view bringSubviewToFront:elapsedTimeLabel];
+
+    self.upgradeToProButton.layer.cornerRadius = 4;
+    
     
     // re-showing record button covered by GL View
     [self.view bringSubviewToFront:recordButton];
@@ -109,10 +112,6 @@ static void NSLogRect(CGRect rect)
     [self.annotationBubble addSubview:scrollView];
     [self.view addSubview:self.annotationBubble];
     [self.view bringSubviewToFront:self.annotationBubble];
-
-    SharingViewController* sharingViewController = [[SharingViewController alloc] initWithNibName:@"SharingViewController" bundle:[NSBundle mainBundle]];
-//    sharingViewController.parentController = self;
-    [self.view addSubview:sharingViewController.view];
 
 #if TARGET_IPHONE_SIMULATOR
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
@@ -247,7 +246,7 @@ static void NSLogRect(CGRect rect)
 
 - (IBAction)openGallery:(id)sender
 {
-    GalleryViewController* galleryViewController = [[GalleryViewController alloc] init];
+    GalleryViewController* galleryViewController = [[[GalleryViewController alloc] init] autorelease];
     [self presentViewController:galleryViewController animated:YES completion:^(void){}];
 }
 

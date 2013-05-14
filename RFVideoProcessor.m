@@ -84,27 +84,6 @@
 
 #pragma mark Recording
 
-- (void)saveMovieToCameraRoll
-{
-	ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-	[library writeVideoAtPathToSavedPhotosAlbum:movieURL
-								completionBlock:^(NSURL *assetURL, NSError *error) {
-									if (error)
-                                        NSLog(@"%@", error);
-									else
-										[self removeFile:movieURL];
-                                    
-                                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Saved to Camera Roll!"];
-									
-									dispatch_async(movieWritingQueue, ^{
-										recordingWillBeStopped = NO;
-										self.recording = NO;
-                                        [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Stop" object:nil];
-									});
-								}];
-	[library release];
-}
-
 - (void) writeSampleBuffer:(CMSampleBufferRef)sampleBuffer ofType:(NSString *)mediaType
 {
 	if ( assetWriter.status == AVAssetWriterStatusUnknown ) {
@@ -275,15 +254,17 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Will Start" object:nil];
         
 		// Remove the file if one with the same name already exists
-		[self removeFile:movieURL];
+//		[self removeFile:movieURL];
         
         // The temporary path for the video before saving it to the photo album
         NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
         NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
         dateFormatter.dateFormat = @"YYYY_MM_dd_HH_mm_ss";
 
-        movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@incrediVid_%@.MOV", NSTemporaryDirectory(), [dateFormatter stringFromDate:now]]];
-        [movieURL retain];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+        
+        movieURL = [[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@incrediVids/incrediVid_%@.MOV", documentsDirectory, [dateFormatter stringFromDate:now]]] retain];
 
 		// Create an asset writer
 		NSError *error;
@@ -314,9 +295,9 @@
 			readyToRecordVideo = NO;
 			readyToRecordAudio = NO;
             
+            recordingWillBeStopped = NO;
+            self.recording = NO;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Stop" object:nil userInfo:@{@"movieURL" : movieURL}];
-			
-			[self saveMovieToCameraRoll];
 		}
 		else {
             NSLog(@"%@", [assetWriter error]);

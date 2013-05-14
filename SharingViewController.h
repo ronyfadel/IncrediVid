@@ -7,24 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 @class MainViewController;
 
-@interface SharingViewController : UIViewController
+@interface SharingViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
-- (IBAction)share:(id)sender;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil videoInfo:(NSDictionary*)videoInfo;
 - (IBAction)tapped:(UITapGestureRecognizer *)recognizer;
+- (IBAction)play:(id)sender;
+- (IBAction)share:(id)sender;
 - (void)dismiss;
+- (void)addToView:(UIView*)view;
 
-@property (retain) NSDictionary* video;
 
-@property IBOutlet UILabel *shareLabel;
-@property IBOutlet UIView *shareLabelBackgroundView;
-@property IBOutlet UIView *holderView;
-
-@property IBOutlet UIButton *facebookShareButton;
-@property IBOutlet UIButton *twitterShareButton;
-@property IBOutlet UIButton *youtubeShareButton;
-@property IBOutlet UIButton *emailShareButton;
+@property (retain) NSDictionary* videoInfo;
 
 @end

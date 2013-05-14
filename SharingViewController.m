@@ -7,17 +7,40 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "TKAlertCenter.h"
 #import "SharingViewController.h"
-//#import "ShareKit/Sharers/Services/Facebook/SHKFacebook.h"
-//#import "ShareKit/Sharers/Services/Twitter/SHKTwitter.h"
+#import "RFPlayButton.h"
+
+enum SHARING_SERVICE {
+    FACEBOOK_SHARING_SERVICE = 0,
+    EMAIl_SHARING_SERVICE,
+    CAMERA_ROLL_SHARING_SERVICE
+};
+
+@interface SharingViewController ()
+
+@property IBOutlet UIImageView *thumbnailView;
+@property IBOutlet UILabel *shareLabel;
+@property IBOutlet UIView *shareLabelBackgroundView;
+@property IBOutlet UIView *holderView;
+
+@property IBOutlet RFPlayButton *playButton;
+@property IBOutlet UIButton *facebookShareButton;
+@property IBOutlet UIButton *emailShareButton;
+@property IBOutlet UIButton *cameraRollShareButton;
+@property IBOutlet UIButton *openInShareButton;
+
+@end
 
 @implementation SharingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil video:(NSDictionary*)video
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil videoInfo:(NSDictionary*)videoInfo
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.video = video;
+        self.videoInfo = videoInfo;
     }
     return self;
 }
@@ -35,25 +58,48 @@
     UIFont* latoBlack = [UIFont fontWithName:@"Lato-Black" size:34.0];
     self.shareLabel.font = latoBlack;
     
+    // thumbnail image view
+    self.thumbnailView.image = [self.videoInfo objectForKey:@"thumbnail"];
+    self.thumbnailView.layer.cornerRadius = 6;
+    self.thumbnailView.layer.masksToBounds = YES;
+    self.playButton.layer.cornerRadius = 6;
+    self.playButton.layer.masksToBounds = YES;
+    
     // holder view
     self.holderView.backgroundColor = darkerFillColor;
     self.holderView.layer.cornerRadius = 16;
     self.holderView.layer.borderColor = strokeColor.CGColor;
     self.holderView.layer.borderWidth = 1.5f;
     
-    // customizing share buttons
-    UIFont* shareButtonFont = [UIFont fontWithName:@"Lato-Black" size:24.0];
-    self.facebookShareButton.titleLabel.font = shareButtonFont;
-    self.facebookShareButton.layer.cornerRadius = 10;
+    // masking holder view
+    UIBezierPath *maskPathtop = [UIBezierPath bezierPathWithRoundedRect:self.holderView.bounds
+                                                   byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+                                                         cornerRadii:CGSizeMake(16.0, 16.0)];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.shareLabelBackgroundView.bounds;
+    maskLayer.path = maskPathtop.CGPath;
+    self.shareLabelBackgroundView.layer.mask = maskLayer;
     
-    self.twitterShareButton.titleLabel.font = shareButtonFont;
-    self.twitterShareButton.layer.cornerRadius = 10;
+    // masking email button
+    UIBezierPath *maskPathbottomLeft = [UIBezierPath bezierPathWithRoundedRect:self.emailShareButton.bounds
+                                                   byRoundingCorners:UIRectCornerBottomLeft
+                                                         cornerRadii:CGSizeMake(16.0, 16.0)];
+    maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.emailShareButton.bounds;
+    maskLayer.path = maskPathbottomLeft.CGPath;
+    self.emailShareButton.layer.mask = maskLayer;
+
+    // masking Open In button
+    UIBezierPath *maskPathbottomRight = [UIBezierPath bezierPathWithRoundedRect:self.openInShareButton.bounds
+                                                             byRoundingCorners:UIRectCornerBottomRight
+                                                                   cornerRadii:CGSizeMake(16.0, 16.0)];
+    maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.openInShareButton.bounds;
+    maskLayer.path = maskPathbottomRight.CGPath;
+    self.openInShareButton.layer.mask = maskLayer;
+
     
-    self.youtubeShareButton.titleLabel.font = shareButtonFont;
-    self.youtubeShareButton.layer.cornerRadius = 10;
-    
-    self.emailShareButton.titleLabel.font = shareButtonFont;
-    self.emailShareButton.layer.cornerRadius = 10;
+
 }
 
 - (IBAction)tapped:(UITapGestureRecognizer *)recognizer
@@ -67,20 +113,86 @@
     }
 }
 
+- (IBAction)play:(id)sender
+{
+    NSURL *videoURL = [self.videoInfo objectForKey:@"movieURL"];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(1,1));
+    MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
+    [self presentMoviePlayerViewControllerAnimated:moviePlayerController];
+    UIGraphicsEndImageContext();
+}
+
 - (IBAction)share:(id)sender
 {
-//    Class sharer;
-//    NSString *someText = @"This is a blurb of text I highlighted from a document.";
-//    SHKItem *item = [SHKItem text:someText];
+    enum SHARING_SERVICE sharingServiceId = ((UIButton*)sender).tag;
     
-//    UIButton *pressedButton = (UIButton*)sender;
-//    NSString *serviceName = pressedButton.titleLabel.text;
-//    if ([serviceName isEqualToString:@"Facebook"]) {
-//        sharer = [SHKFacebook class];
-//    } else if ([serviceName isEqualToString:@"Twitter"]) {
-//        sharer = [SHKTwitter class];
-//    }
-//    [sharer shareItem:item];
+    switch (sharingServiceId) {
+        case FACEBOOK_SHARING_SERVICE:
+            break;
+        case EMAIl_SHARING_SERVICE:
+            [self emailMovie];
+            break;
+        case CAMERA_ROLL_SHARING_SERVICE:
+            [self saveMovieToCameraRoll];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)saveMovieToCameraRoll
+{
+    NSURL *videoURL = [self.videoInfo objectForKey:@"movieURL"];
+
+	ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+	[library writeVideoAtPathToSavedPhotosAlbum:videoURL
+								completionBlock:^(NSURL *assetURL, NSError *error) {
+                                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Saved to Camera Roll!"];
+								}];
+	[library release];
+}
+
+- (void)emailMovie
+{
+    NSURL *videoURL = [self.videoInfo objectForKey:@"movieURL"];
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    picker.mailComposeDelegate = self;
+    
+    // Attach an image to the email
+    NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
+    [picker addAttachmentData:videoData mimeType:@"video/quicktime" fileName:@"coolVid.mov"];
+    
+    // Fill out the email body text
+    NSString *emailBody = @"Shot using incrediVid\n";
+    [picker setMessageBody:emailBody isHTML:NO];
+    [self presentModalViewController:picker animated:YES];
+    
+    [picker release];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    // Notifies users about errors associated with the interface
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Result: canceled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Result: saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Result: sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Result: failed");
+            break;
+        default:
+            NSLog(@"Result: not sent");
+            break;
+    }
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)dismiss
@@ -96,15 +208,22 @@
                      }];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)addToView:(UIView*)view
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.view.layer.opacity = 0;
+    [view addSubview:self.view];
+    [UIView animateWithDuration:0.4 delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.view.layer.opacity = 1;
+                     }
+                     completion:^(BOOL finished){
+                     }];
 }
 
 - (void)dealloc
 {
-    [self.video release];
+    [self.videoInfo release];
     [super dealloc];
 }
 

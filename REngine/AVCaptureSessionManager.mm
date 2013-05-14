@@ -125,75 +125,136 @@ extern CVPixelBufferRef __renderTarget;
  to use sample buffer outside this scope, have
  to CFRetain then CFRelease it
  */
-- (void)captureOutput:(AVCaptureOutput *)captureOutput 
-didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer 
+- (void)captureOutput:(AVCaptureOutput *)captureOutput
+didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
-    if ( connection == videoConnection ) {
-        if (!_videoTextureCache)
-        {
-            NSLog(@"No video texture cache");
-            return;
-        } else {
-            CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
-        }
-    
-        OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, sampleBuffer);
-        if ( !err ) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
-                if (sbuf) {
-                    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sbuf);
-                    [self createTextureFromImageBuffer:imageBuffer];
-                    self->renderer->render();
-                    
-                    CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
-                    
-                    if (!err) {
-                        CMVideoFormatDescriptionRef videoInfo = NULL;
-                        CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
+    if ( connection == videoConnection ) { // video
+        
+        _videoTextureCache ? CVOpenGLESTextureCacheFlush(_videoTextureCache, 0) : NSLog(@"No video texture cache");
+        
+        CFRetain(sampleBuffer);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+            [self createTextureFromImageBuffer:imageBuffer];
+            self->renderer->render();
 
-                        CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
-                        CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
-                        
-                        CMSampleBufferRef newSampleBuffer = NULL;
-                        CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, YES, NULL, NULL, videoInfo, &timingInfo, &newSampleBuffer);
-                        
-                        
-                        CMBufferQueueEnqueue(savingBufferQueue, newSampleBuffer);
-                    } else {
-                        NSLog(@"Error locking __renderTarget: %d", err);
-                    }
+            // saving timing info (we wouldn't need the original sample buffer after that
+            CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
+            CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
+            CFRelease(sampleBuffer);
+            
+            CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+            
+            if (!err) {
+                if (self.videoProcessor.recording || self.videoProcessor.recordingWillBeStarted) {
                     
-                    CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+                    // getting video info from the rendered frame
+                    CMVideoFormatDescriptionRef videoInfo = NULL;
+                    CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
                     
-                    if (! (self.videoProcessor.recording || self.videoProcessor.recordingWillBeStarted) ) {
-                        CFRelease((CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue));
-                    }
+                    // storing the frame in a new buffer
+                    CMSampleBufferRef resultBuffer = NULL;
+                    CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, YES, NULL, NULL, videoInfo, &timingInfo, &resultBuffer);
                     
-                    CFRelease(sbuf);
+                    [self.videoProcessor processFrameWithSampleBuffer:resultBuffer
+                                                 andFormatDescription:videoInfo
+                                                        andConnection:connection];                    
                 }
-            });
-        }
-    }
-    
-    if (self.videoProcessor.recording || self.videoProcessor.recordingWillBeStarted) {
                 
+            } else {
+                NSLog(@"Error locking __renderTarget: %d", err);
+            }
+            
+            CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+            
+        });
+    } else { // audio
         if (connection == audioConnection) {
             CFRetain(sampleBuffer);
-        } else {
-            sampleBuffer = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue);
-        }
-        if (sampleBuffer) {
             CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
             CFRetain(formatDescription);
-
             [self.videoProcessor processFrameWithSampleBuffer:sampleBuffer
                                     andFormatDescription:formatDescription
                                            andConnection:connection];
         }
     }
 }
+
+///*
+// delegate routine for processing samples
+// to use sample buffer outside this scope, have
+// to CFRetain then CFRelease it
+// */
+//- (void)captureOutput:(AVCaptureOutput *)captureOutput 
+//didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer 
+//       fromConnection:(AVCaptureConnection *)connection
+//{
+//    if ( connection == videoConnection ) {
+//        if (!_videoTextureCache)
+//        {
+//            NSLog(@"No video texture cache");
+//            return;
+//        } else {
+//            CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
+//        }
+//    
+//        OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, sampleBuffer);
+//        if ( !err ) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
+//                if (sbuf) {
+//                    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sbuf);
+//                    [self createTextureFromImageBuffer:imageBuffer];
+//                    self->renderer->render();
+//                    
+//                    CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+//                    
+//                    if (!err) {
+//                        CMVideoFormatDescriptionRef videoInfo = NULL;
+//                        CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
+//
+//                        CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
+//                        CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
+//                        
+//                        CMSampleBufferRef newSampleBuffer = NULL;
+//                        CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, YES, NULL, NULL, videoInfo, &timingInfo, &newSampleBuffer);
+//                        
+//                        
+//                        CMBufferQueueEnqueue(savingBufferQueue, newSampleBuffer);
+//                    } else {
+//                        NSLog(@"Error locking __renderTarget: %d", err);
+//                    }
+//                    
+//                    CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
+//                    
+//                    if (! (self.videoProcessor.recording || self.videoProcessor.recordingWillBeStarted) ) {
+//                        CFRelease((CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue));
+//                    }
+//                    
+//                    CFRelease(sbuf);
+//                }
+//            });
+//        }
+//    }
+//    
+//    if (self.videoProcessor.recording || self.videoProcessor.recordingWillBeStarted) {
+//                
+//        if (connection == audioConnection) {
+//            CFRetain(sampleBuffer);
+//        } else {
+//            sampleBuffer = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue);
+//        }
+//        if (sampleBuffer) {
+//            CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
+//            CFRetain(formatDescription);
+//
+//            [self.videoProcessor processFrameWithSampleBuffer:sampleBuffer
+//                                    andFormatDescription:formatDescription
+//                                           andConnection:connection];
+//        }
+//    }
+//}
 
 // CVOpenGLESTextureCacheCreateTextureFromImage will create GLES texture
 // optimally from CVImageBufferRef.
