@@ -54,31 +54,52 @@ static RFVideoCollection *sharedVideoCollection = nil;
 
 - (void)addVideoFromNotification:(NSNotification*)notification
 {
-    NSURL *movieURL = [[notification userInfo] objectForKey:@"movieURL"];
-    [self generateThumbnailWithURL:movieURL handler:^(CMTime requestedTime,
-                                                      CGImageRef im,
-                                                      CMTime actualTime,
-                                                      AVAssetImageGeneratorResult result,
-                                                      NSError *error) {
-        if (result != AVAssetImageGeneratorSucceeded) {
-            NSLog(@"couldn't generate thumbnail, error:%@", error);
-        } else {
-            [self->videos addObject:@{@"movieURL": movieURL,
-                                     @"thumbnail": [UIImage imageWithCGImage:im]
-                                    }];
-        }
-    }];
-}
+    NSLog(@"in addVideoFromNotification:");
+    NSURL *videoURL = [[notification userInfo] objectForKey:@"videoURL"];
 
-- (void)generateThumbnailWithURL:(NSURL*)movieURL handler:(AVAssetImageGeneratorCompletionHandler)handler
-{
-    AVURLAsset *asset=[[[AVURLAsset alloc] initWithURL:movieURL options:nil] autorelease];
-    AVAssetImageGenerator *generator = [[[AVAssetImageGenerator alloc] initWithAsset:asset] autorelease];
+    // getting time
+    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:videoURL];
+    float duration = CMTimeGetSeconds(playerItem.duration);
+    
+    // making the first temporary dictionary
+    NSDictionary *videoInfo = @{@"videoURL": videoURL,
+                                @"duration": [NSNumber numberWithFloat:duration],
+                                @"largeThumbnail": [UIImage imageNamed:@"Icon"],
+                                @"smallThumbnail": [UIImage imageNamed:@"Icon"]};
+    int index = [self->videos count];
+    [self->videos addObject:videoInfo];
+    
+    // generate thumbnail
+    AVURLAsset *asset=[[[AVURLAsset alloc] initWithURL:videoURL options:nil] autorelease];
+    AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
     generator.appliesPreferredTrackTransform = TRUE;
-    CMTime thumbTime = CMTimeMakeWithSeconds(0,30);
+    CMTime thumbTime = CMTimeMakeWithSeconds(0,1);
     CGSize maxSize = CGSizeMake(180, 180);
     generator.maximumSize = maxSize;
-    [generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:[NSValue valueWithCMTime:thumbTime]] completionHandler:handler];
+    [generator generateCGImagesAsynchronouslyForTimes:[NSArray arrayWithObject:[NSValue valueWithCMTime:thumbTime]]
+                                    completionHandler:^(CMTime requestedTime,
+                                                        CGImageRef im,
+                                                        CMTime actualTime,
+                                                        AVAssetImageGeneratorResult result,
+                                                        NSError *error) {
+                                        if (error) {
+                                            NSLog(@"couldn't generate thumbnail, error:%@", error);
+                                        } else {
+                                            UIImage *largeThumbnail = [UIImage imageWithCGImage:im];
+                                            CGSize destinationSize = CGSizeMake(1, 1);
+                                            UIGraphicsBeginImageContext(destinationSize);
+                                            [largeThumbnail drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
+                                            UIImage *smallThumbnail = UIGraphicsGetImageFromCurrentImageContext();
+                                            UIGraphicsEndImageContext();
+                                            
+                                            NSDictionary *videoInfo = @{@"videoURL": videoURL,
+                                                                        @"duration": [NSNumber numberWithFloat:duration],
+                                                                        @"largeThumbnail": largeThumbnail,
+                                                                        @"smallThumbnail": smallThumbnail};
+
+                                            [self->videos replaceObjectAtIndex:index withObject:videoInfo];
+                                            [[NSNotificationCenter defaultCenter] postNotificationName:@"Thumbnail Ready" object:nil userInfo:videoInfo];
+                                        }}];
 }
 
 #pragma mark File Management
@@ -118,7 +139,7 @@ static RFVideoCollection *sharedVideoCollection = nil;
 //                                                       documentsDirectory,
 //                                                       i+1]];
 //            UIImage *thumbnail = [[self.videos objectAtIndex:i] objectForKey:@"thumbnail"];
-//            [newVids addObject:@{@"movieURL": movieURL, @"thumbnail": thumbnail}];
+//            [newVids addObject:@{@"movieURL": movieURL, @"smallThumbnail": thumbnail, @"largeThumbnail": thumbnail, @"duration":@150.0}];
 //        }
 //        
 //        NSMutableData *data2 = [[NSMutableData alloc] init];
@@ -134,9 +155,11 @@ static RFVideoCollection *sharedVideoCollection = nil;
     {
         self->videos = [[NSMutableArray alloc] init];
     }
-    
-    NSLog(@"videos: %@", self->videos);
+}
 
+- (void)deleteVideoWithInfo:(NSDictionary*)videoInfo
+{
+    [self->videos removeObject:videoInfo];
 }
 
 #pragma mark Singleton Methods

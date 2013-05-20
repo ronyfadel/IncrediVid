@@ -1,6 +1,8 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
+
 #import "RFVideoCollection.h"
+#import "RFIAPHelper.h"
 
 @implementation AppDelegate
 
@@ -19,7 +21,11 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    // registering collection class to get all stored videos
     [RFVideoCollection sharedCollection];
+    // registering In-APP Purchase helper got it to observe transactions
+    [RFIAPHelper sharedInstance];
     
     return YES;
 }

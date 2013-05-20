@@ -21,7 +21,12 @@
     self.backgroundColor = [UIColor clearColor];
     self.pulseAnimationDuration = 2;
     self.delayBetweenPulseCycles = 0.5;
-    [self makeHaloLayerWithBounds:self.bounds];
+    self.haloLayer = [RFRecordButton makeHaloLayerWithBounds:self.bounds
+                                           animationDuration:self.pulseAnimationDuration
+                                          delayBetweenCycles:self.delayBetweenPulseCycles
+                                                       radii:@[@50, @65, @80]
+                                                   fromValue:@0.65
+                                                     toValue:@1.1];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -95,9 +100,14 @@
     CGColorSpaceRelease(colorSpace);    
 }
 
-- (void)makeHaloLayerWithBounds:(CGRect)bounds
-{    
-    _haloLayer = [[CALayer layer] retain];
++ (CALayer*)makeHaloLayerWithBounds:(CGRect)bounds
+              animationDuration:(NSTimeInterval)animationDuration
+             delayBetweenCycles:(NSTimeInterval)delayBetweenCycles
+                          radii:(NSArray*)radii
+                          fromValue:(NSNumber*)fromValue
+                            toValue:(NSNumber*)toValue
+{
+    CALayer *_haloLayer = [CALayer layer];
     _haloLayer.frame = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
     _haloLayer.frame = CGRectMake(0, 0, 80, 80);
     _haloLayer.position = CGPointMake(bounds.size.width / 2 + 1.5, bounds.size.height / 2);
@@ -109,30 +119,30 @@
     CAMediaTimingFunction *easeOut = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     
     CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
-    animationGroup.duration = self.pulseAnimationDuration + self.delayBetweenPulseCycles;
+    animationGroup.duration = animationDuration + delayBetweenCycles;
     animationGroup.repeatCount = INFINITY;
     animationGroup.timingFunction = linear;
     animationGroup.removedOnCompletion = NO;
     
     CAKeyframeAnimation *imageAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-    imageAnimation.values = @[
-                              (id)[[self haloImageWithRadius:50] CGImage],
-                              (id)[[self haloImageWithRadius:65] CGImage],
-                              (id)[[self haloImageWithRadius:80] CGImage]
-                              ];
-    imageAnimation.duration = self.pulseAnimationDuration;
+    NSMutableArray *values = [[[NSMutableArray alloc] init] autorelease];
+    for (NSNumber *number in radii) {
+        [values addObject:(id)[[RFRecordButton haloImageWithRadius:[number floatValue]] CGImage]];
+    }
+    imageAnimation.values = values;
+    imageAnimation.duration = animationDuration;
     imageAnimation.calculationMode = kCAAnimationDiscrete;
     
     CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale.xy"];
-    pulseAnimation.fromValue = @0.65;
-    pulseAnimation.toValue = @1.1;
-    pulseAnimation.duration = self.pulseAnimationDuration;
+    pulseAnimation.fromValue = fromValue;
+    pulseAnimation.toValue = toValue;
+    pulseAnimation.duration = animationDuration;
     pulseAnimation.timingFunction = easeOut;
     
     CABasicAnimation *fadeOutAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeOutAnim.fromValue = @1.0;
     fadeOutAnim.toValue = @0.0;
-    fadeOutAnim.duration = self.pulseAnimationDuration;
+    fadeOutAnim.duration = animationDuration;
     fadeOutAnim.timingFunction = easeIn;
     fadeOutAnim.removedOnCompletion = NO;
     fadeOutAnim.fillMode = kCAFillModeForwards;
@@ -140,9 +150,11 @@
     animationGroup.animations = @[imageAnimation, pulseAnimation, fadeOutAnim];
     
     [_haloLayer addAnimation:animationGroup forKey:@"pulse"];
+    
+    return _haloLayer;
 }
 
-- (UIImage*)haloImageWithRadius:(CGFloat)radius {
++ (UIImage*)haloImageWithRadius:(CGFloat)radius {
     CGColorRef haloColor = [UIColor colorWithRed: 0.114 green: 0.705 blue: 1 alpha: 0.8].CGColor;
     CGFloat glowRadius = radius/6;
     CGFloat ringThickness = radius/24;

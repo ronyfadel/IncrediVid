@@ -6,5 +6,5 @@ varying vec2 texture_coordinate;
 
 void main()
 {
-    gl_FragColor = texture2D(input_texture, texture_coordinate).bgra;
+    gl_FragColor = texture2D(input_texture, texture_coordinate).rgba;    
 }

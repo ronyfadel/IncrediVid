@@ -8,16 +8,16 @@
 
 #import "GalleryViewController.h"
 #import "RFVideoCollection.h"
-#import "SharingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface GalleryViewController ()
 @property IBOutlet UILabel *galleryLabel, *emptyGalleryLabel;
 @property IBOutlet UIButton *doneButton;
+@property IBOutlet UIScrollView* galleryScrollView;
+@property (retain)SharingViewController *sharingViewController;
 @end
 
 @implementation GalleryViewController
-@synthesize galleryLabel, emptyGalleryLabel;
 
 - (void)viewDidLoad
 {
@@ -34,6 +34,11 @@
 
 - (void)drawGallery
 {
+    // remove all subviews from scroll view first
+    for (UIView* subview in self.galleryScrollView.subviews) {
+        [subview removeFromSuperview];
+    }
+
     RFVideoCollection* videoCollection = [RFVideoCollection sharedCollection];
     NSArray *videos = videoCollection.videos;
     NSUInteger videosCount = [videos count];
@@ -48,12 +53,14 @@
     for (int i = 0; i < numberOfRows; ++i) {
         for (int j = 0; j < ( (i == numberOfRows - 1) ? videosCount - i * numberOfColumns : numberOfColumns); ++j)
         {
-            UIImage *thumbnailImage = (UIImage*)[[videos objectAtIndex:(i * numberOfColumns + j)] objectForKey:@"thumbnail"];
+            NSDictionary *videoInfo = [videos objectAtIndex:(i * numberOfColumns + j)];
+            UIImage *thumbnailImage = (UIImage*)[videoInfo objectForKey:@"smallThumbnail"];
             UIButton *thumbnailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [thumbnailButton setImage:thumbnailImage forState:UIControlStateNormal];
+            [thumbnailButton setBackgroundImage:thumbnailImage forState:UIControlStateNormal];
             [thumbnailButton addTarget:self action:@selector(thumbnailClicked:) forControlEvents:UIControlEventTouchUpInside];
             thumbnailButton.tag = i * numberOfColumns + j;
-            thumbnailButton.imageView.layer.cornerRadius = 6;
+            thumbnailButton.layer.cornerRadius = 6;
+            thumbnailButton.layer.masksToBounds = YES;
             
 //            NSLog(@"x: %d y: %d w: %d h: %d", (pixelsBetweenThumbnails + thumbnailEdgeSize) * j,
 //                                              (pixelsBetweenThumbnails + thumbnailEdgeSize) * i,
@@ -64,6 +71,25 @@
                                              (pixelsBetweenThumbnails + thumbnailEdgeSize) * i + pixelsBetweenThumbnails,
                                              thumbnailEdgeSize,
                                              thumbnailEdgeSize);
+            
+            float duration = [[videoInfo objectForKey:@"duration"] floatValue];
+            int minutes = (int)duration / 60;
+            int seconds = (int)duration - minutes * 60;
+            NSString* durationString = [NSString stringWithFormat:@"%02d:%02d  ", minutes, seconds];
+            
+            UILabel *durationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                                0.8 * thumbnailButton.bounds.size.height,
+                                                                                thumbnailButton.bounds.size.width,
+                                                                                0.2 * thumbnailButton.bounds.size.height)] autorelease];
+
+            durationLabel.text = durationString;
+            durationLabel.font = [UIFont fontWithName:@"Lato-Black" size:10.0];
+            durationLabel.textColor = [UIColor whiteColor];
+            durationLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+            durationLabel.textAlignment = NSTextAlignmentRight;
+//            durationLabel.textAlignment = nste
+            
+            [thumbnailButton addSubview:durationLabel];
             [self.galleryScrollView addSubview:thumbnailButton];
         }
     }
@@ -77,14 +103,18 @@
     NSInteger videoIndex = ((UIButton*)sender).tag;
     NSDictionary *videoInfo = [[RFVideoCollection sharedCollection].videos objectAtIndex:videoIndex];
     
-    NSLog(@"videoInfo: %@", videoInfo);
+    self.sharingViewController = [[SharingViewController alloc]
+                                  initWithNibName:@"SharingViewController"
+                                  bundle:[NSBundle mainBundle]
+                                  videoInfo:videoInfo];
+    self.sharingViewController.delegate = self;
     
-    SharingViewController* sharingViewController = [[SharingViewController alloc]
-                                                    initWithNibName:@"SharingViewController"
-                                                    bundle:[NSBundle mainBundle]
-                                                    videoInfo:videoInfo];
-    [sharingViewController addToView:self.view];
-    [self.view addSubview:sharingViewController.view];
+    [self.sharingViewController presentRFModalViewController:self.view];
+}
+
+- (void)sharingViewControllerDismissed
+{
+    [self drawGallery];
 }
 
 - (void)didReceiveMemoryWarning

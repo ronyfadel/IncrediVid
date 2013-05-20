@@ -8,19 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "RFModalViewController.h"
 
-@class MainViewController;
+@protocol SharingViewControllerDelegate <NSObject>
+- (void)sharingViewControllerDismissed;
+@end
 
-@interface SharingViewController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface SharingViewController : RFModalViewController <MFMailComposeViewControllerDelegate,
+                                                            UIDocumentInteractionControllerDelegate>
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil videoInfo:(NSDictionary*)videoInfo;
-- (IBAction)tapped:(UITapGestureRecognizer *)recognizer;
 - (IBAction)play:(id)sender;
 - (IBAction)share:(id)sender;
-- (void)dismiss;
-- (void)addToView:(UIView*)view;
-
 
 @property (retain) NSDictionary* videoInfo;
+@property (retain) id<SharingViewControllerDelegate> delegate;
 
 @end

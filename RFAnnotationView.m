@@ -8,15 +8,6 @@
 
 #import "RFAnnotationView.h"
 
-#define RFAnnotationViewWidth   300.f
-#define RFAnnotationViewHeight  90.f
-
-//#define JPSThumbnailAnnotationViewExpandOffset   200.0f
-
-#define JPSThumbnailAnnotationViewExpandOffset   5000.0f
-
-#define JPSThumbnailAnnotationViewVerticalOffset 34.0f
-
 @interface RFAnnotationView () {
     CAShapeLayer *bubbleLayer;
 }

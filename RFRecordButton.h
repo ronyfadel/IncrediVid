@@ -12,4 +12,10 @@
 
 @property (nonatomic, retain) CALayer *haloLayer;
 
++ (CALayer*)makeHaloLayerWithBounds:(CGRect)bounds
+                  animationDuration:(NSTimeInterval)animationDuration
+                 delayBetweenCycles:(NSTimeInterval)delayBetweenCycles
+                              radii:(NSArray*)radii
+                          fromValue:(NSNumber*)fromValue
+                            toValue:(NSNumber*)toValue;
 @end

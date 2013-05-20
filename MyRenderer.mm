@@ -29,7 +29,11 @@ MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
     framebuffers.push_back(texture_fb_2);
     
     // some oft used filters
+#if TARGET_IPHONE_SIMULATOR
+    RFFilter *crop = new RFFilter("copy.vsh", "crop_simulator.fsh", FLIPPED_CROPPED);
+#else
     RFFilter *crop = new RFFilter("copy.vsh", "crop.fsh", FLIPPED_CROPPED);
+#endif
     crop->bind_uniform_to_int_value("input_texture", CAPTURED_FRAME_TEXTURE);
     crop->setup();
     

@@ -86,7 +86,7 @@
 	
 	
 	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.15];
+	[UIView setAnimationDuration:0.3];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationStep2)];
 	

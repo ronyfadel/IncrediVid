@@ -15,7 +15,7 @@
 	CMVideoDimensions videoDimensions;
 	CMVideoCodecType videoType;
 	
-	NSURL *movieURL;
+	NSURL *videoURL;
 	AVAssetWriter *assetWriter;
 	AVAssetWriterInput *assetWriterAudioIn;
 	AVAssetWriterInput *assetWriterVideoIn;
@@ -49,7 +49,7 @@
 - (void)dealloc
 {
     [previousSecondTimestamps release];
-    [movieURL release];
+    [videoURL release];
     
 	[super dealloc];
 }
@@ -205,11 +205,11 @@
 	int bitsPerSecond;
 	
 	// Assume that lower-than-SD resolutions are intended for streaming, and use a lower bitrate
-//	if ( numPixels < (640 * 480) ) {
-//		bitsPerPixel = 4.05; // This bitrate matches the quality produced by AVCaptureSessionPresetMedium or Low.
-//    } else {
+	if ( numPixels < (640 * 480) ) {
+		bitsPerPixel = 4.05; // This bitrate matches the quality produced by AVCaptureSessionPresetMedium or Low.
+    } else {
 		bitsPerPixel = 11.4; // This bitrate matches the quality produced by AVCaptureSessionPresetHigh.
-//    }
+    }
 	
 	bitsPerSecond = numPixels * bitsPerPixel;
 	
@@ -252,11 +252,8 @@
         
 		// recordingDidStart is called from captureOutput:didOutputSampleBuffer:fromConnection: once the asset writer is setup
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Will Start" object:nil];
-        
-		// Remove the file if one with the same name already exists
-//		[self removeFile:movieURL];
-        
-        // The temporary path for the video before saving it to the photo album
+
+        // creating new file path
         NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
         NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
         dateFormatter.dateFormat = @"YYYY_MM_dd_HH_mm_ss";
@@ -264,11 +261,26 @@
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
         
-        movieURL = [[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@incrediVids/incrediVid_%@.MOV", documentsDirectory, [dateFormatter stringFromDate:now]]] retain];
+        // creating Documents/incrediVids
+        NSString *filePathAndDirectory = [documentsDirectory stringByAppendingPathComponent:@"incrediVids"];
+        NSError *error;
+        NSFileManager *defaultFileManager = [NSFileManager defaultManager];
+        if (![defaultFileManager fileExistsAtPath:filePathAndDirectory]) {
+            if (![defaultFileManager createDirectoryAtPath:filePathAndDirectory
+                                           withIntermediateDirectories:NO
+                                                            attributes:nil
+                                                                 error:&error])
+            {
+                NSLog(@"Create directory error: %@", error);
+            }
+        }
+        
+        videoURL = [[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/incrediVids/incrediVid_%@.MOV",
+                                                        documentsDirectory,
+                                                        [dateFormatter stringFromDate:now]]] retain];
 
 		// Create an asset writer
-		NSError *error;
-		assetWriter = [[AVAssetWriter alloc] initWithURL:movieURL fileType:(NSString *)kUTTypeQuickTimeMovie error:&error];
+		assetWriter = [[AVAssetWriter alloc] initWithURL:videoURL fileType:(NSString *)kUTTypeQuickTimeMovie error:&error];
 		if (error)
             NSLog(@"asset writer error: %@", error);
 	});
@@ -297,7 +309,7 @@
             
             recordingWillBeStopped = NO;
             self.recording = NO;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Stop" object:nil userInfo:@{@"movieURL" : movieURL}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Recording Did Stop" object:nil userInfo:@{@"videoURL" : videoURL}];
 		}
 		else {
             NSLog(@"%@", [assetWriter error]);

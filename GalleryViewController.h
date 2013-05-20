@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SharingViewController.h"
 
-@interface GalleryViewController : UIViewController {
+@interface GalleryViewController : UIViewController <SharingViewControllerDelegate> {
 }
-@property IBOutlet UIScrollView* galleryScrollView;
 @end

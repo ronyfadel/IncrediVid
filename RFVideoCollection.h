@@ -14,5 +14,5 @@
 
 + (RFVideoCollection*)sharedCollection;
 - (void)addVideoFromNotification:(NSDictionary*)userInfo;
-
+- (void)deleteVideoWithInfo:(NSDictionary*)videoInfo;
 @end

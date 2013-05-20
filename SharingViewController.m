@@ -9,28 +9,34 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 #import "TKAlertCenter.h"
 #import "SharingViewController.h"
 #import "RFPlayButton.h"
+#import "RFVideoCollection.h"
+
+#define FACEBOOK_SHARING_2_STEP_HACK YES
 
 enum SHARING_SERVICE {
     FACEBOOK_SHARING_SERVICE = 0,
     EMAIl_SHARING_SERVICE,
-    CAMERA_ROLL_SHARING_SERVICE
+    CAMERA_ROLL_SHARING_SERVICE,
+    OPEN_IN_SHARING_SERVICE
 };
 
 @interface SharingViewController ()
 
 @property IBOutlet UIImageView *thumbnailView;
-@property IBOutlet UILabel *shareLabel;
-@property IBOutlet UIView *shareLabelBackgroundView;
-@property IBOutlet UIView *holderView;
+@property IBOutlet UILabel *titleLabel;
+@property IBOutlet UIView *titleLabelBackgroundView;
 
 @property IBOutlet RFPlayButton *playButton;
 @property IBOutlet UIButton *facebookShareButton;
-@property IBOutlet UIButton *emailShareButton;
-@property IBOutlet UIButton *cameraRollShareButton;
-@property IBOutlet UIButton *openInShareButton;
+@property IBOutlet UIButton *deleteVideoButton;
+
+@property(retain) MPMoviePlayerViewController *moviePlayerController;
+@property(retain) ACAccount *facebookAccount;
 
 @end
 
@@ -48,78 +54,32 @@ enum SHARING_SERVICE {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIColor *fillColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 0.8];
-    UIColor *darkerFillColor = [UIColor colorWithRed: 0.153 green: 0.153 blue: 0.153 alpha: 1];
-    UIColor *strokeColor = [UIColor colorWithRed:0.22f green:0.66f blue:0.92f alpha:1.f];
     
-    self.view.backgroundColor = fillColor;
-    
-    // share label
-    UIFont* latoBlack = [UIFont fontWithName:@"Lato-Black" size:34.0];
-    self.shareLabel.font = latoBlack;
-    
+    self.thumbnailView.image = [self.videoInfo objectForKey:@"largeThumbnail"];
     // thumbnail image view
-    self.thumbnailView.image = [self.videoInfo objectForKey:@"thumbnail"];
     self.thumbnailView.layer.cornerRadius = 6;
     self.thumbnailView.layer.masksToBounds = YES;
     self.playButton.layer.cornerRadius = 6;
     self.playButton.layer.masksToBounds = YES;
     
-    // holder view
-    self.holderView.backgroundColor = darkerFillColor;
-    self.holderView.layer.cornerRadius = 16;
-    self.holderView.layer.borderColor = strokeColor.CGColor;
-    self.holderView.layer.borderWidth = 1.5f;
-    
-    // masking holder view
-    UIBezierPath *maskPathtop = [UIBezierPath bezierPathWithRoundedRect:self.holderView.bounds
-                                                   byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+    // masking delete video button
+    UIBezierPath *maskPathBottom = [UIBezierPath bezierPathWithRoundedRect:self.deleteVideoButton.bounds
+                                                   byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight
                                                          cornerRadii:CGSizeMake(16.0, 16.0)];
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = self.shareLabelBackgroundView.bounds;
-    maskLayer.path = maskPathtop.CGPath;
-    self.shareLabelBackgroundView.layer.mask = maskLayer;
-    
-    // masking email button
-    UIBezierPath *maskPathbottomLeft = [UIBezierPath bezierPathWithRoundedRect:self.emailShareButton.bounds
-                                                   byRoundingCorners:UIRectCornerBottomLeft
-                                                         cornerRadii:CGSizeMake(16.0, 16.0)];
-    maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = self.emailShareButton.bounds;
-    maskLayer.path = maskPathbottomLeft.CGPath;
-    self.emailShareButton.layer.mask = maskLayer;
-
-    // masking Open In button
-    UIBezierPath *maskPathbottomRight = [UIBezierPath bezierPathWithRoundedRect:self.openInShareButton.bounds
-                                                             byRoundingCorners:UIRectCornerBottomRight
-                                                                   cornerRadii:CGSizeMake(16.0, 16.0)];
-    maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = self.openInShareButton.bounds;
-    maskLayer.path = maskPathbottomRight.CGPath;
-    self.openInShareButton.layer.mask = maskLayer;
-
-    
-
-}
-
-- (IBAction)tapped:(UITapGestureRecognizer *)recognizer
-{
-    UIView *targetView = self.holderView;
-    CGPoint point = [recognizer locationInView:targetView];
-    CGFloat w = targetView.frame.size.width, h = targetView.frame.size.height,
-            x = point.x, y = point.y;
-    if (x < 0 || x > w || y < 0 || y > h) {
-        [self dismiss];
-    }
+    maskLayer.frame = self.deleteVideoButton.bounds;
+    maskLayer.path = maskPathBottom.CGPath;
+    self.deleteVideoButton.layer.mask = maskLayer;
 }
 
 - (IBAction)play:(id)sender
 {
-    NSURL *videoURL = [self.videoInfo objectForKey:@"movieURL"];
+    NSLog(@"PLAY");
+    NSURL *videoURL = [self.videoInfo objectForKey:@"videoURL"];
     
     UIGraphicsBeginImageContext(CGSizeMake(1,1));
-    MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
-    [self presentMoviePlayerViewControllerAnimated:moviePlayerController];
+    self.moviePlayerController = [[[MPMoviePlayerViewController alloc] initWithContentURL:videoURL] autorelease];
+    [self presentMoviePlayerViewControllerAnimated:self.moviePlayerController];
     UIGraphicsEndImageContext();
 }
 
@@ -129,6 +89,7 @@ enum SHARING_SERVICE {
     
     switch (sharingServiceId) {
         case FACEBOOK_SHARING_SERVICE:
+            [self authenticateWithFacebook];
             break;
         case EMAIl_SHARING_SERVICE:
             [self emailMovie];
@@ -136,14 +97,100 @@ enum SHARING_SERVICE {
         case CAMERA_ROLL_SHARING_SERVICE:
             [self saveMovieToCameraRoll];
             break;
+        case OPEN_IN_SHARING_SERVICE:
+            [self openIn];
+            break;
         default:
             break;
     }
 }
 
+- (void)authenticateWithFacebook
+{
+    //Centralized iOS user Twitter, Facebook and Sina Weibo accounts are accessed by apps via the ACAccountStore
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+    ACAccountType *accountTypeFacebook = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+
+    NSArray *permissions;
+    NSString *facebookAudience;
+#if (FACEBOOK_SHARING_2_STEP_HACK)
+    if (self.facebookAccount == nil) {
+        permissions = @[@"email"];
+        facebookAudience = ACFacebookAudienceOnlyMe;
+    } else {
+        permissions = @[@"publish_stream"];
+        facebookAudience = ACFacebookAudienceFriends;
+    }
+#else
+    permissions = @[@"email", @"publish_stream"];
+    facebookAudience = ACFacebookAudienceFriends;
+#endif
+    
+    NSDictionary *options = @{ACFacebookAppIdKey: @"578010692220043",
+                              ACFacebookPermissionsKey: permissions,
+                              ACFacebookAudienceKey: facebookAudience};
+    [accountStore requestAccessToAccountsWithType:accountTypeFacebook
+                                          options:options
+                                       completion:^(BOOL granted, NSError *error)
+    {
+        if(granted) {
+#if (FACEBOOK_SHARING_2_STEP_HACK)
+            if (self.facebookAccount == nil) {
+                NSArray *accounts = [accountStore accountsWithAccountType:accountTypeFacebook];
+                self.facebookAccount = [accounts lastObject];
+                [self authenticateWithFacebook];
+                return;
+            }
+#else
+            NSArray *accounts = [accountStore accountsWithAccountType:accountTypeFacebook];
+            self.facebookAccount = [accounts lastObject];
+#endif
+            [self shareOnFacebook];
+        } else {
+            if ([error code] == ACErrorAccountNotFound) {
+                NSLog(@"No Facebook Account Found");
+            }
+            else {
+                NSLog(@"Facebook SSO Authentication Failed: %@", error);
+            }            
+        }
+    }];
+}
+
+- (void)shareOnFacebook
+{
+    NSURL *videoURL = [self.videoInfo objectForKey:@"videoURL"];
+    NSData *videoData = [NSData dataWithContentsOfFile:videoURL.path];
+    
+    NSDictionary *parameters = @{@"title": @"My 4th iOS 6 Facebook posting"};
+    NSURL *feedURL = [NSURL URLWithString:@"https://graph.facebook.com/me/videos"];
+    SLRequest *feedRequest = [SLRequest
+                              requestForServiceType:SLServiceTypeFacebook
+                              requestMethod:SLRequestMethodPOST
+                              URL:feedURL
+                              parameters:parameters];
+    
+    [feedRequest addMultipartData:videoData
+                           withName:@"source"
+                               type:@"video/quicktime"
+                           filename:[videoURL absoluteString]];
+
+    feedRequest.account = self.facebookAccount;
+        
+    [feedRequest performRequestWithHandler:^(NSData *responseData,
+                                             NSHTTPURLResponse *urlResponse, NSError *error)
+     {
+         if (error) {
+              NSLog(@"error: %@", error);
+         } else {
+             NSLog(@"response: %@", urlResponse);
+         }
+     }];
+}
+
 - (void)saveMovieToCameraRoll
 {
-    NSURL *videoURL = [self.videoInfo objectForKey:@"movieURL"];
+    NSURL *videoURL = [self.videoInfo objectForKey:@"videoURL"];
 
 	ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
 	[library writeVideoAtPathToSavedPhotosAlbum:videoURL
@@ -155,13 +202,16 @@ enum SHARING_SERVICE {
 
 - (void)emailMovie
 {
-    NSURL *videoURL = [self.videoInfo objectForKey:@"movieURL"];
+    NSURL *videoURL = [self.videoInfo objectForKey:@"videoURL"];
     MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
     picker.mailComposeDelegate = self;
     
     // Attach an image to the email
+    NSString *videoTitle = [[videoURL.absoluteString lastPathComponent] stringByDeletingPathExtension];
+    
+
     NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
-    [picker addAttachmentData:videoData mimeType:@"video/quicktime" fileName:@"coolVid.mov"];
+    [picker addAttachmentData:videoData mimeType:@"video/quicktime" fileName:videoTitle];
     
     // Fill out the email body text
     NSString *emailBody = @"Shot using incrediVid\n";
@@ -169,6 +219,21 @@ enum SHARING_SERVICE {
     [self presentModalViewController:picker animated:YES];
     
     [picker release];
+}
+
+- (void)openIn
+{
+    NSLog(@"%@", self.videoInfo);
+    
+    NSURL *videoURL = [self.videoInfo objectForKey:@"videoURL"];
+    NSArray* dataToShare = @[[NSData dataWithContentsOfURL:videoURL]];
+    UIActivityViewController* activityViewController = [[[UIActivityViewController alloc] initWithActivityItems:dataToShare applicationActivities:nil] autorelease];
+    [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
+-(UIView*)documentInteractionControllerViewForPreview:(UIDocumentInteractionController *)controller
+{
+    return self.view;
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
@@ -195,35 +260,35 @@ enum SHARING_SERVICE {
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)dismiss
+- (IBAction)deleteVideo:(id)sender
 {
-    [UIView animateWithDuration:0.4 delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.view.layer.opacity = 0;
-                     }
-                     completion:^(BOOL finished){
-                         [self.view removeFromSuperview];
-                         [self release];
-                     }];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete this incrediVid?"
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Delete",nil];
+    [alert show];
+    [alert release];
 }
 
-- (void)addToView:(UIView*)view
-{
-    self.view.layer.opacity = 0;
-    [view addSubview:self.view];
-    [UIView animateWithDuration:0.4 delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.view.layer.opacity = 1;
-                     }
-                     completion:^(BOOL finished){
-                     }];
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        NSLog(@"tapped cancel");
+    }
+    else if (buttonIndex == 1) {
+        NSLog(@"videos count: %d", [[RFVideoCollection sharedCollection].videos count]);
+        [[RFVideoCollection sharedCollection] deleteVideoWithInfo:self.videoInfo];
+        NSLog(@"videos count after delete: %d", [[RFVideoCollection sharedCollection].videos count]);
+        [self.delegate sharingViewControllerDismissed];
+        [self dismiss];
+    }
 }
 
 - (void)dealloc
 {
     [self.videoInfo release];
+    [self.delegate release];
+    [self.moviePlayerController release];
     [super dealloc];
 }
 

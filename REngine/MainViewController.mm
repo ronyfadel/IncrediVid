@@ -6,6 +6,10 @@
 
 #import "GalleryViewController.h"
 #import "SharingViewController.h"
+#import "ProUpgradeViewController.h"
+#import "RFIAPHelper.h"
+#import "TKAlertCenter.h"
+#import "RFHaloActivityView.h"
 
 static void NSLogRect(CGRect rect)
 {
@@ -13,33 +17,73 @@ static void NSLogRect(CGRect rect)
 }
 
 @interface MainViewController () {
-    
+#if TARGET_IPHONE_SIMULATOR
+    CADisplayLink* displayLink;
+#endif
 }
+
 @property RFAnnotationView* annotationBubble;
-@property IBOutlet UIButton *chooseFilterButton, *openGalleryButton, *upgradeToProButton;
-@property RFRecordButton *recordButton;
-@property UILabel *logoLabel, *elapsedTimeLabel;
+@property IBOutlet UIButton *chooseFilterButton,
+                            *openGalleryButton,
+                            *upgradeToProButton;
+@property IBOutlet RFRecordButton *recordButton;
+@property UILabel *logoLabel,
+                  *elapsedTimeLabel;
 
 @property(retain) NSTimer *elapsedTimeTimer;
 @property float elapsedTime;
 
+@property (retain)SharingViewController *sharingViewController;
+@property (retain)ProUpgradeViewController *proUpgradeViewController;
+@property (retain)RFHaloActivityView *haloActivityView;
+
 @end
 
 @implementation MainViewController
-@synthesize annotationBubble;
-@synthesize chooseFilterButton, openGalleryButton, recordButton;
-@synthesize logoLabel, elapsedTimeLabel;
-@synthesize captureSessionManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingWillStart) name:@"Recording Will Start" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingDidStart) name:@"Recording Did Start" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingWillStop) name:@"Recording Will Stop" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingDidStop) name:@"Recording Did Stop" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recordingWillStart)
+                                                     name:@"Recording Will Start"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recordingDidStart)
+                                                     name:@"Recording Did Start"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recordingWillStop)
+                                                     name:@"Recording Will Stop"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recordingDidStop)
+                                                     name:@"Recording Did Stop"
+                                                   object:nil];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newFilterChosen:) name:@"New Filter Chosen" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(newFilterChosen:)
+                                                     name:@"New Filter Chosen"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(thumbnailReady:)
+                                                     name:@"Thumbnail Ready"
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(thumbnailReady:)
+                                                     name:@"Thumbnail Ready"
+                                                   object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(isNowPro)
+                                                     name:@"IAPHelperProductPurchasedNotification"
+                                                   object:nil];
+
+        
     }
     return self;
 }
@@ -47,8 +91,9 @@ static void NSLogRect(CGRect rect)
 - (void)viewDidLoad
 {
     renderer = new MyRenderer(self.view);
+    [self setupSubviews];
 #if ! TARGET_IPHONE_SIMULATOR
-    captureSessionManager = [[AVCaptureSessionManager alloc] initWithRenderer:(renderer)];
+    self.captureSessionManager = [[[AVCaptureSessionManager alloc] initWithRenderer:(renderer)] autorelease];
 #else
     
     // Texture 0 is pre-defined image
@@ -83,37 +128,7 @@ static void NSLogRect(CGRect rect)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-#endif
 
-    // UI
-    UIFont *latoBlack = [UIFont fontWithName:@"Lato-Black" size:34.0];
-    logoLabel.font = latoBlack;
-    UIFont *latoBlackSmall = [UIFont fontWithName:@"Lato-Black" size:20.0];
-    elapsedTimeLabel.font = latoBlackSmall;
-	elapsedTimeLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35];
-    elapsedTimeLabel.layer.cornerRadius = 4;
-    elapsedTimeLabel.layer.opacity = 0;
-    [self.view bringSubviewToFront:elapsedTimeLabel];
-
-    self.upgradeToProButton.layer.cornerRadius = 4;
-    
-    
-    // re-showing record button covered by GL View
-    [self.view bringSubviewToFront:recordButton];
-    
-    self.annotationBubble = [[[RFAnnotationView alloc] initWithFrame:CGRectMake(-5, 265, 330, 110)] autorelease];
-    self.annotationBubble.layer.opacity = 0;
-    
-    NSString* file = [[NSBundle mainBundle] pathForResource:@"filters" ofType:@"plist"];
-    NSArray* filtersInfo = [NSArray arrayWithContentsOfFile:file];
-        
-    RFFilterScrollView *scrollView = [[[RFFilterScrollView alloc] initWithFrame:CGRectMake(8, 10, 315, 70)
-                                                                 filtersInfo:filtersInfo] autorelease];
-    [self.annotationBubble addSubview:scrollView];
-    [self.view addSubview:self.annotationBubble];
-    [self.view bringSubviewToFront:self.annotationBubble];
-
-#if TARGET_IPHONE_SIMULATOR
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
     displayLink.frameInterval = 30;
     [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -125,10 +140,66 @@ static void NSLogRect(CGRect rect)
     self->renderer->render();
 }
 
+- (void)setupSubviews
+{
+    // checking if pro
+    if ([RFIAPHelper isPro]) {
+        [self.upgradeToProButton removeFromSuperview];
+        self.upgradeToProButton = nil;
+    }
+    // UI
+    UIFont *latoBlack = [UIFont fontWithName:@"Lato-Black" size:34.0];
+    self.logoLabel.font = latoBlack;
+    UIFont *latoBlackSmall = [UIFont fontWithName:@"Lato-Black" size:20.0];
+    self.elapsedTimeLabel.font = latoBlackSmall;
+	self.elapsedTimeLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35];
+    self.elapsedTimeLabel.layer.cornerRadius = 4;
+    self.elapsedTimeLabel.layer.opacity = 0;
+    [self.view bringSubviewToFront:self.elapsedTimeLabel];
+    
+    UIFont *latoBlackSmaller = [UIFont fontWithName:@"Lato-Black" size:18.0];
+    self.upgradeToProButton.layer.cornerRadius = 4;
+    self.upgradeToProButton.titleLabel.font = latoBlackSmaller;
+    
+    BOOL isScreenSize4Inch = [[UIScreen mainScreen] bounds].size.height == 568;
+    
+    // rounding up the 2 bottom buttons
+    // masking email button
+    UIBezierPath *maskPathTopRight = [UIBezierPath bezierPathWithRoundedRect:self.openGalleryButton.bounds
+                                                           byRoundingCorners:UIRectCornerTopRight | (isScreenSize4Inch * UIRectCornerBottomRight)
+                                                                 cornerRadii:CGSizeMake(16.0, 16.0)];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.openGalleryButton.bounds;
+    maskLayer.path = maskPathTopRight.CGPath;
+    self.openGalleryButton.layer.mask = maskLayer;
+    
+    UIBezierPath *maskPathTopLeft = [UIBezierPath bezierPathWithRoundedRect:self.chooseFilterButton.bounds
+                                                          byRoundingCorners:UIRectCornerTopLeft | (isScreenSize4Inch * UIRectCornerBottomLeft)
+                                                                cornerRadii:CGSizeMake(16.0, 16.0)];
+    maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.chooseFilterButton.bounds;
+    maskLayer.path = maskPathTopLeft.CGPath;
+    self.chooseFilterButton.layer.mask = maskLayer;
+    
+    // re-showing record button covered by GL View
+    [self.view bringSubviewToFront:self.recordButton];
+    
+    self.annotationBubble = [[[RFAnnotationView alloc] initWithFrame:CGRectMake(-5, 265, 330, 110)] autorelease];
+    self.annotationBubble.layer.opacity = 0;
+    
+    NSString* file = [[NSBundle mainBundle] pathForResource:@"filters" ofType:@"plist"];
+    NSArray* filtersInfo = [NSArray arrayWithContentsOfFile:file];
+    
+    RFFilterScrollView *scrollView = [[[RFFilterScrollView alloc] initWithFrame:CGRectMake(8, 10, 315, 70)
+                                                                    filtersInfo:filtersInfo] autorelease];
+    [self.annotationBubble addSubview:scrollView];
+    [self.view addSubview:self.annotationBubble];
+    [self.view bringSubviewToFront:self.annotationBubble];
+}
+
 - (IBAction)alternateFilterPicker:(id)sender
 {
-    
-    self.annotationBubble.layer.opacity == 1.0 ? [self dismissFilterPicker] : [self presentFilterPicker];
+    [self setFilterPickerToOpacity:(1.0 - self.annotationBubble.layer.opacity)];
 }
 
 - (void)setFilterPickerToOpacity:(float)opacity
@@ -144,51 +215,49 @@ static void NSLogRect(CGRect rect)
                      }];
 }
 
-
-- (void)presentFilterPicker
+- (void)setUpViewIsRecording:(BOOL)recording
 {
-    [self setFilterPickerToOpacity:1.0];
-}
+    self.chooseFilterButton.enabled = !recording;
+    self.upgradeToProButton.enabled = !recording;
+    self.openGalleryButton.enabled  = !recording;
 
-- (void)dismissFilterPicker
-{
-    [self setFilterPickerToOpacity:0.0];
-}
-
-- (void)hideButtons
-{
+    if (recording) {
+        [self setFilterPickerToOpacity:0];
+        [self.recordButton.layer addSublayer:self.recordButton.haloLayer];
+        self.elapsedTimeTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                                 target:self
+                                                               selector:@selector(updateElapsedTime)
+                                                               userInfo:nil
+                                                                repeats:YES];
+        self.elapsedTime = 0;
+        self.elapsedTimeLabel.text = @"00:00";
+    } else {
+        [self.elapsedTimeTimer invalidate];
+        self.elapsedTime = 0;
+        [self.recordButton.haloLayer removeFromSuperlayer];
+    }
+    
     [UIView animateWithDuration:0.4 delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.chooseFilterButton.frame = CGRectMake(self.chooseFilterButton.frame.origin.x + 100,
+                     animations:^{                         
+                         CGFloat displacement = recording ? 100 : -100;
+                         self.chooseFilterButton.frame = CGRectMake(self.chooseFilterButton.frame.origin.x + displacement,
                                                                     self.chooseFilterButton.frame.origin.y,
                                                                     self.chooseFilterButton.frame.size.width,
                                                                     self.chooseFilterButton.frame.size.height);
-                         self.openGalleryButton.frame = CGRectMake(self.openGalleryButton.frame.origin.x - 100,
-                                                              self.openGalleryButton.frame.origin.y,
-                                                              self.openGalleryButton.frame.size.width,
-                                                              self.openGalleryButton.frame.size.height);
-                         self.elapsedTimeLabel.layer.opacity = 1.0 - self.elapsedTimeLabel.layer.opacity;
-
-                     }
-                     completion:^(BOOL finished){}];
-}
-
-- (void)showButtons
-{
-    [UIView animateWithDuration:0.4 delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.chooseFilterButton.frame = CGRectMake(self.chooseFilterButton.frame.origin.x - 100,
-                                                                    self.chooseFilterButton.frame.origin.y,
-                                                                    self.chooseFilterButton.frame.size.width,
-                                                                    self.chooseFilterButton.frame.size.height);
-                         self.openGalleryButton.frame = CGRectMake(self.openGalleryButton.frame.origin.x + 100,
-                                                              self.openGalleryButton.frame.origin.y,
-                                                              self.openGalleryButton.frame.size.width,
-                                                              self.openGalleryButton.frame.size.height);
-                         self.elapsedTimeLabel.layer.opacity = 1.0 - self.elapsedTimeLabel.layer.opacity;
                          
+                         self.upgradeToProButton.frame = CGRectMake(self.upgradeToProButton.frame.origin.x + displacement,
+                                                                   self.upgradeToProButton.frame.origin.y,
+                                                                   self.upgradeToProButton.frame.size.width,
+                                                                   self.upgradeToProButton.frame.size.height);
+                         
+                         self.openGalleryButton.frame = CGRectMake(self.openGalleryButton.frame.origin.x - displacement,
+                                                              self.openGalleryButton.frame.origin.y,
+                                                              self.openGalleryButton.frame.size.width,
+                                                              self.openGalleryButton.frame.size.height);
+                         
+                         self.elapsedTimeLabel.layer.opacity = 1.0 - self.elapsedTimeLabel.layer.opacity;
+
                      }
                      completion:^(BOOL finished){}];
 }
@@ -201,21 +270,15 @@ static void NSLogRect(CGRect rect)
 
 - (IBAction)recordVideo:(id)sender
 {
-    captureSessionManager.videoProcessor.recording ? [captureSessionManager stopRecording] : [captureSessionManager startRecording];    
+    AVCaptureSessionManager *captureSessionManager = self.captureSessionManager;
+    captureSessionManager.videoProcessor.recording ? [captureSessionManager stopRecording]
+                                                   : [captureSessionManager startRecording];
 }
 
 - (void)recordingWillStart
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.recordButton.layer addSublayer:recordButton.haloLayer];
-        [self dismissFilterPicker];
-        self.chooseFilterButton.enabled = NO;
-        self.openGalleryButton.enabled = NO;
-        [self hideButtons];
-        
-        self.elapsedTimeTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateElapsedTime) userInfo:nil repeats:YES];
-        self.elapsedTime = 0.0;
-        self.elapsedTimeLabel.text = @"00:00";
+        [self setUpViewIsRecording:YES];
         NSLog(@"recordingWillStart");
     });
 }
@@ -228,13 +291,11 @@ static void NSLogRect(CGRect rect)
 - (void)recordingWillStop
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.elapsedTimeTimer invalidate];
-        self.elapsedTime = 0.0;
-        
-        [self.recordButton.haloLayer removeFromSuperlayer];
-        self.chooseFilterButton.enabled = YES;
-        self.openGalleryButton.enabled = YES;
-        [self showButtons];
+        [self setUpViewIsRecording:NO];
+//        if (! self.haloActivityView) {
+//            self.haloActivityView = [[RFHaloActivityView alloc] initWithFrame:self.view.bounds];
+//            [self.view addSubview:self.haloActivityView];
+//        }
         NSLog(@"recordingWillStop");
     });
 }
@@ -255,7 +316,40 @@ static void NSLogRect(CGRect rect)
     self.elapsedTime += [self.elapsedTimeTimer timeInterval];
     int minutes = (int)self.elapsedTime / 60;
     int seconds = (int)self.elapsedTime - minutes * 60;
-    self.elapsedTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];    
+    self.elapsedTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+}
+
+- (IBAction)showOverlayView:(id)sender
+{
+    BOOL upgradeToProButtonPushed = (sender == self.upgradeToProButton);
+    if (upgradeToProButtonPushed) {
+        self.proUpgradeViewController = [[[ProUpgradeViewController alloc] initWithNibName:@"ProUpgradeViewController"
+                                                                                   bundle:[NSBundle mainBundle]] autorelease];
+        [self.proUpgradeViewController presentRFModalViewController:self.view];
+    } else {
+        self.sharingViewController = [[[SharingViewController alloc] initWithNibName:@"SharingViewController"
+                                                                             bundle:[NSBundle mainBundle]
+                                                                          videoInfo:nil] autorelease];
+        self.sharingViewController.videoInfo = (NSDictionary*)sender;
+        [self.sharingViewController presentRFModalViewController:self.view];
+    }
+}
+
+- (void)thumbnailReady:(NSNotification*)notification
+{
+    NSDictionary *videoInfo = [notification userInfo];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showOverlayView:videoInfo];
+    });
+}
+
+- (void)isNowPro
+{
+    NSLog(@"is now pro!!");
+    [self.proUpgradeViewController dismiss];
+    self.upgradeToProButton.enabled = NO;
+    [self.upgradeToProButton removeFromSuperview];
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Upgraded to PRO! Enjoy!"];
 }
 
 @end
