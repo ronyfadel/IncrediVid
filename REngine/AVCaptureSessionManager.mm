@@ -331,6 +331,104 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self.videoProcessor stopRecording];
 }
 
+- (void)toggleCamera
+{    
+    NSArray* videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    
+    if ([videoDevices count] > 1)		//Only do if device has multiple cameras
+	{
+        AVCaptureDeviceInput *oldVideoInput = nil;
+        AVCaptureDeviceInput *newVideoInput = nil;
+
+        for (AVCaptureDeviceInput* deviceInput in captureSession.inputs) {
+            if ([videoDevices containsObject:deviceInput.device]) {
+                oldVideoInput = deviceInput;
+            }
+        }
+        
+        AVCaptureDevicePosition newPosition = (oldVideoInput.device.position == AVCaptureDevicePositionFront) ? AVCaptureDevicePositionBack
+                                                                                                              : AVCaptureDevicePositionFront;
+        
+        for (AVCaptureDevice* device in videoDevices) {
+            if (device.position == newPosition) {
+                newVideoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
+                break;
+            }
+        }
+        
+        NSLog(@"old Video Input: %@", oldVideoInput);
+        NSLog(@"new Video Input: %@", newVideoInput);
+
+		if (newVideoInput)
+		{
+            
+			[captureSession beginConfiguration];
+            [captureSession setSessionPreset:AVCaptureSessionPresetHigh]; //Always reset preset before testing canAddInput because preset will cause it to return NO
+
+            [captureSession removeInput:oldVideoInput];
+			if ([captureSession canAddInput:newVideoInput])
+			{
+				[captureSession addInput:newVideoInput];
+			} else {
+                NSLog(@"can't add input");
+            }
+            
+			[captureSession commitConfiguration];
+		}
+	}
+}
+//
+//// Toggle between the front and back camera, if both are present.
+//- (BOOL) toggleCamera
+//{
+//    BOOL success = NO;
+//    
+//    if ([self cameraCount] > 1) {
+//        NSError *error;
+//        AVCaptureDeviceInput *newVideoInput;
+//        AVCaptureDevicePosition position = [[videoInput device] position];
+//        
+//        if (position == AVCaptureDevicePositionBack)
+//            newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self frontFacingCamera] error:&error];
+//        else if (position == AVCaptureDevicePositionFront)
+//            newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:&error];
+//        else
+//            goto bail;
+//        
+//        if (newVideoInput != nil) {
+//            [[self session] beginConfiguration];
+//            [[self session] removeInput:[self videoInput]];
+//            if ([[self session] canAddInput:newVideoInput]) {
+//                [[self session] addInput:newVideoInput];
+//                [self setVideoInput:newVideoInput];
+//            } else {
+//                [[self session] addInput:[self videoInput]];
+//            }
+//            [[self session] commitConfiguration];
+//            success = YES;
+//            [newVideoInput release];
+//        } else if (error) {
+//            if ([[self delegate] respondsToSelector:@selector(captureManager:didFailWithError:)]) {
+//                [[self delegate] captureManager:self didFailWithError:error];
+//            }
+//        }
+//    }
+//    
+//bail:
+//    return success;
+//}
+
+
+- (void)pause
+{
+    [captureSession stopRunning];
+}
+
+- (void)resume
+{
+    [captureSession startRunning];
+}
+
 - (void)dealloc
 {
     [self stopAndTearDownCaptureSession], [captureSession release];

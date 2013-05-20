@@ -56,6 +56,7 @@ static RFVideoCollection *sharedVideoCollection = nil;
 {
     NSLog(@"in addVideoFromNotification:");
     NSURL *videoURL = [[notification userInfo] objectForKey:@"videoURL"];
+    NSURL *temporaryThumbnailURL = [NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"Icon" ofType:@"png"]];
 
     // getting time
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:videoURL];
@@ -64,8 +65,8 @@ static RFVideoCollection *sharedVideoCollection = nil;
     // making the first temporary dictionary
     NSDictionary *videoInfo = @{@"videoURL": videoURL,
                                 @"duration": [NSNumber numberWithFloat:duration],
-                                @"largeThumbnail": [UIImage imageNamed:@"Icon"],
-                                @"smallThumbnail": [UIImage imageNamed:@"Icon"]};
+                                @"largeThumbnail": temporaryThumbnailURL,
+                                @"smallThumbnail": temporaryThumbnailURL};
     int index = [self->videos count];
     [self->videos addObject:videoInfo];
     
@@ -85,17 +86,28 @@ static RFVideoCollection *sharedVideoCollection = nil;
                                         if (error) {
                                             NSLog(@"couldn't generate thumbnail, error:%@", error);
                                         } else {
+                                            
+                                            NSURL* largeThumbnailPath = [NSURL URLWithString:@".large_thumbnail.png" relativeToURL:videoURL];
+                                            NSURL* smallThumbnailPath = [NSURL URLWithString:@".small_thumbnail.png" relativeToURL:videoURL];
+                                            
+                                            // saving large thumbnail
                                             UIImage *largeThumbnail = [UIImage imageWithCGImage:im];
+                                            NSData *largeThumbnailPNGRepresentation = UIImagePNGRepresentation(largeThumbnail);
+                                            [largeThumbnailPNGRepresentation writeToURL:largeThumbnailPath atomically:YES];
+                                            
                                             CGSize destinationSize = CGSizeMake(1, 1);
                                             UIGraphicsBeginImageContext(destinationSize);
                                             [largeThumbnail drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
                                             UIImage *smallThumbnail = UIGraphicsGetImageFromCurrentImageContext();
                                             UIGraphicsEndImageContext();
+                                            // saving small thumbnail
+                                            NSData *smallThumbnailPNGRepresentation = UIImagePNGRepresentation(smallThumbnail);
+                                            [smallThumbnailPNGRepresentation writeToURL:smallThumbnailPath atomically:YES];
                                             
                                             NSDictionary *videoInfo = @{@"videoURL": videoURL,
                                                                         @"duration": [NSNumber numberWithFloat:duration],
-                                                                        @"largeThumbnail": largeThumbnail,
-                                                                        @"smallThumbnail": smallThumbnail};
+                                                                        @"largeThumbnail": largeThumbnailPath,
+                                                                        @"smallThumbnail": smallThumbnailPath};
 
                                             [self->videos replaceObjectAtIndex:index withObject:videoInfo];
                                             [[NSNotificationCenter defaultCenter] postNotificationName:@"Thumbnail Ready" object:nil userInfo:videoInfo];

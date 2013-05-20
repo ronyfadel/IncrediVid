@@ -11,4 +11,7 @@
 - (void)startRecording;
 - (void)stopRecording;
 - (void)stopAndTearDownCaptureSession;
+- (void)toggleCamera;
+- (void)pause;
+- (void)resume;
 @end

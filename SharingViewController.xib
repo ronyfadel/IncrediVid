@@ -42,7 +42,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 560}</string>
 						<reference key="NSSuperview" ref="53319217"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="253708998"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -80,7 +79,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{21, 57}, {183, 183}}</string>
 								<reference key="NSSuperview" ref="253708998"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="505115866"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -91,7 +89,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{21, 57}, {183, 183}}</string>
 								<reference key="NSSuperview" ref="253708998"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="517637813"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -112,7 +109,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 305}, {75, 75}}</string>
 								<reference key="NSSuperview" ref="253708998"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="729338532"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -142,7 +138,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{75, 305}, {75, 75}}</string>
 								<reference key="NSSuperview" ref="253708998"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="12153214"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -172,8 +167,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{149, 305}, {75, 75}}</string>
 								<reference key="NSSuperview" ref="253708998"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="500249479"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -192,7 +185,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="1052982938"/>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">open_in_button.png</string>
+									<string key="NSResourceName">delete_button.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="207065353"/>
 								<reference key="IBUIFont" ref="569284754"/>
@@ -202,7 +195,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 247}, {224, 58}}</string>
 								<reference key="NSSuperview" ref="253708998"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="6157577"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -230,38 +222,6 @@
 								<reference key="IBUIFontDescription" ref="207065353"/>
 								<reference key="IBUIFont" ref="569284754"/>
 							</object>
-							<object class="IBUIButton" id="500249479">
-								<reference key="NSNextResponder" ref="253708998"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 380}, {224, 58}}</string>
-								<reference key="NSSuperview" ref="253708998"/>
-								<reference key="NSWindow"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">2</int>
-									<bytes key="NSRGB">MC4yMzUyOTQxMzM0IDAuMzQ1MDk4MDQ4NCAwLjYwMDAwMDAyMzgAA</bytes>
-								</object>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSColor" key="IBUITintColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4wMDIwMzA5NDE2NjYgMC4wMDMwMDEwNDM0NDYgMC4wMDYwOTg1MzMxNjMAA</bytes>
-								</object>
-								<reference key="IBUIHighlightedTitleColor" ref="910580475"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">2</int>
-									<bytes key="NSRGB">MC4yOTQxMTc2NTkzIDAuNzc2NDcwNjYxMiAwLjkzNzI1NDk2NTMAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="1052982938"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">delete_video.png</string>
-								</object>
-								<reference key="IBUIFontDescription" ref="207065353"/>
-								<reference key="IBUIFont" ref="569284754"/>
-							</object>
 							<object class="IBUIView" id="769792028">
 								<reference key="NSNextResponder" ref="253708998"/>
 								<int key="NSvFlags">292</int>
@@ -271,7 +231,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrameSize">{224, 52}</string>
 										<reference key="NSSuperview" ref="769792028"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="916383934"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -306,7 +265,6 @@
 								</array>
 								<string key="NSFrameSize">{224, 52}</string>
 								<reference key="NSSuperview" ref="253708998"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="693860905"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -316,9 +274,8 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrame">{{48, 10}, {224, 438}}</string>
+						<string key="NSFrame">{{48, 20}, {224, 380}}</string>
 						<reference key="NSSuperview" ref="53319217"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="769792028"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -331,7 +288,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 568}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="82993751"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -428,9 +384,17 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">deleteVideoButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="500249479"/>
+						<reference key="destination" ref="12153214"/>
 					</object>
-					<int key="connectionID">76</int>
+					<int key="connectionID">78</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">emailVideoButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="6157577"/>
+					</object>
+					<int key="connectionID">80</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -470,12 +434,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">share:</string>
+						<string key="label">deleteVideo:</string>
 						<reference key="source" ref="12153214"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">58</int>
+					<int key="connectionID">79</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -485,15 +449,6 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">71</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">deleteVideo:</string>
-						<reference key="source" ref="500249479"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">77</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -533,7 +488,6 @@
 							<reference ref="729338532"/>
 							<reference ref="517637813"/>
 							<reference ref="12153214"/>
-							<reference ref="500249479"/>
 							<reference ref="916383934"/>
 							<reference ref="505115866"/>
 						</array>
@@ -583,11 +537,6 @@
 						<reference key="parent" ref="769792028"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">74</int>
-						<reference key="object" ref="500249479"/>
-						<reference key="parent" ref="253708998"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">69</int>
 						<reference key="object" ref="82993751"/>
 						<reference key="parent" ref="53319217"/>
@@ -610,136 +559,24 @@
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="69.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">77</int>
+			<int key="maxID">80</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">RFModalViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">dismiss</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">dismiss</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">dismiss</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="dimmedOverlayButton">UIButton</string>
-						<string key="holderView">UIView</string>
-						<string key="titleLabel">UILabel</string>
-						<string key="titleLabelBackgroundView">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="dimmedOverlayButton">
-							<string key="name">dimmedOverlayButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="holderView">
-							<string key="name">holderView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleLabel">
-							<string key="name">titleLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleLabelBackgroundView">
-							<string key="name">titleLabelBackgroundView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/RFModalViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">RFPlayButton</string>
-					<string key="superclassName">UIButton</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/RFPlayButton.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">SharingViewController</string>
-					<string key="superclassName">RFModalViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="play:">id</string>
-						<string key="share:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="play:">
-							<string key="name">play:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="share:">
-							<string key="name">share:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="deleteVideoButton">UIButton</string>
-						<string key="facebookShareButton">UIButton</string>
-						<string key="playButton">RFPlayButton</string>
-						<string key="thumbnailView">UIImageView</string>
-						<string key="titleLabel">UILabel</string>
-						<string key="titleLabelBackgroundView">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="deleteVideoButton">
-							<string key="name">deleteVideoButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="facebookShareButton">
-							<string key="name">facebookShareButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="playButton">
-							<string key="name">playButton</string>
-							<string key="candidateClassName">RFPlayButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="thumbnailView">
-							<string key="name">thumbnailView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleLabel">
-							<string key="name">titleLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleLabelBackgroundView">
-							<string key="name">titleLabelBackgroundView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/SharingViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="camera_roll_button.png">{150, 150}</string>
-			<string key="delete_video.png">{448, 116}</string>
+			<string key="delete_button.png">{150, 150}</string>
 			<string key="facebook_button.png">{448, 116}</string>
 			<string key="mail_button.png">{150, 150}</string>
-			<string key="open_in_button.png">{150, 150}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

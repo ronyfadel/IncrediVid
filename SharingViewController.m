@@ -34,6 +34,7 @@ enum SHARING_SERVICE {
 @property IBOutlet RFPlayButton *playButton;
 @property IBOutlet UIButton *facebookShareButton;
 @property IBOutlet UIButton *deleteVideoButton;
+@property IBOutlet UIButton *emailVideoButton;
 
 @property(retain) MPMoviePlayerViewController *moviePlayerController;
 @property(retain) ACAccount *facebookAccount;
@@ -55,7 +56,7 @@ enum SHARING_SERVICE {
 {
     [super viewDidLoad];
     
-    self.thumbnailView.image = [self.videoInfo objectForKey:@"largeThumbnail"];
+    self.thumbnailView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.videoInfo objectForKey:@"largeThumbnail"]]];
     // thumbnail image view
     self.thumbnailView.layer.cornerRadius = 6;
     self.thumbnailView.layer.masksToBounds = YES;
@@ -63,13 +64,22 @@ enum SHARING_SERVICE {
     self.playButton.layer.masksToBounds = YES;
     
     // masking delete video button
-    UIBezierPath *maskPathBottom = [UIBezierPath bezierPathWithRoundedRect:self.deleteVideoButton.bounds
-                                                   byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.deleteVideoButton.bounds
+                                                   byRoundingCorners:UIRectCornerBottomRight
                                                          cornerRadii:CGSizeMake(16.0, 16.0)];
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
     maskLayer.frame = self.deleteVideoButton.bounds;
-    maskLayer.path = maskPathBottom.CGPath;
+    maskLayer.path = maskPath.CGPath;
     self.deleteVideoButton.layer.mask = maskLayer;
+    
+    // masking email button
+    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.emailVideoButton.bounds
+                                     byRoundingCorners:UIRectCornerBottomLeft
+                                           cornerRadii:CGSizeMake(16.0, 16.0)];
+    maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.emailVideoButton.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.emailVideoButton.layer.mask = maskLayer;
 }
 
 - (IBAction)play:(id)sender

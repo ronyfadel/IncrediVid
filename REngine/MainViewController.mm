@@ -73,10 +73,6 @@ static void NSLogRect(CGRect rect)
                                                  selector:@selector(thumbnailReady:)
                                                      name:@"Thumbnail Ready"
                                                    object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(thumbnailReady:)
-                                                     name:@"Thumbnail Ready"
-                                                   object:nil];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(isNowPro)
@@ -321,6 +317,7 @@ static void NSLogRect(CGRect rect)
 
 - (IBAction)showOverlayView:(id)sender
 {
+    NSLog(@"here");
     BOOL upgradeToProButtonPushed = (sender == self.upgradeToProButton);
     if (upgradeToProButtonPushed) {
         self.proUpgradeViewController = [[[ProUpgradeViewController alloc] initWithNibName:@"ProUpgradeViewController"
@@ -333,6 +330,11 @@ static void NSLogRect(CGRect rect)
         self.sharingViewController.videoInfo = (NSDictionary*)sender;
         [self.sharingViewController presentRFModalViewController:self.view];
     }
+}
+
+- (IBAction)toggleCamera
+{
+    [self.captureSessionManager toggleCamera];
 }
 
 - (void)thumbnailReady:(NSNotification*)notification

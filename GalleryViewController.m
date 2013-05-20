@@ -54,7 +54,9 @@
         for (int j = 0; j < ( (i == numberOfRows - 1) ? videosCount - i * numberOfColumns : numberOfColumns); ++j)
         {
             NSDictionary *videoInfo = [videos objectAtIndex:(i * numberOfColumns + j)];
-            UIImage *thumbnailImage = (UIImage*)[videoInfo objectForKey:@"smallThumbnail"];
+            NSURL *thumbnailImagePath = [videoInfo objectForKey:@"smallThumbnail"];
+            UIImage* thumbnailImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:thumbnailImagePath]];
+            
             UIButton *thumbnailButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [thumbnailButton setBackgroundImage:thumbnailImage forState:UIControlStateNormal];
             [thumbnailButton addTarget:self action:@selector(thumbnailClicked:) forControlEvents:UIControlEventTouchUpInside];

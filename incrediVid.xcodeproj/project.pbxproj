@@ -111,6 +111,7 @@
 		53C8C80716EC235A00505767 /* RFTextureFramebuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7E516EC0B5000505767 /* RFTextureFramebuffer.mm */; };
 		53C8C80816EC235A00505767 /* RFShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7D716EC071E00505767 /* RFShader.mm */; };
 		53C8C80916EC235A00505767 /* RFProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53C8C7DA16EC077200505767 /* RFProgram.mm */; };
+		53E2292A174A57A4008FD70B /* delete_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E22929174A57A4008FD70B /* delete_button.png */; };
 		53E2B39E172C3367009B3C24 /* crop.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 53E2B39C172C3247009B3C24 /* crop.fsh */; };
 		53E2B3A1172CA31D009B3C24 /* RFFilterCollection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53E2B39F172CA31D009B3C24 /* RFFilterCollection.mm */; };
 		53FC5269174932DC004E378E /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FC5268174932DC004E378E /* IAPHelper.m */; };
@@ -254,6 +255,7 @@
 		53C8C7F016EC0ECB00505767 /* RFRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFRenderer.mm; sourceTree = "<group>"; };
 		53C8C7F116EC0ECB00505767 /* RFRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFRenderer.h; sourceTree = "<group>"; };
 		53C8C7FE16EC1AA300505767 /* MyRenderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MyRenderer.mm; sourceTree = "<group>"; };
+		53E22929174A57A4008FD70B /* delete_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_button.png; sourceTree = "<group>"; };
 		53E2B39C172C3247009B3C24 /* crop.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crop.fsh; sourceTree = "<group>"; };
 		53E2B39F172CA31D009B3C24 /* RFFilterCollection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RFFilterCollection.mm; sourceTree = "<group>"; };
 		53E2B3A0172CA31D009B3C24 /* RFFilterCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFFilterCollection.h; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		530D2C48172CC33B004C8713 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53E22929174A57A4008FD70B /* delete_button.png */,
 				53B68CA7168A20000062636D /* Shaders */,
 				53761967172A30F2004ECE27 /* Lookup */,
 				5380BB8B172F4F7C007DC069 /* Thumbnails */,
@@ -805,6 +808,7 @@
 				533BBF5D17440B61005E633C /* incrediWand.png in Resources */,
 				53B9C3C117480ADB0089A1AF /* ProUpgradeViewController.xib in Resources */,
 				53214C2417497D9E000793BD /* delete_video.png in Resources */,
+				53E2292A174A57A4008FD70B /* delete_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,8 +940,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -970,8 +974,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 3;
