@@ -27,11 +27,18 @@ static const GLfloat vertices_flipped_tex_coords[] = {
     -1.f,  1.f, 0.f, 0.f
 };
 
+//static const GLfloat vertices_flipped_cropped_tex_coords[] = {
+//    -1.f, -1.f, 0.f, 1.f - 0.166f,
+//    1.f, -1.f, 1.f, 1.f - 0.166f,
+//    1.f,  1.f, 1.f, 0.166f,
+//    -1.f,  1.f, 0.f, 0.166f
+//};
+
 static const GLfloat vertices_flipped_cropped_tex_coords[] = {
-    -1.f, -1.f, 0.f, 0.875f,
-    1.f, -1.f, 1.f, 0.875f,
-    1.f,  1.f, 1.f, 0.125f,
-    -1.f,  1.f, 0.f, 0.125f
+    -1.f, -1.f, 0.166f, 1,
+    1.f, -1.f, 1.f - 0.166f, 1,
+    1.f,  1.f, 1.f - 0.166f, 0,
+    -1.f,  1.f, 0.166f, 0
 };
 
 class RFFilter : public RFNode {

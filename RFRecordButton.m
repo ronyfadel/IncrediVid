@@ -60,15 +60,6 @@
     CGSize shadowOffset = CGSizeMake(0.1, -0.1);
     CGFloat shadowBlurRadius = 8;
     
-    //// Oval 3 Drawing
-    UIBezierPath* oval3Path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(1, 0, 104, 104)];
-    [fillColor setFill];
-    [oval3Path fill];
-    [[UIColor clearColor] setStroke];
-    oval3Path.lineWidth = 0.5;
-    [oval3Path stroke];
-    
-    
     //// Oval Drawing
     UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(13, 12, 80, 80)];
     [[UIColor clearColor] setFill];

@@ -14,22 +14,18 @@
     return [CAEAGLLayer class];
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (void)awakeFromNib
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
-    }
-    return self;
+    [self setup];
 }
 
 
 - (void)setup
 {
-    self.frame = CGRectMake(0,
-                            50,
-                            PREVIEW_POINTS_WIDTH,
-                            PREVIEW_POINTS_HEIGHT);
+//    self.frame = CGRectMake(0,
+//                            0,
+//                            PREVIEW_POINTS_WIDTH,
+//                            PREVIEW_POINTS_HEIGHT);
     
     // For retina display
     if([[UIScreen mainScreen] respondsToSelector: NSSelectorFromString(@"scale")])

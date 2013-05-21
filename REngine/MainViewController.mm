@@ -20,6 +20,7 @@ static void NSLogRect(CGRect rect)
 #if TARGET_IPHONE_SIMULATOR
     CADisplayLink* displayLink;
 #endif
+    BOOL didOpenGallery;
 }
 
 @property RFAnnotationView* annotationBubble;
@@ -36,6 +37,8 @@ static void NSLogRect(CGRect rect)
 @property (retain)SharingViewController *sharingViewController;
 @property (retain)ProUpgradeViewController *proUpgradeViewController;
 @property (retain)RFHaloActivityView *haloActivityView;
+@property (retain) IBOutlet RFGLView *previewView;
+
 
 @end
 
@@ -86,7 +89,7 @@ static void NSLogRect(CGRect rect)
 
 - (void)viewDidLoad
 {
-    renderer = new MyRenderer(self.view);
+    renderer = new MyRenderer(self.previewView);
     [self setupSubviews];
 #if ! TARGET_IPHONE_SIMULATOR
     self.captureSessionManager = [[[AVCaptureSessionManager alloc] initWithRenderer:(renderer)] autorelease];
@@ -303,8 +306,19 @@ static void NSLogRect(CGRect rect)
 
 - (IBAction)openGallery:(id)sender
 {
+    didOpenGallery = YES;
     GalleryViewController* galleryViewController = [[[GalleryViewController alloc] init] autorelease];
     [self presentViewController:galleryViewController animated:YES completion:^(void){}];
+    [self.captureSessionManager pause];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (didOpenGallery) {
+        didOpenGallery = NO;
+        [self.captureSessionManager resume];
+    }
 }
 
 - (void)updateElapsedTime
@@ -317,17 +331,20 @@ static void NSLogRect(CGRect rect)
 
 - (IBAction)showOverlayView:(id)sender
 {
+    [self.captureSessionManager pause];
     NSLog(@"here");
     BOOL upgradeToProButtonPushed = (sender == self.upgradeToProButton);
     if (upgradeToProButtonPushed) {
         self.proUpgradeViewController = [[[ProUpgradeViewController alloc] initWithNibName:@"ProUpgradeViewController"
                                                                                    bundle:[NSBundle mainBundle]] autorelease];
+        self.proUpgradeViewController.delegate = self;
         [self.proUpgradeViewController presentRFModalViewController:self.view];
     } else {
         self.sharingViewController = [[[SharingViewController alloc] initWithNibName:@"SharingViewController"
                                                                              bundle:[NSBundle mainBundle]
                                                                           videoInfo:nil] autorelease];
         self.sharingViewController.videoInfo = (NSDictionary*)sender;
+        self.sharingViewController.delegate = self;
         [self.sharingViewController presentRFModalViewController:self.view];
     }
 }
@@ -352,6 +369,50 @@ static void NSLogRect(CGRect rect)
     self.upgradeToProButton.enabled = NO;
     [self.upgradeToProButton removeFromSuperview];
     [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Upgraded to PRO! Enjoy!"];
+}
+
+- (void)modalViewControllerDismissed
+{
+    [self.captureSessionManager resume];
+}
+
+- (CGFloat)angleOffsetFromPortraitOrientationToOrientation:(AVCaptureVideoOrientation)orientation
+{
+	CGFloat angle = 0.0;
+	
+	switch (orientation) {
+		case AVCaptureVideoOrientationPortrait:
+			angle = 0.0;
+			break;
+		case AVCaptureVideoOrientationPortraitUpsideDown:
+			angle = M_PI;
+			break;
+		case AVCaptureVideoOrientationLandscapeRight:
+			angle = -M_PI_2;
+			break;
+		case AVCaptureVideoOrientationLandscapeLeft:
+			angle = M_PI_2;
+			break;
+		default:
+			break;
+	}
+    
+	return angle;
+}
+
+- (CGAffineTransform)transformFromCurrentVideoOrientationToOrientation:(AVCaptureVideoOrientation)orientation
+{
+	CGAffineTransform transform = CGAffineTransformIdentity;
+    
+	// Calculate offsets from an arbitrary reference orientation (portrait)
+	CGFloat orientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:orientation];
+	CGFloat videoOrientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:self.videoOrientation];
+	
+	// Find the difference in angle between the passed in orientation and the current video orientation
+	CGFloat angleOffset = orientationAngleOffset - videoOrientationAngleOffset;
+	transform = CGAffineTransformMakeRotation(angleOffset);
+	
+	return transform;
 }
 
 @end

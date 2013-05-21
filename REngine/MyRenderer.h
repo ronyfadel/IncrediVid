@@ -10,7 +10,7 @@ protected:
     vector<RFFramebuffer*>framebuffers;
     int current_filter_index;
 public:
-    MyRenderer(UIView* superview);
+    MyRenderer(RFGLView* previewView);
     void render();
     void useFilterNumber(int number);
     virtual ~MyRenderer();

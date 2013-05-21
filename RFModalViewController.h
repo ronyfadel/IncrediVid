@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RFModalViewControllerDelegate <NSObject>
+- (void)modalViewControllerDismissed;
+@end
+
 @interface RFModalViewController : UIViewController
 
 @property IBOutlet UILabel *titleLabel;
 @property IBOutlet UIView *titleLabelBackgroundView, *holderView;
 @property IBOutlet UIButton *dimmedOverlayButton;
+
+@property (retain) id<RFModalViewControllerDelegate> delegate;
 - (void)presentRFModalViewController:(UIView*)view;
 - (IBAction)dismiss;
 @end

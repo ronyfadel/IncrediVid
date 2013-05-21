@@ -114,7 +114,7 @@
     [self.sharingViewController presentRFModalViewController:self.view];
 }
 
-- (void)sharingViewControllerDismissed
+- (void)modalViewControllerDismissed
 {
     [self drawGallery];
 }

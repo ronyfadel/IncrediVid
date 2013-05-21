@@ -289,7 +289,6 @@ enum SHARING_SERVICE {
         NSLog(@"videos count: %d", [[RFVideoCollection sharedCollection].videos count]);
         [[RFVideoCollection sharedCollection] deleteVideoWithInfo:self.videoInfo];
         NSLog(@"videos count after delete: %d", [[RFVideoCollection sharedCollection].videos count]);
-        [self.delegate sharingViewControllerDismissed];
         [self dismiss];
     }
 }

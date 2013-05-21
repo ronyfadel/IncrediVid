@@ -61,6 +61,7 @@
 
 - (IBAction)dismiss
 {
+    [self.delegate modalViewControllerDismissed];
     [UIView animateWithDuration:0.4 delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{

@@ -5,8 +5,8 @@
 
 #import "MyRenderer.h"
 
-#define TARGET_TEXTURE_WIDTH 480
-#define TARGET_TEXTURE_HEIGHT 480
+#define TARGET_TEXTURE_WIDTH 512
+#define TARGET_TEXTURE_HEIGHT 512
 
 #define CAPTURED_FRAME_TEXTURE 0
 #define OUTPUT_TEXTURE_1 1
@@ -14,11 +14,11 @@
 #define iOS5_FRAMEBUFFER_TEXTURE 3
 #define LOOKUP_TEXTURE 4
 
-MyRenderer::MyRenderer(UIView* superview):RFRenderer(superview)
+MyRenderer::MyRenderer(RFGLView* previewView):RFRenderer(previewView)
 {
     current_filter_index = 0;
     
-    RFFramebuffer *view_fb            = new RFViewFramebuffer(this->view),
+    RFFramebuffer *view_fb            = new RFViewFramebuffer(previewView),
                   *iOS5_texture_fb    = new RFiOS5TextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, iOS5_FRAMEBUFFER_TEXTURE),
                   *texture_fb_1       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_1),
                   *texture_fb_2       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_2);

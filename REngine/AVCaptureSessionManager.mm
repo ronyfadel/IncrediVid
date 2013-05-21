@@ -16,6 +16,7 @@ extern CVPixelBufferRef __renderTarget;
     AVCaptureSession* captureSession;
     AVCaptureConnection *audioConnection;
 	AVCaptureConnection *videoConnection;
+    dispatch_queue_t videoCaptureQueue;
 }
 
 - (void)setupCaptureSession;
@@ -82,7 +83,7 @@ extern CVPixelBufferRef __renderTarget;
     AVCaptureVideoDataOutput *videoOut = [[AVCaptureVideoDataOutput alloc] init];
     [videoOut setAlwaysDiscardsLateVideoFrames:YES];
     [videoOut setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
-    dispatch_queue_t videoCaptureQueue = dispatch_queue_create("Video Capture Queue", DISPATCH_QUEUE_SERIAL);
+    videoCaptureQueue = dispatch_queue_create("Video Capture Queue", DISPATCH_QUEUE_SERIAL);
     [videoOut setSampleBufferDelegate:self queue:videoCaptureQueue];
 	dispatch_release(videoCaptureQueue);
 //    [videoOut setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
@@ -363,7 +364,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 		{
             
 			[captureSession beginConfiguration];
-            [captureSession setSessionPreset:AVCaptureSessionPresetHigh]; //Always reset preset before testing canAddInput because preset will cause it to return NO
+//            [captureSession setSessionPreset:AVCaptureSessionPresetHigh]; //Always reset preset before testing canAddInput because preset will cause it to return NO
 
             [captureSession removeInput:oldVideoInput];
 			if ([captureSession canAddInput:newVideoInput])
@@ -421,12 +422,16 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)pause
 {
-    [captureSession stopRunning];
+    dispatch_async(videoCaptureQueue, ^(){
+        [captureSession stopRunning];
+    });
 }
 
 - (void)resume
 {
-    [captureSession startRunning];
+    dispatch_async(videoCaptureQueue, ^(){
+        [captureSession startRunning];
+    });
 }
 
 - (void)dealloc

@@ -1,14 +1,12 @@
 #import "RFRenderer.h"
 #import "RFGLView.h"
 
-RFRenderer::RFRenderer(UIView* superview)
+RFRenderer::RFRenderer(RFGLView* view)
 {
-    view = [[RFGLView alloc] initWithFrame:superview.frame];
-    [superview addSubview:view];
-
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
     glClearColor(1.f, 0.f, 0.f, 1.f);
+    this->view = view;
 }
 
 void RFRenderer::set_culling(bool enabled)

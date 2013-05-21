@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SharingViewController.h"
 
-@interface GalleryViewController : UIViewController <SharingViewControllerDelegate> {
+@interface GalleryViewController : UIViewController <RFModalViewControllerDelegate> {
 }
 @end

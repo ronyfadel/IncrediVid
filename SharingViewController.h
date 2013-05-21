@@ -10,10 +10,6 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "RFModalViewController.h"
 
-@protocol SharingViewControllerDelegate <NSObject>
-- (void)sharingViewControllerDismissed;
-@end
-
 @interface SharingViewController : RFModalViewController <MFMailComposeViewControllerDelegate,
                                                             UIDocumentInteractionControllerDelegate>
 
@@ -22,6 +18,5 @@
 - (IBAction)share:(id)sender;
 
 @property (retain) NSDictionary* videoInfo;
-@property (retain) id<SharingViewControllerDelegate> delegate;
 
 @end
