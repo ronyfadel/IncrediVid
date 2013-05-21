@@ -81,8 +81,6 @@ static void NSLogRect(CGRect rect)
                                                  selector:@selector(isNowPro)
                                                      name:@"IAPHelperProductPurchasedNotification"
                                                    object:nil];
-
-        
     }
     return self;
 }
@@ -94,7 +92,6 @@ static void NSLogRect(CGRect rect)
 #if ! TARGET_IPHONE_SIMULATOR
     self.captureSessionManager = [[[AVCaptureSessionManager alloc] initWithRenderer:(renderer)] autorelease];
 #else
-    
     // Texture 0 is pre-defined image
     string texture_name = "lux.jpg";
     string texture_path = get_ios_file_path(texture_name);
@@ -148,19 +145,30 @@ static void NSLogRect(CGRect rect)
     }
     // UI
     UIFont *latoBlack = [UIFont fontWithName:@"Lato-Black" size:34.0];
-    self.logoLabel.font = latoBlack;
     UIFont *latoBlackSmall = [UIFont fontWithName:@"Lato-Black" size:20.0];
+    UIFont *latoBlackSmaller = [UIFont fontWithName:@"Lato-Black" size:18.0];
+
+    self.logoLabel.font = latoBlack;
     self.elapsedTimeLabel.font = latoBlackSmall;
 	self.elapsedTimeLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35];
     self.elapsedTimeLabel.layer.cornerRadius = 4;
     self.elapsedTimeLabel.layer.opacity = 0;
-    [self.view bringSubviewToFront:self.elapsedTimeLabel];
-    
-    UIFont *latoBlackSmaller = [UIFont fontWithName:@"Lato-Black" size:18.0];
-    self.upgradeToProButton.layer.cornerRadius = 4;
-    self.upgradeToProButton.titleLabel.font = latoBlackSmaller;
-    
+        
     BOOL isScreenSize4Inch = [[UIScreen mainScreen] bounds].size.height == 568;
+    if (isScreenSize4Inch) {
+        CGRect currentFrame;
+        currentFrame = self.openGalleryButton.frame;
+        self.openGalleryButton.frame = CGRectMake(currentFrame.origin.x,
+                                                  483,
+                                                  currentFrame.size.width,
+                                                  currentFrame.size.height);
+        currentFrame = self.chooseFilterButton.frame;
+        self.chooseFilterButton.frame = CGRectMake(currentFrame.origin.x,
+                                                  483,
+                                                  currentFrame.size.width,
+                                                  currentFrame.size.height);
+        
+    }
     
     // rounding up the 2 bottom buttons
     // masking email button
@@ -180,24 +188,23 @@ static void NSLogRect(CGRect rect)
     maskLayer.path = maskPathTopLeft.CGPath;
     self.chooseFilterButton.layer.mask = maskLayer;
     
-    // re-showing record button covered by GL View
-    [self.view bringSubviewToFront:self.recordButton];
-    
-    self.annotationBubble = [[[RFAnnotationView alloc] initWithFrame:CGRectMake(-5, 265, 330, 110)] autorelease];
-    self.annotationBubble.layer.opacity = 0;
-    
-    NSString* file = [[NSBundle mainBundle] pathForResource:@"filters" ofType:@"plist"];
-    NSArray* filtersInfo = [NSArray arrayWithContentsOfFile:file];
-    
-    RFFilterScrollView *scrollView = [[[RFFilterScrollView alloc] initWithFrame:CGRectMake(8, 10, 315, 70)
-                                                                    filtersInfo:filtersInfo] autorelease];
-    [self.annotationBubble addSubview:scrollView];
-    [self.view addSubview:self.annotationBubble];
-    [self.view bringSubviewToFront:self.annotationBubble];
+    self.upgradeToProButton.layer.cornerRadius = 4;
+    self.upgradeToProButton.titleLabel.font = latoBlackSmaller;
 }
 
 - (IBAction)alternateFilterPicker:(id)sender
 {
+    if (!self.annotationBubble) {
+        self.annotationBubble = [[[RFAnnotationView alloc] initWithFrame:CGRectMake(-5, 265, 330, 110)] autorelease];
+        self.annotationBubble.layer.opacity = 0;
+        NSString* file = [[NSBundle mainBundle] pathForResource:@"filters" ofType:@"plist"];
+        NSArray* filtersInfo = [NSArray arrayWithContentsOfFile:file];
+        
+        RFFilterScrollView *scrollView = [[[RFFilterScrollView alloc] initWithFrame:CGRectMake(8, 10, 315, 70)
+                                                                        filtersInfo:filtersInfo] autorelease];
+        [self.annotationBubble addSubview:scrollView];
+        [self.view addSubview:self.annotationBubble];
+    }
     [self setFilterPickerToOpacity:(1.0 - self.annotationBubble.layer.opacity)];
 }
 
@@ -376,43 +383,43 @@ static void NSLogRect(CGRect rect)
     [self.captureSessionManager resume];
 }
 
-- (CGFloat)angleOffsetFromPortraitOrientationToOrientation:(AVCaptureVideoOrientation)orientation
-{
-	CGFloat angle = 0.0;
-	
-	switch (orientation) {
-		case AVCaptureVideoOrientationPortrait:
-			angle = 0.0;
-			break;
-		case AVCaptureVideoOrientationPortraitUpsideDown:
-			angle = M_PI;
-			break;
-		case AVCaptureVideoOrientationLandscapeRight:
-			angle = -M_PI_2;
-			break;
-		case AVCaptureVideoOrientationLandscapeLeft:
-			angle = M_PI_2;
-			break;
-		default:
-			break;
-	}
-    
-	return angle;
-}
-
-- (CGAffineTransform)transformFromCurrentVideoOrientationToOrientation:(AVCaptureVideoOrientation)orientation
-{
-	CGAffineTransform transform = CGAffineTransformIdentity;
-    
-	// Calculate offsets from an arbitrary reference orientation (portrait)
-	CGFloat orientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:orientation];
-	CGFloat videoOrientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:self.videoOrientation];
-	
-	// Find the difference in angle between the passed in orientation and the current video orientation
-	CGFloat angleOffset = orientationAngleOffset - videoOrientationAngleOffset;
-	transform = CGAffineTransformMakeRotation(angleOffset);
-	
-	return transform;
-}
+//- (CGFloat)angleOffsetFromPortraitOrientationToOrientation:(AVCaptureVideoOrientation)orientation
+//{
+//	CGFloat angle = 0.0;
+//	
+//	switch (orientation) {
+//		case AVCaptureVideoOrientationPortrait:
+//			angle = 0.0;
+//			break;
+//		case AVCaptureVideoOrientationPortraitUpsideDown:
+//			angle = M_PI;
+//			break;
+//		case AVCaptureVideoOrientationLandscapeRight:
+//			angle = -M_PI_2;
+//			break;
+//		case AVCaptureVideoOrientationLandscapeLeft:
+//			angle = M_PI_2;
+//			break;
+//		default:
+//			break;
+//	}
+//    
+//	return angle;
+//}
+//
+//- (CGAffineTransform)transformFromCurrentVideoOrientationToOrientation:(AVCaptureVideoOrientation)orientation
+//{
+//	CGAffineTransform transform = CGAffineTransformIdentity;
+//    
+//	// Calculate offsets from an arbitrary reference orientation (portrait)
+//	CGFloat orientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:orientation];
+//	CGFloat videoOrientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:self.videoOrientation];
+//	
+//	// Find the difference in angle between the passed in orientation and the current video orientation
+//	CGFloat angleOffset = orientationAngleOffset - videoOrientationAngleOffset;
+//	transform = CGAffineTransformMakeRotation(angleOffset);
+//	
+//	return transform;
+//}
 
 @end

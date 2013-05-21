@@ -9,14 +9,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import <Social/Social.h>
-#import <Accounts/Accounts.h>
 #import "TKAlertCenter.h"
 #import "SharingViewController.h"
 #import "RFPlayButton.h"
 #import "RFVideoCollection.h"
-
-#define FACEBOOK_SHARING_2_STEP_HACK YES
+#import "RFFacebookSharer.h"
 
 enum SHARING_SERVICE {
     FACEBOOK_SHARING_SERVICE = 0,
@@ -36,8 +33,8 @@ enum SHARING_SERVICE {
 @property IBOutlet UIButton *deleteVideoButton;
 @property IBOutlet UIButton *emailVideoButton;
 
-@property(retain) MPMoviePlayerViewController *moviePlayerController;
-@property(retain) ACAccount *facebookAccount;
+@property (retain) MPMoviePlayerViewController *moviePlayerController;
+@property (retain) RFFacebookSharer *facebookSharer;
 
 @end
 
@@ -84,9 +81,7 @@ enum SHARING_SERVICE {
 
 - (IBAction)play:(id)sender
 {
-    NSLog(@"PLAY");
     NSURL *videoURL = [self.videoInfo objectForKey:@"videoURL"];
-    
     UIGraphicsBeginImageContext(CGSizeMake(1,1));
     self.moviePlayerController = [[[MPMoviePlayerViewController alloc] initWithContentURL:videoURL] autorelease];
     [self presentMoviePlayerViewControllerAnimated:self.moviePlayerController];
@@ -99,7 +94,7 @@ enum SHARING_SERVICE {
     
     switch (sharingServiceId) {
         case FACEBOOK_SHARING_SERVICE:
-            [self authenticateWithFacebook];
+            [self shareOnFacebook];
             break;
         case EMAIl_SHARING_SERVICE:
             [self emailMovie];
@@ -115,87 +110,29 @@ enum SHARING_SERVICE {
     }
 }
 
-- (void)authenticateWithFacebook
-{
-    //Centralized iOS user Twitter, Facebook and Sina Weibo accounts are accessed by apps via the ACAccountStore
-    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-    ACAccountType *accountTypeFacebook = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-
-    NSArray *permissions;
-    NSString *facebookAudience;
-#if (FACEBOOK_SHARING_2_STEP_HACK)
-    if (self.facebookAccount == nil) {
-        permissions = @[@"email"];
-        facebookAudience = ACFacebookAudienceOnlyMe;
-    } else {
-        permissions = @[@"publish_stream"];
-        facebookAudience = ACFacebookAudienceFriends;
-    }
-#else
-    permissions = @[@"email", @"publish_stream"];
-    facebookAudience = ACFacebookAudienceFriends;
-#endif
-    
-    NSDictionary *options = @{ACFacebookAppIdKey: @"578010692220043",
-                              ACFacebookPermissionsKey: permissions,
-                              ACFacebookAudienceKey: facebookAudience};
-    [accountStore requestAccessToAccountsWithType:accountTypeFacebook
-                                          options:options
-                                       completion:^(BOOL granted, NSError *error)
-    {
-        if(granted) {
-#if (FACEBOOK_SHARING_2_STEP_HACK)
-            if (self.facebookAccount == nil) {
-                NSArray *accounts = [accountStore accountsWithAccountType:accountTypeFacebook];
-                self.facebookAccount = [accounts lastObject];
-                [self authenticateWithFacebook];
-                return;
-            }
-#else
-            NSArray *accounts = [accountStore accountsWithAccountType:accountTypeFacebook];
-            self.facebookAccount = [accounts lastObject];
-#endif
-            [self shareOnFacebook];
-        } else {
-            if ([error code] == ACErrorAccountNotFound) {
-                NSLog(@"No Facebook Account Found");
-            }
-            else {
-                NSLog(@"Facebook SSO Authentication Failed: %@", error);
-            }            
-        }
-    }];
-}
-
 - (void)shareOnFacebook
 {
-    NSURL *videoURL = [self.videoInfo objectForKey:@"videoURL"];
-    NSData *videoData = [NSData dataWithContentsOfFile:videoURL.path];
-    
-    NSDictionary *parameters = @{@"title": @"My 4th iOS 6 Facebook posting"};
-    NSURL *feedURL = [NSURL URLWithString:@"https://graph.facebook.com/me/videos"];
-    SLRequest *feedRequest = [SLRequest
-                              requestForServiceType:SLServiceTypeFacebook
-                              requestMethod:SLRequestMethodPOST
-                              URL:feedURL
-                              parameters:parameters];
-    
-    [feedRequest addMultipartData:videoData
-                           withName:@"source"
-                               type:@"video/quicktime"
-                           filename:[videoURL absoluteString]];
-
-    feedRequest.account = self.facebookAccount;
-        
-    [feedRequest performRequestWithHandler:^(NSData *responseData,
-                                             NSHTTPURLResponse *urlResponse, NSError *error)
-     {
-         if (error) {
-              NSLog(@"error: %@", error);
-         } else {
-             NSLog(@"response: %@", urlResponse);
-         }
-     }];
+    self.facebookSharer = [[RFFacebookSharer alloc] init];
+    [self.facebookSharer authenticateWithCompletion:^(BOOL granted, NSError *error) {
+        if (! granted) {
+            UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Failed Authenticating Facebbok"
+                                                                message:nil
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease];
+            [alertView show];
+        } else {
+            [self.facebookSharer share:self.videoInfo completion:^(BOOL shared, NSError *error) {
+                if (!shared) {
+                    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Sharing Failed"
+                                                                         message:[error localizedDescription]
+                                                                        delegate:nil
+                                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease];
+                } else {
+                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Shared on Facebook!"];
+                }
+            }];
+        }
+    }];
 }
 
 - (void)saveMovieToCameraRoll

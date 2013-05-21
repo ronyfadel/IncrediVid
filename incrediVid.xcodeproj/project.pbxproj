@@ -32,6 +32,7 @@
 		53171C4117431F0400AF7641 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53171C4017431F0400AF7641 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		53171C431743216900AF7641 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53171C421743216900AF7641 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		53214C2417497D9E000793BD /* delete_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 53214C2317497D9E000793BD /* delete_video.png */; };
+		532219EF174C24DA00BC34B0 /* RFFacebookSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 532219EE174C24DA00BC34B0 /* RFFacebookSharer.m */; };
 		533777F41731A3AC00CC6910 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533777F21731A3AC00CC6910 /* GalleryViewController.m */; };
 		533777F51731A3AC00CC6910 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533777F31731A3AC00CC6910 /* GalleryViewController.xib */; };
 		533BBF5C17440B61005E633C /* incrediGallery.png in Resources */ = {isa = PBXBuildFile; fileRef = 533BBF5A17440B61005E633C /* incrediGallery.png */; };
@@ -161,6 +162,8 @@
 		53171C4017431F0400AF7641 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		53171C421743216900AF7641 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		53214C2317497D9E000793BD /* delete_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_video.png; sourceTree = "<group>"; };
+		532219ED174C24DA00BC34B0 /* RFFacebookSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFFacebookSharer.h; sourceTree = "<group>"; };
+		532219EE174C24DA00BC34B0 /* RFFacebookSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFFacebookSharer.m; sourceTree = "<group>"; };
 		533777F11731A3AC00CC6910 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		533777F21731A3AC00CC6910 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		533777F31731A3AC00CC6910 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
@@ -361,6 +364,15 @@
 			name = Sharing;
 			sourceTree = "<group>";
 		};
+		532219EC174C24BF00BC34B0 /* RFFacebookSharer */ = {
+			isa = PBXGroup;
+			children = (
+				532219ED174C24DA00BC34B0 /* RFFacebookSharer.h */,
+				532219EE174C24DA00BC34B0 /* RFFacebookSharer.m */,
+			);
+			name = RFFacebookSharer;
+			sourceTree = "<group>";
+		};
 		533777EB1731A29400CC6910 /* Gallery View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +454,7 @@
 		53761975172A5129004ECE27 /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				532219EC174C24BF00BC34B0 /* RFFacebookSharer */,
 				53FC5266174932CE004E378E /* IAPHelper */,
 				5376198D172A59A7004ECE27 /* TapKu */,
 			);
@@ -887,6 +900,7 @@
 				53FC5269174932DC004E378E /* IAPHelper.m in Sources */,
 				53FC526E17493523004E378E /* RFIAPHelper.m in Sources */,
 				53FC5271174941F5004E378E /* RFFilterThumbnailView.m in Sources */,
+				532219EF174C24DA00BC34B0 /* RFFacebookSharer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

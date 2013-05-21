@@ -62,12 +62,7 @@
             [thumbnailButton addTarget:self action:@selector(thumbnailClicked:) forControlEvents:UIControlEventTouchUpInside];
             thumbnailButton.tag = i * numberOfColumns + j;
             thumbnailButton.layer.cornerRadius = 6;
-            thumbnailButton.layer.masksToBounds = YES;
-            
-//            NSLog(@"x: %d y: %d w: %d h: %d", (pixelsBetweenThumbnails + thumbnailEdgeSize) * j,
-//                                              (pixelsBetweenThumbnails + thumbnailEdgeSize) * i,
-//                                              thumbnailEdgeSize,
-//                                              thumbnailEdgeSize);
+            thumbnailButton.layer.masksToBounds = YES;            
             
             thumbnailButton.frame = CGRectMake((pixelsBetweenThumbnails + thumbnailEdgeSize) * j + pixelsBetweenThumbnails,
                                              (pixelsBetweenThumbnails + thumbnailEdgeSize) * i + pixelsBetweenThumbnails,
@@ -89,7 +84,6 @@
             durationLabel.textColor = [UIColor whiteColor];
             durationLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
             durationLabel.textAlignment = NSTextAlignmentRight;
-//            durationLabel.textAlignment = nste
             
             [thumbnailButton addSubview:durationLabel];
             [self.galleryScrollView addSubview:thumbnailButton];
@@ -117,12 +111,6 @@
 - (void)modalViewControllerDismissed
 {
     [self drawGallery];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)dismissView:(id)sender

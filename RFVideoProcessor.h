@@ -18,5 +18,4 @@
 
 @property (readonly) BOOL recording;
 @property (readonly) BOOL recordingWillBeStarted;
-@property (readonly) dispatch_queue_t movieWritingQueue;
 @end

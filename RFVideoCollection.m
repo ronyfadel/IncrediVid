@@ -87,8 +87,8 @@ static RFVideoCollection *sharedVideoCollection = nil;
                                             NSLog(@"couldn't generate thumbnail, error:%@", error);
                                         } else {
                                             
-                                            NSURL* largeThumbnailPath = [NSURL URLWithString:@".large_thumbnail.png" relativeToURL:videoURL];
-                                            NSURL* smallThumbnailPath = [NSURL URLWithString:@".small_thumbnail.png" relativeToURL:videoURL];
+                                            NSURL* largeThumbnailPath = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", videoURL, @".large_thumbnail.png"]];
+                                            NSURL* smallThumbnailPath = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", videoURL, @".small_thumbnail.png"]];
                                             
                                             // saving large thumbnail
                                             UIImage *largeThumbnail = [UIImage imageWithCGImage:im];
@@ -139,29 +139,6 @@ static RFVideoCollection *sharedVideoCollection = nil;
         [unarchiver finishDecoding];
         [unarchiver release];
         [data release];
-        
-//        NSMutableArray* newVids = [[NSMutableArray alloc] init];
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString *documentsDirectory = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-//        
-//        for (int i = 0; i < 7; ++i)
-//        {
-//            
-//            NSURL* movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/incrediVids/%d.MOV",
-//                                                       documentsDirectory,
-//                                                       i+1]];
-//            UIImage *thumbnail = [[self.videos objectAtIndex:i] objectForKey:@"thumbnail"];
-//            [newVids addObject:@{@"movieURL": movieURL, @"smallThumbnail": thumbnail, @"largeThumbnail": thumbnail, @"duration":@150.0}];
-//        }
-//        
-//        NSMutableData *data2 = [[NSMutableData alloc] init];
-//        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data2];
-//        [archiver encodeObject:newVids forKey:savingKey];
-//        [archiver finishEncoding];
-//        [data2 writeToFile:dataFilePath atomically:YES];
-//        [archiver release];
-//        [data2 release];
-
     }
     else
     {
