@@ -1,8 +1,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
-
+#import "Flurry.h"
 #import "RFVideoCollection.h"
-#import "RFIAPHelper.h"
 
 @implementation AppDelegate
 
@@ -16,6 +15,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Flurry startSession:@"HQHXTVN6TF5GPVSMJS7R"];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.rootViewController = [[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:[NSBundle mainBundle]] autorelease];
     // Override point for customization after application launch.
@@ -24,8 +25,6 @@
 
     // registering collection class to get all stored videos
     [RFVideoCollection sharedCollection];
-    // registering In-APP Purchase helper got it to observe transactions
-    [RFIAPHelper sharedInstance];
     
     return YES;
 }

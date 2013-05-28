@@ -5,12 +5,13 @@
 
 #import "MyRenderer.h"
 
-#define TARGET_TEXTURE_WIDTH 512
-#define TARGET_TEXTURE_HEIGHT 512
+#define TARGET_TEXTURE_WIDTH 426
+#define TARGET_TEXTURE_HEIGHT 640
 
 #define CAPTURED_FRAME_TEXTURE 0
 #define OUTPUT_TEXTURE_1 1
 #define OUTPUT_TEXTURE_2 2
+#define OUTPUT_TEXTURE_3 5
 #define iOS5_FRAMEBUFFER_TEXTURE 3
 #define LOOKUP_TEXTURE 4
 
@@ -21,12 +22,14 @@ MyRenderer::MyRenderer(RFGLView* previewView):RFRenderer(previewView)
     RFFramebuffer *view_fb            = new RFViewFramebuffer(previewView),
                   *iOS5_texture_fb    = new RFiOS5TextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, iOS5_FRAMEBUFFER_TEXTURE),
                   *texture_fb_1       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_1),
-                  *texture_fb_2       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_2);
+                  *texture_fb_2       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_2),
+                  *texture_fb_3       = new RFTextureFramebuffer(TARGET_TEXTURE_WIDTH, TARGET_TEXTURE_HEIGHT, OUTPUT_TEXTURE_3);
     
     framebuffers.push_back(view_fb);
     framebuffers.push_back(iOS5_texture_fb);
     framebuffers.push_back(texture_fb_1);
     framebuffers.push_back(texture_fb_2);
+    framebuffers.push_back(texture_fb_3);
     
     // some oft used filters
 #if TARGET_IPHONE_SIMULATOR
@@ -41,6 +44,32 @@ MyRenderer::MyRenderer(RFGLView* previewView):RFRenderer(previewView)
     copy->bind_uniform_to_int_value("input_texture", iOS5_FRAMEBUFFER_TEXTURE);
     copy->setup();
     
+//    // Normal Filter
+//    RFFilterCollection* normal = new RFFilterCollection("Normal");
+//    normal->add_filter_framebuffer_pair(crop, texture_fb_1);
+//    RFFilter *copy2 = new RFFilter("copy.vsh", "copy.fsh", FLIPPED);
+//    copy2->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_1);
+//    copy2->setup();
+//    normal->add_filter_framebuffer_pair(copy2, iOS5_texture_fb);
+//    normal->add_filter_framebuffer_pair(copy, view_fb);
+//    filters.push_back(normal);
+    
+    // Vintage Filter
+    RFFilterCollection* vintage = new RFFilterCollection("Vintage");
+    vintage->add_filter_framebuffer_pair(crop, texture_fb_1);
+    RFFilter *lookup_vintage = new RFLookupTableFilter(FLIPPED);
+    lookup_vintage->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_1);
+    lookup_vintage->bind_uniform_to_int_value("lookup_texture", LOOKUP_TEXTURE);
+    lookup_vintage->setup();
+    vintage->add_filter_framebuffer_pair(lookup_vintage, texture_fb_2);
+    RFFilter *multiply = new RFLookupFilter("sutroEdgeBurn.png", STRAIGHT, "color_burn.fsh");
+    multiply->bind_uniform_to_int_value("input_texture", OUTPUT_TEXTURE_2);
+    multiply->bind_uniform_to_int_value("lookup_texture", LOOKUP_TEXTURE);
+    multiply->setup();
+    vintage->add_filter_framebuffer_pair(multiply, iOS5_texture_fb);
+    vintage->add_filter_framebuffer_pair(copy, view_fb);
+    filters.push_back(vintage);
+
     // Miss Etikate Filter
     RFFilterCollection* miss_etikate = new RFFilterCollection("Miss Etikate");
     miss_etikate->add_filter_framebuffer_pair(crop, texture_fb_1);
@@ -97,6 +126,7 @@ void MyRenderer::render()
 void MyRenderer::useFilterNumber(int number)
 {
     current_filter_index = number;
+    NSLog(@"using new filter!!");
 }
 
 MyRenderer::~MyRenderer()

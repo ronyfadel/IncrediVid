@@ -95,7 +95,7 @@ static RFVideoCollection *sharedVideoCollection = nil;
                                             NSData *largeThumbnailPNGRepresentation = UIImagePNGRepresentation(largeThumbnail);
                                             [largeThumbnailPNGRepresentation writeToURL:largeThumbnailPath atomically:YES];
                                             
-                                            CGSize destinationSize = CGSizeMake(1, 1);
+                                            CGSize destinationSize = CGSizeMake(40, 40);
                                             UIGraphicsBeginImageContext(destinationSize);
                                             [largeThumbnail drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
                                             UIImage *smallThumbnail = UIGraphicsGetImageFromCurrentImageContext();

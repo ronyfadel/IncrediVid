@@ -4,19 +4,25 @@
 <array>
 	<dict>
 		<key>imageFileName</key>
-		<string>filter-0.png</string>
+		<string>filter-4.png</string>
 		<key>imageTitle</key>
-		<string> Etikate</string>
+		<string>Vintage</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>
 		<string>filter-1.png</string>
 		<key>imageTitle</key>
-		<string>Amatorke</string>
+		<string> Etikate</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>
 		<string>filter-2.png</string>
+		<key>imageTitle</key>
+		<string>Amatorke</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter-3.png</string>
 		<key>imageTitle</key>
 		<string>Cartoon</string>
 	</dict>
