@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  IncrediVid
+
+  Created by Rony Fadel on 5/29/13.
+
+*/
+@"Shoot some IncrediVids and watch them here!" = @"Shoot some IncrediVids and watch them here!";
+
+@"Done" = @"Done";

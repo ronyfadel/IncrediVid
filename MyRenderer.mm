@@ -5,8 +5,13 @@
 
 #import "MyRenderer.h"
 
-#define TARGET_TEXTURE_WIDTH 426
-#define TARGET_TEXTURE_HEIGHT 640
+#if HD
+    #define TARGET_TEXTURE_WIDTH 720
+    #define TARGET_TEXTURE_HEIGHT 1280
+#else
+    #define TARGET_TEXTURE_WIDTH 445
+    #define TARGET_TEXTURE_HEIGHT 640
+#endif
 
 #define CAPTURED_FRAME_TEXTURE 0
 #define OUTPUT_TEXTURE_1 1

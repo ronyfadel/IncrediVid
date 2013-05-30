@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
-               BuildableName = "incrediVid.app"
-               BlueprintName = "incrediVid"
-               ReferencedContainer = "container:incrediVid.xcodeproj">
+               BuildableName = "IncrediVid.app"
+               BlueprintName = "IncrediVid"
+               ReferencedContainer = "container:IncrediVid.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5373B10F15FF8A4500D308A4"
-               BuildableName = "incrediVidTests.octest"
-               BlueprintName = "incrediVidTests"
-               ReferencedContainer = "container:incrediVid.xcodeproj">
+               BuildableName = "IncrediVid.Tests.octest"
+               BlueprintName = "IncrediVid.Tests"
+               ReferencedContainer = "container:IncrediVid.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
-            BuildableName = "incrediVid.app"
-            BlueprintName = "incrediVid"
-            ReferencedContainer = "container:incrediVid.xcodeproj">
+            BuildableName = "IncrediVid.app"
+            BlueprintName = "IncrediVid"
+            ReferencedContainer = "container:IncrediVid.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
-            BuildableName = "incrediVid.app"
-            BlueprintName = "incrediVid"
-            ReferencedContainer = "container:incrediVid.xcodeproj">
+            BuildableName = "IncrediVid.app"
+            BlueprintName = "IncrediVid"
+            ReferencedContainer = "container:IncrediVid.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5373B0F415FF8A4400D308A4"
-            BuildableName = "incrediVid.app"
-            BlueprintName = "incrediVid"
-            ReferencedContainer = "container:incrediVid.xcodeproj">
+            BuildableName = "IncrediVid.app"
+            BlueprintName = "IncrediVid"
+            ReferencedContainer = "container:IncrediVid.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

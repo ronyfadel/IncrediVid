@@ -205,11 +205,11 @@
 	int bitsPerSecond;
 	
 	// Assume that lower-than-SD resolutions are intended for streaming, and use a lower bitrate
-	if ( numPixels < (640 * 480) ) {
-		bitsPerPixel = 4.05; // This bitrate matches the quality produced by AVCaptureSessionPresetMedium or Low.
-    } else {
+//	if ( numPixels < (640 * 480) ) {
+//		bitsPerPixel = 4.05; // This bitrate matches the quality produced by AVCaptureSessionPresetMedium or Low.
+//    } else {
 		bitsPerPixel = 11.4; // This bitrate matches the quality produced by AVCaptureSessionPresetHigh.
-    }
+//    }
 	
 	bitsPerSecond = numPixels * bitsPerPixel;
 	

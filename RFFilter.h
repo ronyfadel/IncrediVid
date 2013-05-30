@@ -14,6 +14,14 @@ enum BUFFER_DATA {
     FLIPPED_CROPPED
 };
 
+
+static float i4_to_shave_off = 0.055f;
+#if HD
+    static float i5_to_shave_off = 0.f;
+#else
+    static float i5_to_shave_off = 0.11f;
+#endif
+
 static const GLushort indexes[] = {
     0, 1, 2,
     0, 2, 3
@@ -34,16 +42,19 @@ static const GLfloat vertices_flipped_tex_coords[] = {
 };
 
 static const GLfloat vertices_flipped_cropped_tex_coords[] = {
-    -1.f, -1.f, 0.055f, 1,
-    1.f, -1.f, 1.f - 0.055f, 1,
-    1.f,  1.f, 1.f - 0.055f, 0,
-    -1.f,  1.f, 0.055f, 0
+    -1.f, -1.f, i5_to_shave_off, 1,
+    1.f, -1.f, 1.f - i5_to_shave_off, 1,
+    1.f,  1.f, 1.f - i5_to_shave_off, 0,
+    -1.f,  1.f, i5_to_shave_off, 0
 };
 
 class RFFilter : public RFNode {
 public:
     RFFilter(string v_shader_name, string f_shader_name, BUFFER_DATA mode = STRAIGHT):RFNode(v_shader_name, f_shader_name)
     {
+#if HD
+        printf("HDDDDDDDDDDDD\n");
+#endif
         switch (mode) {
             case STRAIGHT:
                 fill_data((void*)vertices_straight_tex_coords, sizeof(vertices_straight_tex_coords),

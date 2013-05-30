@@ -21,6 +21,7 @@ extern CVPixelBufferRef __renderTarget;
 
 - (void)setupCaptureSession;
 - (void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer;
+@property (retain) AVCaptureDeviceInput *videoIn;
 @end
 
 @implementation AVCaptureSessionManager
@@ -57,7 +58,12 @@ extern CVPixelBufferRef __renderTarget;
     
     captureSession = [[AVCaptureSession alloc] init];
     [captureSession beginConfiguration];
+#if HD
+    captureSession.sessionPreset =  AVCaptureSessionPreset1280x720;
+#else
     captureSession.sessionPreset =  AVCaptureSessionPreset640x480;
+#endif
+    
     
     // audio
     AVCaptureDeviceInput *audioIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil];
@@ -75,10 +81,10 @@ extern CVPixelBufferRef __renderTarget;
 	[audioOut release];
     
     // video
-    AVCaptureDeviceInput *videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
-    if ([captureSession canAddInput:videoIn])
-        [captureSession addInput:videoIn];
-	[videoIn release];
+    self.videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
+    if ([captureSession canAddInput:self.videoIn])
+        [captureSession addInput:self.videoIn];
+	[self.videoIn release];
     
     AVCaptureVideoDataOutput *videoOut = [[AVCaptureVideoDataOutput alloc] init];
     [videoOut setAlwaysDiscardsLateVideoFrames:YES];
@@ -182,81 +188,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
 }
 
-///*
-// delegate routine for processing samples
-// to use sample buffer outside this scope, have
-// to CFRetain then CFRelease it
-// */
-//- (void)captureOutput:(AVCaptureOutput *)captureOutput 
-//didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer 
-//       fromConnection:(AVCaptureConnection *)connection
-//{
-//    if ( connection == videoConnection ) {
-//        if (!_videoTextureCache)
-//        {
-//            NSLog(@"No video texture cache");
-//            return;
-//        } else {
-//            CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
-//        }
-//    
-//        OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, sampleBuffer);
-//        if ( !err ) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
-//                if (sbuf) {
-//                    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sbuf);
-//                    [self createTextureFromImageBuffer:imageBuffer];
-//                    self->renderer->render();
-//                    
-//                    CVReturn err = CVPixelBufferLockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
-//                    
-//                    if (!err) {
-//                        CMVideoFormatDescriptionRef videoInfo = NULL;
-//                        CMVideoFormatDescriptionCreateForImageBuffer(NULL, __renderTarget, &videoInfo);
-//
-//                        CMSampleTimingInfo timingInfo = kCMTimingInfoInvalid;
-//                        CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &timingInfo);
-//                        
-//                        CMSampleBufferRef newSampleBuffer = NULL;
-//                        CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, __renderTarget, YES, NULL, NULL, videoInfo, &timingInfo, &newSampleBuffer);
-//                        
-//                        
-//                        CMBufferQueueEnqueue(savingBufferQueue, newSampleBuffer);
-//                    } else {
-//                        NSLog(@"Error locking __renderTarget: %d", err);
-//                    }
-//                    
-//                    CVPixelBufferUnlockBaseAddress(__renderTarget, kCVPixelBufferLock_ReadOnly);
-//                    
-//                    if (! (self.videoProcessor.recording || self.videoProcessor.recordingWillBeStarted) ) {
-//                        CFRelease((CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue));
-//                    }
-//                    
-//                    CFRelease(sbuf);
-//                }
-//            });
-//        }
-//    }
-//    
-//    if (self.videoProcessor.recording || self.videoProcessor.recordingWillBeStarted) {
-//                
-//        if (connection == audioConnection) {
-//            CFRetain(sampleBuffer);
-//        } else {
-//            sampleBuffer = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(savingBufferQueue);
-//        }
-//        if (sampleBuffer) {
-//            CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
-//            CFRetain(formatDescription);
-//
-//            [self.videoProcessor processFrameWithSampleBuffer:sampleBuffer
-//                                    andFormatDescription:formatDescription
-//                                           andConnection:connection];
-//        }
-//    }
-//}
-
 // CVOpenGLESTextureCacheCreateTextureFromImage will create GLES texture
 // optimally from CVImageBufferRef.
 - (void)createTextureFromImageBuffer:(CVImageBufferRef)imageBuffer
@@ -332,52 +263,78 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self.videoProcessor stopRecording];
 }
 
-- (void)toggleCamera
-{    
-    NSArray* videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-    
-    if ([videoDevices count] > 1)		//Only do if device has multiple cameras
-	{
-        AVCaptureDeviceInput *oldVideoInput = nil;
-        AVCaptureDeviceInput *newVideoInput = nil;
-
-        for (AVCaptureDeviceInput* deviceInput in captureSession.inputs) {
-            if ([videoDevices containsObject:deviceInput.device]) {
-                oldVideoInput = deviceInput;
-            }
+- (AVCaptureDevice *) cameraWithPosition:(AVCaptureDevicePosition) position
+{
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices) {
+        if ([device position] == position) {
+            return device;
         }
-        
-        AVCaptureDevicePosition newPosition = (oldVideoInput.device.position == AVCaptureDevicePositionFront) ? AVCaptureDevicePositionBack
-                                                                                                              : AVCaptureDevicePositionFront;
-        
-        for (AVCaptureDevice* device in videoDevices) {
-            if (device.position == newPosition) {
-                newVideoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
-                break;
-            }
-        }
-        
-        NSLog(@"old Video Input: %@", oldVideoInput);
-        NSLog(@"new Video Input: %@", newVideoInput);
-
-		if (newVideoInput)
-		{
-            
-			[captureSession beginConfiguration];
-//            [captureSession setSessionPreset:AVCaptureSessionPresetHigh]; //Always reset preset before testing canAddInput because preset will cause it to return NO
-
-            [captureSession removeInput:oldVideoInput];
-			if ([captureSession canAddInput:newVideoInput])
-			{
-				[captureSession addInput:newVideoInput];
-			} else {
-                NSLog(@"can't add input");
-            }
-            
-			[captureSession commitConfiguration];
-		}
-	}
+    }
+    return nil;
 }
+
+- (AVCaptureDevice *) backFacingCamera
+{
+    return [self cameraWithPosition:AVCaptureDevicePositionBack];
+}
+
+- (AVCaptureDevice *) frontFacingCamera
+{
+    return [self cameraWithPosition:AVCaptureDevicePositionFront];
+}
+
+- (void)toggleTorch
+{
+    if ([[self backFacingCamera] hasTorch]) {
+        if ([[self backFacingCamera] lockForConfiguration:nil]) {
+            [[self backFacingCamera] setTorchMode:![self backFacingCamera].torchMode];
+            [[self backFacingCamera] unlockForConfiguration];
+        }
+    }
+}
+
+- (BOOL)hasTorch
+{
+    return [[self backFacingCamera] hasTorch];
+}
+
+- (void)toggleCamera
+{
+    BOOL success = NO;
+    if ([[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count] > 1)
+    {
+        NSError *error;
+        AVCaptureDeviceInput *newVideoInput;
+        AVCaptureDevicePosition position = self.videoIn.device.position;
+        
+        if (position == AVCaptureDevicePositionBack)
+            newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self frontFacingCamera] error:&error];
+        else if (position == AVCaptureDevicePositionFront)
+            newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:&error];
+
+        if (newVideoInput != nil) {
+            [captureSession beginConfiguration];
+            [captureSession removeInput:self.videoIn];
+            if ([captureSession canAddInput:newVideoInput]) {
+                captureSession.sessionPreset = AVCaptureSessionPreset640x480;
+                [captureSession addInput:newVideoInput];
+                self.videoIn = newVideoInput;
+            } else {
+                [captureSession addInput:self.videoIn];
+            }
+            [captureSession commitConfiguration];
+            success = YES;
+            [newVideoInput release];
+        } else if (error) {
+            NSLog(@"ERROR");
+        }
+    }
+
+//    bail:
+//        return success;
+}
+
 //
 //// Toggle between the front and back camera, if both are present.
 //- (BOOL) toggleCamera

@@ -2,6 +2,7 @@
 #import "MainViewController.h"
 #import "Flurry.h"
 #import "RFVideoCollection.h"
+#import "iRate.h"
 
 @implementation AppDelegate
 
@@ -35,11 +36,23 @@
     if (mainViewController.captureSessionManager.videoProcessor.recording) {
         [mainViewController.captureSessionManager stopRecording];
     }
-    
-    /*
-     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-     */
+}
+
++ (void)initialize
+{
+    //configure iRate
+    iRate *sharedInstance = [iRate sharedInstance];
+    sharedInstance.ratingsURL = [NSURL URLWithString:@"https://itunes.apple.com/us/app/twist-free-music/id458287454"];
+//    sharedInstance.appStoreID = 458287454;//650555904;
+    sharedInstance.daysUntilPrompt = 2;
+    sharedInstance.usesUntilPrompt = 8;
+    sharedInstance.messageTitle = @"Rate IncrediVid";
+    sharedInstance.message = @"Would you like to rate IncrediVid";
+    sharedInstance.cancelButtonLabel = @"Cancel";
+    sharedInstance.rateButtonLabel = @"Rate App";
+    sharedInstance.remindButtonLabel = @"Remind me later";
+    sharedInstance.previewMode = YES;
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

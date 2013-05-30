@@ -19,8 +19,8 @@
 {
     CALayer *_haloLayer = [CALayer layer];
     _haloLayer.frame = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
-    _haloLayer.frame = CGRectMake(0, 0, 80, 80);
-    _haloLayer.position = CGPointMake(bounds.size.width / 2 + 1.5, bounds.size.height / 2);
+//    _haloLayer.frame = CGRectMake(0, 0, 80, 80);
+    _haloLayer.position = CGPointMake(bounds.size.width / 2, bounds.size.height / 2);
     
     _haloLayer.contentsScale = [UIScreen mainScreen].scale;
     

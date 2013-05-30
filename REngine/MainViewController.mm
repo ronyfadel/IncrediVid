@@ -2,12 +2,10 @@
 #import "MyRenderer.h"
 #import "RFAnnotationView.h"
 #import "RFFilterScrollView.h"
-#import "RFRecordButton.h"
 #import "RFGLView.h"
 #import "GalleryViewController.h"
 #import "SharingViewController.h"
 #import "TKAlertCenter.h"
-#import "RFHaloActivityView.h"
 #import "CALayer+Utilities.h"
 
 static void NSLogRect(CGRect rect)
@@ -22,10 +20,10 @@ static void NSLogRect(CGRect rect)
     BOOL didOpenGallery;
 }
 
-@property RFAnnotationView* annotationBubble;
-@property IBOutlet UIButton *chooseFilterButton,
-*openGalleryButton;
-@property IBOutlet RFRecordButton *recordButton;
+@property(retain) RFAnnotationView* annotationBubble;
+@property(retain) IBOutlet UIButton *chooseFilterButton, *openGalleryButton, *recordButton;
+@property(retain) IBOutletCollection(UIButton) NSArray *buttons;
+
 @property UILabel *logoLabel,
                   *elapsedTimeLabel;
 
@@ -33,7 +31,6 @@ static void NSLogRect(CGRect rect)
 @property float elapsedTime;
 
 @property (retain)SharingViewController *sharingViewController;
-@property (retain)RFHaloActivityView *haloActivityView;
 @property (retain) IBOutlet RFGLView *previewView;
 
 @property (retain)CALayer* haloLayer;
@@ -132,7 +129,14 @@ static void NSLogRect(CGRect rect)
 
 - (void)setupSubviews
 {
-    // UI 
+    // halo layer
+    self.haloLayer = [CALayer haloLayerWithBounds:self.recordButton.bounds
+                                animationDuration:2.0
+                               delayBetweenCycles:0.5
+                                            radii:@[@80]
+                                        fromValue:@1.12
+                                          toValue:@1.17];
+    // UI
     UIFont *latoBlack = [UIFont fontWithName:@"Lato-Black" size:34.0];
     UIFont *latoBlackSmall = [UIFont fontWithName:@"Lato-Black" size:20.0];
 
@@ -142,24 +146,26 @@ static void NSLogRect(CGRect rect)
     self.elapsedTimeLabel.layer.cornerRadius = 4;
     self.elapsedTimeLabel.layer.opacity = 0;
     
-    self.previewView.frame = [[UIScreen mainScreen] bounds];
+    NSLogRect(self.previewView.frame);
     
     BOOL isScreenSize4Inch = [[UIScreen mainScreen] bounds].size.height == 568;
     if (isScreenSize4Inch) {
+        self.previewView.frame = CGRectMake(0, 0, 320, 548);
+        
         CGRect currentFrame;
         currentFrame = self.openGalleryButton.frame;
         self.openGalleryButton.frame = CGRectMake(currentFrame.origin.x,
-                                                  483,
+                                                  481 - 20,
                                                   currentFrame.size.width,
                                                   currentFrame.size.height);
         currentFrame = self.chooseFilterButton.frame;
         self.chooseFilterButton.frame = CGRectMake(currentFrame.origin.x,
-                                                  483,
+                                                  481 - 20,
                                                   currentFrame.size.width,
                                                   currentFrame.size.height);
         currentFrame = self.recordButton.frame;
         self.recordButton.frame = CGRectMake(currentFrame.origin.x,
-                                             447,
+                                             462 - 20,
                                              currentFrame.size.width,
                                              currentFrame.size.height);
     }
@@ -199,31 +205,33 @@ static void NSLogRect(CGRect rect)
         RFFilterScrollView *scrollView = [[[RFFilterScrollView alloc] initWithFrame:CGRectMake(8, 10, 315, 70)
                                                                         filtersInfo:filtersInfo] autorelease];
         [self.annotationBubble addSubview:scrollView];
+    }
+    
+    if (self.annotationBubble.layer.opacity == 0) {
         [self.view addSubview:self.annotationBubble];
     }
-    [self setFilterPickerToOpacity:(1.0 - self.annotationBubble.layer.opacity)];
-}
-
-- (void)setFilterPickerToOpacity:(float)opacity
-{
-//    self.chooseFilterButton.enabled = NO;
     [UIView animateWithDuration:0.4 delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.annotationBubble.layer.opacity = opacity;
+                         self.annotationBubble.layer.opacity = 1 - self.annotationBubble.layer.opacity;
                      }
                      completion:^(BOOL finished){
-//                         self.chooseFilterButton.enabled = YES;
+                         if (self.annotationBubble.layer.opacity == 0) {
+                             [self.annotationBubble removeFromSuperview];
+                         }
                      }];
 }
 
 - (void)setUpViewIsRecording:(BOOL)recording
 {
-    self.chooseFilterButton.enabled = !recording;
-    self.openGalleryButton.enabled  = !recording;
+    for (UIButton* button in self.buttons) {
+        button.enabled = !recording;
+    }
 
     if (recording) {
-        [self setFilterPickerToOpacity:0];
+        if (self.annotationBubble.layer.opacity) {
+            [self alternateFilterPicker:nil];
+        }
         [self setButtonHaloLayerVisible:YES];
         self.elapsedTimeTimer = [NSTimer scheduledTimerWithTimeInterval:1
                                                                  target:self
@@ -240,18 +248,10 @@ static void NSLogRect(CGRect rect)
     
     [UIView animateWithDuration:0.4 delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{                         
-                         CGFloat displacement = recording ? 100 : -100;
-                         self.chooseFilterButton.frame = CGRectMake(self.chooseFilterButton.frame.origin.x + displacement,
-                                                                    self.chooseFilterButton.frame.origin.y,
-                                                                    self.chooseFilterButton.frame.size.width,
-                                                                    self.chooseFilterButton.frame.size.height);
-                         
-                         self.openGalleryButton.frame = CGRectMake(self.openGalleryButton.frame.origin.x - displacement,
-                                                              self.openGalleryButton.frame.origin.y,
-                                                              self.openGalleryButton.frame.size.width,
-                                                              self.openGalleryButton.frame.size.height);
-                         
+                     animations:^{
+                         for (UIButton* button in self.buttons) {
+                             button.layer.opacity = 1.0 - button.layer.opacity;
+                         }
                          self.elapsedTimeLabel.layer.opacity = 1.0 - self.elapsedTimeLabel.layer.opacity;
 
                      }
@@ -260,19 +260,7 @@ static void NSLogRect(CGRect rect)
 
 - (void)setButtonHaloLayerVisible:(BOOL)visible
 {
-    if (visible) {
-        if (!self.haloLayer) {
-            self.haloLayer = [CALayer haloLayerWithBounds:self.recordButton.bounds
-                                    animationDuration:2.0
-                                   delayBetweenCycles:0.5
-                                                radii:@[@80, @100]
-                                            fromValue:@1.3
-                                              toValue:@1.6];
-        }
-        [self.recordButton.layer addSublayer:self.haloLayer];
-    } else {
-        [self.haloLayer removeFromSuperlayer];
-    }
+    visible ? [self.recordButton.layer addSublayer:self.haloLayer] : [self.haloLayer removeFromSuperlayer];
 }
 
 - (void)newFilterChosen:(NSNotification*)theNotification
@@ -322,8 +310,9 @@ static void NSLogRect(CGRect rect)
 {
     didOpenGallery = YES;
     GalleryViewController* galleryViewController = [[[GalleryViewController alloc] init] autorelease];
-    [self presentViewController:galleryViewController animated:YES completion:^(void){}];
-    [self.captureSessionManager pause];
+    [self presentViewController:galleryViewController animated:YES completion:^(void){
+        [self.captureSessionManager pause];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -358,6 +347,11 @@ static void NSLogRect(CGRect rect)
 - (IBAction)toggleCamera
 {
     [self.captureSessionManager toggleCamera];
+}
+
+- (IBAction)toggleTorch
+{
+    [self.captureSessionManager toggleTorch];
 }
 
 - (void)thumbnailReady:(NSNotification*)notification
