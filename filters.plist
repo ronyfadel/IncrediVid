@@ -4,57 +4,81 @@
 <array>
 	<dict>
 		<key>imageFileName</key>
-		<string>filter-0.png</string>
+		<string>filter_1.png</string>
 		<key>imageTitle</key>
 		<string>Normal</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>
-		<string>filter-4.png</string>
+		<string>filter_2.png</string>
 		<key>imageTitle</key>
 		<string>Vintage</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>
-		<string>filter-1.png</string>
+		<string>filter_12.png</string>
 		<key>imageTitle</key>
-		<string> Etikate</string>
+		<string>Beirut</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>
-		<string>filter-1.png</string>
+		<string>filter_3.png</string>
 		<key>imageTitle</key>
-		<string>Reddish</string>
+		<string>Dusk</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>
-		<string>filter-1.png</string>
+		<string>filter_7.png</string>
 		<key>imageTitle</key>
-		<string>Greenish</string>
+		<string>Katana</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>
-		<string>filter-4.png</string>
+		<string>filter_4.png</string>
+		<key>imageTitle</key>
+		<string>Lomo</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter_13.png</string>
+		<key>imageTitle</key>
+		<string>Toon</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter_6.png</string>
+		<key>imageTitle</key>
+		<string>Sahara</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter_5.png</string>
+		<key>imageTitle</key>
+		<string>Aura</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter_10.png</string>
 		<key>imageTitle</key>
 		<string>B&amp;W</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>
-		<string>filter-4.png</string>
+		<string>filter_8.png</string>
+		<key>imageTitle</key>
+		<string>Dharma</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter_11.png</string>
 		<key>imageTitle</key>
 		<string>Sepia</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>
-		<string>filter-2.png</string>
+		<string>filter_9.png</string>
 		<key>imageTitle</key>
-		<string>Amatorke</string>
-	</dict>
-	<dict>
-		<key>imageFileName</key>
-		<string>filter-3.png</string>
-		<key>imageTitle</key>
-		<string>Cartoon</string>
+		<string>Koppar</string>
 	</dict>
 </array>
 </plist>

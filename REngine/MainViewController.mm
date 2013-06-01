@@ -83,7 +83,7 @@ static void NSLogRect(CGRect rect)
     self.captureSessionManager = [[[AVCaptureSessionManager alloc] initWithRenderer:(renderer)] autorelease];
 #else
     // Texture 0 is pre-defined image
-    string texture_name = "lux.jpg";
+    string texture_name = "arc_de_triomphe.png";
     string texture_path = get_ios_file_path(texture_name);
     cout<<texture_path<<endl;
     UIImage* texture = [UIImage imageWithContentsOfFile:[NSString stringWithCString:texture_path.c_str() encoding:NSASCIIStringEncoding]];
@@ -155,7 +155,6 @@ static void NSLogRect(CGRect rect)
     BOOL isScreenSize4Inch = [[UIScreen mainScreen] bounds].size.height == 568;
     if (isScreenSize4Inch) {
         self.previewView.frame = CGRectMake(0, 0, 320, 548);
-        
         CGRect currentFrame;
         currentFrame = self.openGalleryButton.frame;
         self.openGalleryButton.frame = CGRectMake(currentFrame.origin.x,
@@ -203,8 +202,6 @@ static void NSLogRect(CGRect rect)
         self.annotationBubble.layer.opacity = 0;
         NSString* file = [[NSBundle mainBundle] pathForResource:@"filters" ofType:@"plist"];
         NSArray* filtersInfo = [NSArray arrayWithContentsOfFile:file];
-        
-        
         
         RFFilterScrollView *scrollView = [[[RFFilterScrollView alloc] initWithFrame:CGRectMake(8, 10, 315, 70)
                                                                         filtersInfo:filtersInfo] autorelease];

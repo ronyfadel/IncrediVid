@@ -133,30 +133,6 @@
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
-							<object class="IBUIButton" id="1028467063">
-								<reference key="NSNextResponder" ref="997665794"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{255, 373}, {65, 65}}</string>
-								<reference key="NSSuperview" ref="997665794"/>
-								<reference key="NSWindow"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIHighlightedTitleColor" ref="215783542"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="296850359"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">incrediWand.png</string>
-								</object>
-								<reference key="IBUIFontDescription" ref="834782119"/>
-								<reference key="IBUIFont" ref="275257886"/>
-							</object>
 							<object class="IBUIButton" id="348535490">
 								<reference key="NSNextResponder" ref="997665794"/>
 								<int key="NSvFlags">292</int>
@@ -226,6 +202,30 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
+					<object class="IBUIButton" id="1028467063">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{257, 372}, {65, 65}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIHighlightedTitleColor" ref="215783542"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="296850359"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">incrediWand.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="834782119"/>
+						<reference key="IBUIFont" ref="275257886"/>
+					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
 				<reference key="NSSuperview"/>
@@ -292,14 +292,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">chooseFilterButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1028467063"/>
-					</object>
-					<int key="connectionID">66</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">elapsedTimeLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="350254023"/>
@@ -320,16 +312,6 @@
 					<object class="IBCocoaTouchOutletCollectionConnection" key="connection">
 						<string key="label">buttons</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1028467063"/>
-						<string key="cachedDesigntimeCollectionClassName">NSArray</string>
-						<bool key="addsContentToExistingCollection">NO</bool>
-					</object>
-					<int key="connectionID">78</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletCollectionConnection" key="connection">
-						<string key="label">buttons</string>
-						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="405930307"/>
 						<string key="cachedDesigntimeCollectionClassName">NSArray</string>
 						<bool key="addsContentToExistingCollection">NO</bool>
@@ -343,6 +325,24 @@
 						<reference key="destination" ref="348535490"/>
 					</object>
 					<int key="connectionID">80</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletCollectionConnection" key="connection">
+						<string key="label">buttons</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1028467063"/>
+						<string key="cachedDesigntimeCollectionClassName">NSArray</string>
+						<bool key="addsContentToExistingCollection">NO</bool>
+					</object>
+					<int key="connectionID">78</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">chooseFilterButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1028467063"/>
+					</object>
+					<int key="connectionID">66</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -403,6 +403,7 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="997665794"/>
+							<reference ref="1028467063"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -422,28 +423,12 @@
 						<reference key="object" ref="997665794"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="405930307"/>
-							<reference ref="1028467063"/>
 							<reference ref="350254023"/>
 							<reference ref="296711428"/>
 							<reference ref="850423397"/>
 							<reference ref="348535490"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">51</int>
-						<reference key="object" ref="405930307"/>
-						<reference key="parent" ref="997665794"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">20</int>
-						<reference key="object" ref="296711428"/>
-						<reference key="parent" ref="997665794"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">53</int>
-						<reference key="object" ref="1028467063"/>
-						<reference key="parent" ref="997665794"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">43</int>
@@ -456,9 +441,24 @@
 						<reference key="parent" ref="997665794"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">20</int>
+						<reference key="object" ref="296711428"/>
+						<reference key="parent" ref="997665794"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">72</int>
 						<reference key="object" ref="850423397"/>
 						<reference key="parent" ref="997665794"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">51</int>
+						<reference key="object" ref="405930307"/>
+						<reference key="parent" ref="997665794"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">53</int>
+						<reference key="object" ref="1028467063"/>
+						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
 			</object>
@@ -488,11 +488,36 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MainViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="alternateFilterPicker:">id</string>
+						<string key="openGallery:">id</string>
+						<string key="recordVideo:">id</string>
+						<string key="showOverlayView:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="alternateFilterPicker:">
+							<string key="name">alternateFilterPicker:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openGallery:">
+							<string key="name">openGallery:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="recordVideo:">
+							<string key="name">recordVideo:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showOverlayView:">
+							<string key="name">showOverlayView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="chooseFilterButton">UIButton</string>
 						<string key="openGalleryButton">UIButton</string>
 						<string key="previewView">RFGLView</string>
 						<string key="recordButton">UIButton</string>
+						<string key="toggleTorchButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="chooseFilterButton">
@@ -509,6 +534,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="recordButton">
 							<string key="name">recordButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="toggleTorchButton">
+							<string key="name">toggleTorchButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>

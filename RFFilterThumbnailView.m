@@ -57,7 +57,7 @@
     [thumbnailButton addTarget:delegate action:@selector(newFilterChosen:) forControlEvents:UIControlEventTouchUpInside];
     [thumbnailButton setBackgroundImage:[UIImage imageNamed:imageFileName] forState:UIControlStateNormal];
     
-    UILabel *filterName = [[[UILabel alloc] initWithFrame:CGRectMake(-3,
+    UILabel *filterName = [[[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                     0.6f * self.frame.size.width,
                                                                     self.frame.size.width,
                                                                     0.2f * self.frame.size.width)] autorelease];
