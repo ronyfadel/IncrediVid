@@ -21,7 +21,7 @@ static void NSLogRect(CGRect rect)
 }
 
 @property(retain) RFAnnotationView* annotationBubble;
-@property(retain) IBOutlet UIButton *chooseFilterButton, *openGalleryButton, *recordButton;
+@property(retain) IBOutlet UIButton *chooseFilterButton, *openGalleryButton, *recordButton, *toggleTorchButton;
 @property(retain) IBOutletCollection(UIButton) NSArray *buttons;
 
 @property UILabel *logoLabel,
@@ -79,7 +79,6 @@ static void NSLogRect(CGRect rect)
 - (void)viewDidLoad
 {
     renderer = new MyRenderer(self.previewView);
-    [self setupSubviews];
 #if ! TARGET_IPHONE_SIMULATOR
     self.captureSessionManager = [[[AVCaptureSessionManager alloc] initWithRenderer:(renderer)] autorelease];
 #else
@@ -120,6 +119,7 @@ static void NSLogRect(CGRect rect)
     displayLink.frameInterval = 30;
     [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 #endif
+    [self setupSubviews];
 }
 
 - (void)update
@@ -129,6 +129,10 @@ static void NSLogRect(CGRect rect)
 
 - (void)setupSubviews
 {
+    if (![self.captureSessionManager hasTorch]) {
+        NSLog(@"does not have torch!");
+        [self.toggleTorchButton removeFromSuperview];
+    }
     // halo layer
     self.haloLayer = [CALayer haloLayerWithBounds:self.recordButton.bounds
                                 animationDuration:2.0
@@ -272,8 +276,7 @@ static void NSLogRect(CGRect rect)
 - (IBAction)recordVideo:(id)sender
 {
     AVCaptureSessionManager *captureSessionManager = self.captureSessionManager;
-    captureSessionManager.videoProcessor.recording ? [captureSessionManager stopRecording]
-                                                   : [captureSessionManager startRecording];
+    captureSessionManager.videoProcessor.recording ? [captureSessionManager stopRecording] : [captureSessionManager startRecording];
 }
 
 - (void)recordingWillStart
@@ -293,10 +296,6 @@ static void NSLogRect(CGRect rect)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setUpViewIsRecording:NO];
-//        if (! self.haloActivityView) {
-//            self.haloActivityView = [[RFHaloActivityView alloc] initWithFrame:self.view.bounds];
-//            [self.view addSubview:self.haloActivityView];
-//        }
         NSLog(@"recordingWillStop");
     });
 }
@@ -335,7 +334,6 @@ static void NSLogRect(CGRect rect)
 - (IBAction)showOverlayView:(id)sender
 {
     [self.captureSessionManager pause];
-    NSLog(@"here");
     self.sharingViewController = [[[SharingViewController alloc] initWithNibName:@"SharingViewController"
                                                                          bundle:[NSBundle mainBundle]
                                                                       videoInfo:nil] autorelease];
@@ -352,6 +350,15 @@ static void NSLogRect(CGRect rect)
 - (IBAction)toggleTorch
 {
     [self.captureSessionManager toggleTorch];
+    if ([self.captureSessionManager isTorchOn]) {
+        UIColor *glowingColor = [UIColor colorWithRed:(62.f / 255.f) green:(132 / 255.f) blue:(255.f / 255.f) alpha:1];
+        self.toggleTorchButton.layer.shadowOffset = CGSizeMake(0, 0);
+        self.toggleTorchButton.layer.shadowOpacity = 1;
+        self.toggleTorchButton.layer.shadowColor = glowingColor.CGColor;
+        self.toggleTorchButton.layer.shadowRadius = 8;
+    } else {
+        self.toggleTorchButton.layer.shadowRadius = 0;
+    }    
 }
 
 - (void)thumbnailReady:(NSNotification*)notification
@@ -366,44 +373,4 @@ static void NSLogRect(CGRect rect)
 {
     [self.captureSessionManager resume];
 }
-
-//- (CGFloat)angleOffsetFromPortraitOrientationToOrientation:(AVCaptureVideoOrientation)orientation
-//{
-//	CGFloat angle = 0.0;
-//	
-//	switch (orientation) {
-//		case AVCaptureVideoOrientationPortrait:
-//			angle = 0.0;
-//			break;
-//		case AVCaptureVideoOrientationPortraitUpsideDown:
-//			angle = M_PI;
-//			break;
-//		case AVCaptureVideoOrientationLandscapeRight:
-//			angle = -M_PI_2;
-//			break;
-//		case AVCaptureVideoOrientationLandscapeLeft:
-//			angle = M_PI_2;
-//			break;
-//		default:
-//			break;
-//	}
-//    
-//	return angle;
-//}
-//
-//- (CGAffineTransform)transformFromCurrentVideoOrientationToOrientation:(AVCaptureVideoOrientation)orientation
-//{
-//	CGAffineTransform transform = CGAffineTransformIdentity;
-//    
-//	// Calculate offsets from an arbitrary reference orientation (portrait)
-//	CGFloat orientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:orientation];
-//	CGFloat videoOrientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:self.videoOrientation];
-//	
-//	// Find the difference in angle between the passed in orientation and the current video orientation
-//	CGFloat angleOffset = orientationAngleOffset - videoOrientationAngleOffset;
-//	transform = CGAffineTransformMakeRotation(angleOffset);
-//	
-//	return transform;
-//}
-
 @end

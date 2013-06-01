@@ -11,7 +11,9 @@
 #import "RFModalViewController.h"
 
 @interface SharingViewController : RFModalViewController <MFMailComposeViewControllerDelegate,
-                                                            UIDocumentInteractionControllerDelegate>
+                                                            UIDocumentInteractionControllerDelegate,
+                                                            UIAlertViewDelegate,
+                                                            UITextFieldDelegate>
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil videoInfo:(NSDictionary*)videoInfo;
 - (IBAction)play:(id)sender;

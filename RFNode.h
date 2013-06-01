@@ -12,12 +12,14 @@ enum {
 enum uniform_type {
     INTEGER_UNIFORM,
     FLOAT_UNIFORM,
+    VEC4_UNIFORM,
     UNIFORM_TYPE_NUM
 };
 
 union uniform_value {
     int i;
     float f;
+    float v[4];
 };
 
 class RFNode {
@@ -36,6 +38,7 @@ public:
     virtual RFNode* setup();
     virtual void set_attribs()  = 0;
     virtual void set_uniforms();
+    virtual void bind_uniform_to_vec4_value(string uniform_name, float value[4]);
     virtual void bind_uniform_to_int_value(string uniform_name, int value);
     virtual void bind_uniform_to_float_value(string uniform_name, float value);
     virtual ~RFNode();

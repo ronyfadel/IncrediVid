@@ -37,6 +37,13 @@ RFNode* RFNode::setup()
     return this;
 }
 
+void RFNode::bind_uniform_to_vec4_value(string uniform_name, float value[4])
+{
+    uniform_value tmp;
+    memcpy(tmp.v, value, 4 * sizeof(float));
+    bind_uniform_to_value(uniform_name, tmp, VEC4_UNIFORM);
+}
+
 void RFNode::bind_uniform_to_int_value(string uniform_name, int value)
 {
     uniform_value tmp;
@@ -64,23 +71,24 @@ void RFNode::set_uniforms()
         switch (i->second.second) {
             case INTEGER_UNIFORM:
                 glUniform1i(uniform_id, i->second.first.i);
-                cout<<i->first<<" glUniform1i("<<uniform_id<<", "<<i->second.first.i<<");"<<endl;
                 break;
             case FLOAT_UNIFORM:
                 glUniform1f(uniform_id, i->second.first.f);
-                cout<<i->first<<" glUniform1f("<<uniform_id<<", "<<i->second.first.f<<");"<<endl;
+                break;
+            case VEC4_UNIFORM:
+                glUniform4fv(uniform_id, 1, i->second.first.v);
                 break;
             default:
                 break;
         }
     }
-    cout<<endl;
 }
 
 void RFNode::drawToFramebuffer(RFFramebuffer* framebuffer)
 {
     framebuffer->use();
     program->use();
+    set_uniforms();
     glBindVertexArrayOES(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo[ARRAY_BUFFER]);
     glDrawElements(GL_TRIANGLES, index_count, GL_UNSIGNED_SHORT, 0);

@@ -42,17 +42,11 @@
 {
     //configure iRate
     iRate *sharedInstance = [iRate sharedInstance];
-    sharedInstance.ratingsURL = [NSURL URLWithString:@"https://itunes.apple.com/us/app/twist-free-music/id458287454"];
-//    sharedInstance.appStoreID = 458287454;//650555904;
+//    sharedInstance.applicationBundleID = @"com.ronyfadel.twistradio";
+    sharedInstance.appStoreID = 650555904;
     sharedInstance.daysUntilPrompt = 2;
     sharedInstance.usesUntilPrompt = 8;
-    sharedInstance.messageTitle = @"Rate IncrediVid";
-    sharedInstance.message = @"Would you like to rate IncrediVid";
-    sharedInstance.cancelButtonLabel = @"Cancel";
-    sharedInstance.rateButtonLabel = @"Rate App";
-    sharedInstance.remindButtonLabel = @"Remind me later";
-    sharedInstance.previewMode = YES;
-
+    sharedInstance.useAllAvailableLanguages = NO;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

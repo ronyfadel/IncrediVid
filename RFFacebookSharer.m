@@ -15,36 +15,54 @@
 
 @implementation RFFacebookSharer
 
++ (BOOL)supportsNativeFacebookSharing
+{
+    BOOL isiOS6OrAbove = [[[UIDevice currentDevice] systemVersion] compare:@"6.0" options:NSNumericSearch] != NSOrderedAscending;    
+    return isiOS6OrAbove;
+}
+
 - (void)authenticateWithCompletion:(AuthentificationCompletionHandler)completion
 {
     if (!self.accountStore) {
         self.accountStore = [[ACAccountStore alloc] init];
     }
-    ACAccountType *accountTypeFacebook = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-    NSArray *permissions = @[@"email", @"publish_stream"];
-    NSString *facebookAudience = ACFacebookAudienceFriends;
+    ACAccountType *facebookAccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    __block NSArray *permissions = @[@"read_stream", @"email"];
+    __block NSDictionary *options = @{ACFacebookAppIdKey: @"578010692220043",
+                                      ACFacebookPermissionsKey: permissions,
+                                      ACFacebookAudienceKey: ACFacebookAudienceFriends};
     
-    NSDictionary *options = @{ACFacebookAppIdKey: @"578010692220043",
-                              ACFacebookPermissionsKey: permissions,
-                              ACFacebookAudienceKey: facebookAudience};
-    [self.accountStore requestAccessToAccountsWithType:accountTypeFacebook
-                                          options:options
-                                       completion:^(BOOL granted, NSError *error)
+    [self.accountStore requestAccessToAccountsWithType:facebookAccountType
+                                               options:options
+                                            completion:^(BOOL granted, NSError *error)
      {
-         if(granted) {
-             NSArray *accounts = [self.accountStore accountsWithAccountType:accountTypeFacebook];
-             self.facebookAccount = [accounts lastObject];
+         if (granted) {
+             permissions = @[@"publish_stream"];
+             options = @{ACFacebookAppIdKey: @"578010692220043",
+                         ACFacebookPermissionsKey: permissions,
+                         ACFacebookAudienceKey: ACFacebookAudienceFriends};
+             [self.accountStore requestAccessToAccountsWithType:facebookAccountType
+                                                        options:options
+                                                     completion:^(BOOL granted, NSError *error){
+                                                         if (granted) {
+                                                             NSArray *accounts = [self.accountStore accountsWithAccountType:facebookAccountType];
+                                                             self.facebookAccount = [accounts lastObject];
+                                                         }
+                                                         completion(granted, error);
+                                                     }];
+         } else {
+             completion(granted, error);
          }
-         completion(granted, error);
      }];
 }
 
 - (void)share:(NSDictionary*)sharingInfo completion:(SharingCompletionHandler)completion
 {
     NSURL *videoURL = [sharingInfo objectForKey:@"videoURL"];
+    NSString *title = [sharingInfo objectForKey:@"videoTitle"];
     NSData *videoData = [NSData dataWithContentsOfFile:videoURL.path];
     
-    NSDictionary *parameters = @{@"title": [sharingInfo objectForKey:@"title"]};
+    NSDictionary *parameters = @{@"title": title};
     NSURL *feedURL = [NSURL URLWithString:@"https://graph.facebook.com/me/videos"];
     SLRequest *feedRequest = [SLRequest
                               requestForServiceType:SLServiceTypeFacebook

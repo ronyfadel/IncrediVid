@@ -2,7 +2,8 @@
 #import <OpenGLES/ES2/gl.h>
 #import "RFShader.h"
 
-class RFShaderFactory {
+class RFShaderFactory
+{
     map<pair<string, GLenum>, pair<RFShader*, int> > shaders;
     static RFShaderFactory* _instance;
     

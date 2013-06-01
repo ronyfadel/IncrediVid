@@ -286,10 +286,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)toggleTorch
 {
-    if ([[self backFacingCamera] hasTorch]) {
-        if ([[self backFacingCamera] lockForConfiguration:nil]) {
-            [[self backFacingCamera] setTorchMode:![self backFacingCamera].torchMode];
-            [[self backFacingCamera] unlockForConfiguration];
+    AVCaptureDevice *backFacingCamera = [self backFacingCamera];
+    if ([backFacingCamera hasTorch]) {
+        if ([backFacingCamera lockForConfiguration:nil]) {
+            [backFacingCamera setTorchMode:!backFacingCamera.torchMode];
+            [backFacingCamera unlockForConfiguration];
         }
     }
 }
@@ -297,6 +298,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 - (BOOL)hasTorch
 {
     return [[self backFacingCamera] hasTorch];
+}
+
+-(BOOL)isTorchOn
+{
+    return [self backFacingCamera].torchActive;
 }
 
 - (void)toggleCamera

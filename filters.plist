@@ -4,6 +4,12 @@
 <array>
 	<dict>
 		<key>imageFileName</key>
+		<string>filter-0.png</string>
+		<key>imageTitle</key>
+		<string>Normal</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
 		<string>filter-4.png</string>
 		<key>imageTitle</key>
 		<string>Vintage</string>
@@ -13,6 +19,30 @@
 		<string>filter-1.png</string>
 		<key>imageTitle</key>
 		<string> Etikate</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter-1.png</string>
+		<key>imageTitle</key>
+		<string>Reddish</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter-1.png</string>
+		<key>imageTitle</key>
+		<string>Greenish</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter-4.png</string>
+		<key>imageTitle</key>
+		<string>B&amp;W</string>
+	</dict>
+	<dict>
+		<key>imageFileName</key>
+		<string>filter-4.png</string>
+		<key>imageTitle</key>
+		<string>Sepia</string>
 	</dict>
 	<dict>
 		<key>imageFileName</key>

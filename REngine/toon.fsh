@@ -37,19 +37,10 @@ float grad()
     
     float grad = abs(dX) + abs(dY);
     return 1.0-clamp(grad * coefficient, 0.0, 1.0);
-    
-    //    float mag = length(vec2(dX, dY));
-    //    float thresholdTest = 1.0 - step(coefficient, mag);
-    //    return thresholdTest;
 }
 
 void main()
 {
     float gradient = grad();
     gl_FragColor = vec4(texture2D(input_texture, texture_coordinate).rgb * gradient, 1.0);
-    
-    //    float quantization_levels = 32.0;
-    //    vec3 original_fragment_color = texture2D(original_texture, vec2(texture_coordinate.x, 1.0 - texture_coordinate.y)).bgr;
-    //    vec3 posterized_image_color = floor((original_fragment_color.rgb * quantization_levels) + 0.5) / quantization_levels;
-    //    gl_FragColor = vec4(posterized_image_color * gradient, 1.0);
 }

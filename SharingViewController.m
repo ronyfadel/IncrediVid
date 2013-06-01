@@ -15,6 +15,8 @@
 #import "RFVideoCollection.h"
 #import "RFFacebookSharer.h"
 
+//#import "<#header#>"
+
 enum SHARING_SERVICE {
     FACEBOOK_SHARING_SERVICE = 0,
     EMAIl_SHARING_SERVICE,
@@ -32,6 +34,8 @@ enum SHARING_SERVICE {
 @property IBOutlet UIButton *facebookShareButton;
 @property IBOutlet UIButton *deleteVideoButton;
 @property IBOutlet UIButton *emailVideoButton;
+
+@property (retain) UITextField *facebookTitleTextField;
 
 @property (retain) MPMoviePlayerViewController *moviePlayerController;
 @property (retain) RFFacebookSharer *facebookSharer;
@@ -53,12 +57,17 @@ enum SHARING_SERVICE {
 {
     [super viewDidLoad];
     
-    self.thumbnailView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.videoInfo objectForKey:@"largeThumbnail"]]];
+    if (![RFFacebookSharer supportsNativeFacebookSharing]) {
+        [self.facebookShareButton removeFromSuperview];
+    }
+
     // thumbnail image view
-    self.thumbnailView.layer.cornerRadius = 6;
-    self.thumbnailView.layer.masksToBounds = YES;
     self.playButton.layer.cornerRadius = 6;
     self.playButton.layer.masksToBounds = YES;
+    NSURL *thumbnailURL = [self.videoInfo objectForKey:@"largeThumbnail"];
+    UIImage *thumbnailImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:thumbnailURL]];
+    [self.playButton setBackgroundImage:thumbnailImage forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"playButton@2x.png"] forState:UIControlStateNormal];
     
     // masking delete video button
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.deleteVideoButton.bounds
@@ -110,29 +119,95 @@ enum SHARING_SERVICE {
     }
 }
 
+- (UIViewController *) documentInteractionControllerViewControllerForPreview: (UIDocumentInteractionController *) controller {
+    return self;
+}
+
 - (void)shareOnFacebook
 {
+//    NSURL *videoURL = [self.videoInfo objectForKey:@"videoURL"];
+//    if ([[UIApplication sharedApplication] canOpenURL:videoURL]) {
+//        UIDocumentInteractionController* interactionController = [UIDocumentInteractionController interactionControllerWithURL:videoURL];
+//        [interactionController presentOpenInMenuFromRect:self.facebookShareButton.bounds inView:self.view animated:YES];
+//    } else {
+//        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"You do not have any apps that can read incrediVids"];
+//    }
+    
     self.facebookSharer = [[RFFacebookSharer alloc] init];
     [self.facebookSharer authenticateWithCompletion:^(BOOL granted, NSError *error) {
-        if (! granted) {
-            UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Failed Authenticating Facebbok"
-                                                                message:nil
+        if (!granted) {
+            UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Please Enable Facebook from Settings then Try Again"
+                                                                 message:[error description]
                                                                delegate:nil
-                                                      cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease];
+                                                      cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
             [alertView show];
         } else {
-            [self.facebookSharer share:self.videoInfo completion:^(BOOL shared, NSError *error) {
-                if (!shared) {
-                    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Sharing Failed"
-                                                                         message:[error localizedDescription]
-                                                                        delegate:nil
-                                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease];
-                } else {
-                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Shared on Facebook!"];
-                }
-            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView* sharingInputView = [[UIAlertView alloc] initWithTitle:@"IncrediVid Title"
+                                                                           message:nil
+                                                                          delegate:self
+                                                                 cancelButtonTitle:@"Cancel"
+                                                                 otherButtonTitles:@"Share", nil];
+                
+                sharingInputView.tag = 1;
+                self.facebookTitleTextField = [[[UITextField alloc] initWithFrame:CGRectMake(12, 45, 260, 30)] autorelease];
+                self.facebookTitleTextField.placeholder = @"Incredivid Title";
+                self.facebookTitleTextField.borderStyle = UITextBorderStyleRoundedRect;
+                self.facebookTitleTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+                self.facebookTitleTextField.returnKeyType = UIReturnKeyDone;
+                [self.facebookTitleTextField becomeFirstResponder];
+                [sharingInputView addSubview:self.facebookTitleTextField];
+                self.facebookTitleTextField.delegate = self;
+                [sharingInputView show];
+                [sharingInputView release];
+            });
         }
     }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    UIAlertView* alertView = (UIAlertView*) [textField superview];
+    [alertView dismissWithClickedButtonIndex:1 animated:YES];
+    return YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (alertView.tag) {
+        case 0: // delete alert view
+            if (buttonIndex == 0) {
+                NSLog(@"tapped cancel");
+            }
+            else if (buttonIndex == 1) {
+                [[RFVideoCollection sharedCollection] deleteVideoWithInfo:self.videoInfo];
+                [self dismiss];
+            }
+            break;
+        case 1: // facebook alert view
+            if (buttonIndex == 1)
+            {
+                NSDictionary *sharingInfo = @{@"videoURL": [self.videoInfo valueForKey:@"videoURL"],
+                                              @"videoTitle": self.facebookTitleTextField.text};
+                NSString *videoTitle = [self.facebookTitleTextField.text copy];
+                [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Uploading will be done in the background"];
+                [self dismiss];
+                [self.facebookSharer share:sharingInfo completion:^(BOOL shared, NSError *error) {
+                    if (!shared) {
+                        UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Sharing Failed"
+                                                                             message:[error localizedDescription]
+                                                                            delegate:nil
+                                                                   cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+                        [alertView show];
+                    } else {
+                        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@" \"%@\" Shared on Facebook!", videoTitle]];
+                        [videoTitle release];
+                    }
+                }];
+            }
+        default:
+            break;
+    }
 }
 
 - (void)saveMovieToCameraRoll
@@ -216,18 +291,6 @@ enum SHARING_SERVICE {
                                           otherButtonTitles:@"Delete",nil];
     [alert show];
     [alert release];
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        NSLog(@"tapped cancel");
-    }
-    else if (buttonIndex == 1) {
-        NSLog(@"videos count: %d", [[RFVideoCollection sharedCollection].videos count]);
-        [[RFVideoCollection sharedCollection] deleteVideoWithInfo:self.videoInfo];
-        NSLog(@"videos count after delete: %d", [[RFVideoCollection sharedCollection].videos count]);
-        [self dismiss];
-    }
 }
 
 - (void)dealloc

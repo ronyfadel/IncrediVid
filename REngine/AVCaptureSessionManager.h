@@ -15,4 +15,6 @@
 - (void)toggleCamera;
 - (void)pause;
 - (void)resume;
+- (BOOL)hasTorch;
+- (BOOL)isTorchOn;
 @end

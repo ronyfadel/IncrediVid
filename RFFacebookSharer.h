@@ -14,6 +14,7 @@ typedef void (^AuthentificationCompletionHandler)(BOOL granted, NSError *error);
 typedef void (^SharingCompletionHandler)(BOOL shared, NSError *error);
 
 @interface RFFacebookSharer : NSObject
++ (BOOL)supportsNativeFacebookSharing;
 - (void)authenticateWithCompletion:(AuthentificationCompletionHandler)completion;
 - (void)share:(NSDictionary*)sharingInfo completion:(SharingCompletionHandler)completion;
 @end

@@ -4,6 +4,8 @@
 #import "RFFilterCollection.h"
 using namespace std;
 
+// dont forget to cleanup all filters
+
 class MyRenderer : public RFRenderer {
 protected:
     vector<RFFilterCollection*> filters;
